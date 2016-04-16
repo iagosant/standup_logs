@@ -11,10 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
+  <ul>
+    <% @users.each do |user| %>
+        <li>
+          <%= check_box_tag 'user_ids[]', user.id -%>
+          <%= h user.first_name -%>
+        </li>
+    <% end %>
+  </ul>
   <div class="actions">
     <%= f.submit %>
   </div>

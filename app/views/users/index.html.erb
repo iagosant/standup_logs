@@ -8,6 +8,8 @@
       <th>First name</th>
       <th>Last name</th>
       <th>Role</th>
+      <th>Attended</th>
+      <th>Sessions</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +20,8 @@
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
         <td><%= user.role %></td>
+        <td><%= user.attended %></td>
+        <td><%= link_to user.sessions, session %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

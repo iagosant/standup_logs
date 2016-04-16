@@ -11,11 +11,17 @@ class SessionsController < ApplicationController
   # GET /sessions/1.json
   def show
     @session = Session.find(params[:id])
+    respond_to do |format|
+    format.html
+    format.json {render json: @session}
+    format.xml {render xml: @session}
+  end
   end
 
   # GET /sessions/new
   def new
     @session = Session.new
+    @users = User.all
   end
 
   # GET /sessions/1/edit
@@ -25,7 +31,8 @@ class SessionsController < ApplicationController
   # POST /sessions
   # POST /sessions.json
   def create
-    @session = Session.new(session_params)
+    @session = Session.create(users: Session.get_users(params[:user_ids].map{|i| i.to_i}))
+
 
     respond_to do |format|
       if @session.save

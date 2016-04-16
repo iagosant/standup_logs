@@ -2,19 +2,11 @@
 
 <h1>Listing Sessions</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
-    <% @sessions.each do |session| %>
-    <%= link_to session.created_at, session %>
-  </tbody>
-  <% end %>
+    <ul><% @sessions.reverse.each do |session| %>
+    <li><%= link_to session.created_at, session %></li>
+  <% end %></ul>
+    </tbody>
 </table>
 
 <br>

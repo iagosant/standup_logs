@@ -8,7 +8,16 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  get 'sessions/:id' => 'sessions#index'
+  get 'sessions/:id' => 'sessions#show'
+
+  # get 'new_session' => 'sessions#new', as: 'new_session'
+  # <%= link_to "New Session", new_session_path %>
+
+  # get '/users/:name' => 'user#show', as: 'user_sessions'
+  #this would redirect to the users_controller, show action,
+  #where we must have:
+  # @user = User.where(name: params[:name]).first_name
+  # @sessions = @user.sessions
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
