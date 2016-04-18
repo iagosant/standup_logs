@@ -1,10 +1,15 @@
 class WipsController < ApplicationController
+  before_filter :get_session
   before_action :set_wip, only: [:show, :edit, :update, :destroy]
+
+  def get_session
+    @session = Session.find(params[:session_id])
+  end
 
   # GET /wips
   # GET /wips.json
   def index
-    @wips = Wip.all
+    @wips = @session.wips
   end
 
   # GET /wips/1

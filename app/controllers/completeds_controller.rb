@@ -1,10 +1,16 @@
 class CompletedsController < ApplicationController
+  before_filter :get_session
   before_action :set_completed, only: [:show, :edit, :update, :destroy]
 
   # GET /completeds
   # GET /completeds.json
+
+  def get_session
+    @session = Session.find(params[:session_id])
+  end
+
   def index
-    @completeds = Completed.all
+    @completeds = @session.completeds
   end
 
   # GET /completeds/1

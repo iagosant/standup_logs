@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :completeds
+
   resources :sessions do
+    resources :completeds
+    resources :wips
     resources :blockers
   end
-  resources :wips
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   get 'sessions/:id' => 'sessions#show'
   get 'sessions/:session_id/blockers' => 'blockers#index'
+  get 'sessions/:session_id/completeds' => 'completeds#index'
   # get 'new_session' => 'sessions#new', as: 'new_session'
   # <%= link_to "New Session", new_session_path %>
 

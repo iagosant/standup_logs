@@ -18,9 +18,9 @@
         <td><%= completed.session_id %></td>
         <td><%= completed.user_id %></td>
         <td><%= completed.completed %></td>
-        <td><%= link_to 'Show', completed %></td>
-        <td><%= link_to 'Edit', edit_completed_path(completed) %></td>
-        <td><%= link_to 'Destroy', completed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', session_completeds_path %></td>
+        <td><%#= link_to 'Edit', edit_completed_path(completed) %></td>
+        <td><%#= link_to 'Destroy', completed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Completed', new_completed_path %>
+<%= link_to 'New Completed', new_session_completed_path %>
