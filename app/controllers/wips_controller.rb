@@ -3,7 +3,7 @@ class WipsController < ApplicationController
   before_action :set_wip, only: [:show, :edit, :update, :destroy]
 
   def get_session
-    @session = Session.find(params[:session_id])
+    @session = Session.find(params[:id])
   end
 
   # GET /wips

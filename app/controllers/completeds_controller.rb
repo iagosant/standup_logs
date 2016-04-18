@@ -6,7 +6,7 @@ class CompletedsController < ApplicationController
   # GET /completeds.json
 
   def get_session
-    @session = Session.find(params[:session_id])
+    @session = Session.find(params[:id])
   end
 
   def index

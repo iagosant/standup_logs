@@ -4,7 +4,7 @@ class BlockersController < ApplicationController
 
 
   def get_session
-    @session = Session.find(params[:session_id])
+    @session = Session.find(params[:id])
   end
 
   # GET /blockers
