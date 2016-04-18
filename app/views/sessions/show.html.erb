@@ -16,7 +16,7 @@
           <tr>
             <td><%= user.wips.where(params[:session_id]) %></td>
             <td><%= user.completeds.where(params[:session_id]) %></td>
-            <td><%= user.blockers.where(params[:session_id]) %></td>
+            <td><%= @blockers %></td>
           </tr>
         <tbody>
       </table>

@@ -1,16 +1,24 @@
 class BlockersController < ApplicationController
+  before_filter :get_session
   before_action :set_blocker, only: [:show, :edit, :update, :destroy]
+
+
+  def get_session
+    @session = Session.find(params[:session_id])
+  end
 
   # GET /blockers
   # GET /blockers.json
   def index
-    @blockers = Blocker.all
+    @blockers = @session.blockers
   end
 
   # GET /blockers/1
   # GET /blockers/1.json
   def show
+    # @blockers = @session.blockers
   end
+
 
   # GET /blockers/new
   def new
