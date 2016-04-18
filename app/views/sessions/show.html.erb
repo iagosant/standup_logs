@@ -1,11 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+
   <strong>User:</strong>
-  <ul><% @session.users.each do |user| %>
-  <li><%= user.first_name %></li>
-  <% end %></ul>
-</p>
+    <% @session.users.each do |user| %>
+    <ul><%= user.first_name %>
+      <table>
+        <thead>
+          <tr>
+            <th>WIPs</th>
+            <th>Completeds</th>
+            <th>Blockers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= user.wips.where(params[:session_id]) %></td>
+            <td><%= user.completeds.where(params[:session_id]) %></td>
+            <td><%= user.blockers.where(params[:session_id]) %></td>
+          </tr>
+        <tbody>
+      </table>
+    </ul>
+    <% end %>
+
 
 <%= link_to 'Edit', edit_session_path(@session) %> |
 <%= link_to 'Back', sessions_path %>

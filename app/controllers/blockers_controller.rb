@@ -14,7 +14,7 @@ class BlockersController < ApplicationController
 
   # GET /blockers/new
   def new
-    @blocker = Blocker.new
+    @blocker = user.blocker.new
   end
 
   # GET /blockers/1/edit
@@ -24,7 +24,7 @@ class BlockersController < ApplicationController
   # POST /blockers
   # POST /blockers.json
   def create
-    @blocker = Blocker.new(blocker_params)
+    @blocker = user.blocker.new(blocker_params)
 
     respond_to do |format|
       if @blocker.save

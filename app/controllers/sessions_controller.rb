@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   # GET /sessions.json
   def index
     @sessions = Session.all
+  
   end
 
   # GET /sessions/1
@@ -12,10 +13,11 @@ class SessionsController < ApplicationController
   def show
     @session = Session.find(params[:id])
     respond_to do |format|
-    format.html
-    format.json {render json: @session}
-    format.xml {render xml: @session}
-  end
+      format.html
+      format.json {render json: @session}
+      format.xml {render xml: @session}
+    end
+
   end
 
   # GET /sessions/new
@@ -26,6 +28,8 @@ class SessionsController < ApplicationController
 
   # GET /sessions/1/edit
   def edit
+    @users = User.all
+
   end
 
   # POST /sessions
@@ -48,6 +52,8 @@ class SessionsController < ApplicationController
   # PATCH/PUT /sessions/1
   # PATCH/PUT /sessions/1.json
   def update
+    # @session = Session.find(params[:id]).update(users: Session.get_users(params[:user_ids].map{|i| i.to_i}))
+
     respond_to do |format|
       if @session.update(session_params)
         format.html { redirect_to @session, notice: 'Session was successfully updated.' }

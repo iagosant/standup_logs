@@ -14,8 +14,8 @@
   <ul>
     <% @users.each do |user| %>
         <li>
-          <%= check_box_tag 'user_ids[]', user.id -%>
-          <%= h user.first_name -%>
+          <%= check_box_tag 'user_ids[]', user.id %>
+          <%= h user.first_name %>
         </li>
     <% end %>
   </ul>
