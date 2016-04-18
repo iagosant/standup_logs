@@ -2,7 +2,7 @@
 
 
   <strong>User:</strong>
-    <% @session.users.each do |user| %>
+    <% @session_users.each do |user| %>
     <ul><%= user.first_name %>
       <table>
         <thead>
@@ -14,9 +14,25 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= user.wips.where(params[:session_id]) %></td>
-            <td><%= user.completeds.where(params[:session_id]) %></td>
-            <td><%= @blockers %></td>
+
+            <td><% @session_wips.where(user_id: user.id, session_id: @session.id).each do |wip| %>
+            <ul>
+            <li><%= wip.wip_item %></li>
+            </ul>
+            <% end %></td>
+
+            <td><% @session_completeds.where(user_id: user.id, session_id: @session.id).each do |completed| %>
+            <ul>
+            <li><%= completed.completed %></li>
+            </ul>
+            <% end %></td>
+
+            <td><% @session_blockers.where(user_id: user.id, session_id: @session.id).each do |blocker| %>
+            <ul>
+            <li><%= blocker.blocker %></li>
+            </ul>
+            <% end %></td>
+
           </tr>
         <tbody>
       </table>

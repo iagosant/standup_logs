@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416154316) do
+ActiveRecord::Schema.define(version: 20160418171133) do
 
   create_table "blockers", force: :cascade do |t|
     t.integer  "session_id"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20160416154316) do
     t.string   "role"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "session_id"
     t.boolean  "attended",   default: false
   end
 

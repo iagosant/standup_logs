@@ -20,9 +20,9 @@
         <td><%= blocker.user_id %></td>
         <td><%= blocker.blocker %></td>
         <td><%= blocker.id %></td>
-        <td><%= link_to 'Show', session_blockers_path %></td>
-        <td><%#= link_to 'Edit', edit_session_blockers(blocker) %></td>
-        <td><%#= link_to 'Destroy', blocker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', sessions_path %></td>
+        <td><%= link_to 'Edit', edit_blocker_path(blocker) %></td>
+        <td><%= link_to 'Destroy', blocker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Blocker', new_session_blocker_path %>
+<%= link_to 'New Blocker', new_blocker_path %>

@@ -3,15 +3,20 @@ class SessionsController < ApplicationController
 
   # GET /sessions
   # GET /sessions.json
+
   def index
     @sessions = Session.all
-  
   end
 
   # GET /sessions/1
   # GET /sessions/1.json
   def show
     @session = Session.find(params[:id])
+    @session_users = @session.users
+    @session_blockers = @session.blockers
+    @session_wips = @session.wips
+    @session_completeds = @session.completeds
+
     respond_to do |format|
       format.html
       format.json {render json: @session}
