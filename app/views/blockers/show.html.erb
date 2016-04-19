@@ -12,8 +12,8 @@
 
 <p>
   <strong>Blocker:</strong>
-  <%= @blockers %>
+  <%= @blocker.blocker %>
 </p>
 
 <%= link_to 'Edit', edit_blocker_path(@blocker) %> |
-<%= link_to 'Back', session_path(@blocker.session_id) %>
+<%= link_to 'Back to Session', session_path(@blocker.session_id) %>

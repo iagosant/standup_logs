@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @blocker %> |
-<%= link_to 'Back', blockers_path %>
+<%= link_to 'User', user_path(@blocker.user_id) %> |
+<%= link_to 'Back to Session', session_path(@blocker.session_id) %>

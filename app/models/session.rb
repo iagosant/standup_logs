@@ -5,11 +5,11 @@ class Session < ActiveRecord::Base
   has_many :blockers
 
   def self.get_users(ids)
+
     @attendees = []
      ids.each do |id|
-       @attendees << User.find_by(id)
+       @attendees << User.find(id)
      end
      @attendees
   end
-
 end

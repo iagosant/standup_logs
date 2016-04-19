@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     @users = User.all
     # @attended = User.attended
     # @recent = User.recent
-
   end
 
   # GET /users/1

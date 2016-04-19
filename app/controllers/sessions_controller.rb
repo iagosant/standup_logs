@@ -29,6 +29,7 @@ class SessionsController < ApplicationController
   def new
     @session = Session.new
     @users = User.all
+
   end
 
   # GET /sessions/1/edit
@@ -40,8 +41,8 @@ class SessionsController < ApplicationController
   # POST /sessions
   # POST /sessions.json
   def create
-    @session = Session.create(users: Session.get_users(params[:user_ids].map{|i| i.to_i}))
 
+    @session = Session.create(users: Session.get_users(params[:user_ids].map{|i| i.to_i}))
 
     respond_to do |format|
       if @session.save
