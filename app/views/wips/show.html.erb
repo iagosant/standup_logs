@@ -16,4 +16,4 @@
 </p>
 
 <%= link_to 'Edit', edit_wip_path(@wip) %> |
-<%= link_to 'Back', wips_path %>
+<%= link_to 'Back', session_path(@wip.session_id) %>

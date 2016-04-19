@@ -1,5 +1,5 @@
 class WipsController < ApplicationController
-  before_filter :get_session
+  before_filter :get_session, only: [:show]
   before_action :set_wip, only: [:show, :edit, :update, :destroy]
 
   def get_session

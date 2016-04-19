@@ -1,5 +1,5 @@
 class CompletedsController < ApplicationController
-  before_filter :get_session
+  before_filter :get_session, only: [:show]
   before_action :set_completed, only: [:show, :edit, :update, :destroy]
 
   # GET /completeds

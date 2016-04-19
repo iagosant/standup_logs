@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Session created <%= time_ago_in_words @session.created_at %> ago </h2>
 
-  <strong>User:</strong>
     <% @session_users.each do |user| %>
     <ul><%= user.first_name %>
       <table>

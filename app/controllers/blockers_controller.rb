@@ -1,5 +1,5 @@
 class BlockersController < ApplicationController
-  before_filter :get_session
+  before_filter :get_session, only: [:show]
   before_action :set_blocker, only: [:show, :edit, :update, :destroy]
 
 
