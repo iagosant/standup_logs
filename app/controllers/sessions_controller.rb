@@ -92,6 +92,7 @@ class SessionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sessions_url, notice: 'Session was successfully destroyed.' }
       format.json { head :no_content }
+      Session.reset_pk_sequence
     end
   end
 

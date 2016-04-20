@@ -9,7 +9,7 @@ class WipsController < ApplicationController
   # GET /wips
   # GET /wips.json
   def index
-    @wips = @session.wips
+    @wips = Wip.all
   end
 
   # GET /wips/1
@@ -63,6 +63,7 @@ class WipsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to wips_url, notice: 'Wip was successfully destroyed.' }
       format.json { head :no_content }
+      Wip.reset_pk_sequence
     end
   end
 

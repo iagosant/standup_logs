@@ -18,9 +18,10 @@
         <td><%= wip.session_id %></td>
         <td><%= wip.user_id %></td>
         <td><%= wip.wip_item %></td>
+        <td><%= wip.id %></td>
         <td><%= link_to 'Show', wips_path %></td>
         <td><%= link_to 'Edit', edit_wip_path(wip) %></td>
-        <td><%= link_to 'Destroy', wip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', wip, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>

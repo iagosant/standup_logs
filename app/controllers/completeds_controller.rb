@@ -9,7 +9,7 @@ class CompletedsController < ApplicationController
   end
 
   def index
-    @completeds = @session.completeds
+    @completeds = Completed.all
   end
 
   # GET /completeds/1
@@ -63,6 +63,7 @@ class CompletedsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to completeds_url, notice: 'Completed was successfully destroyed.' }
       format.json { head :no_content }
+      Completed.reset_pk_sequence
     end
   end
 
