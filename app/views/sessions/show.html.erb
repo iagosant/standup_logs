@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%=@session.id %>
 <h2>Session created <%= time_ago_in_words @session.created_at %> ago </h2>
 
     <% @session_users.each do |user| %>
