@@ -10,7 +10,7 @@ class BlockersController < ApplicationController
   # GET /blockers
   # GET /blockers.json
   def index
-    @blockers = @session.blockers
+    @blockers = Blocker.all
   end
 
   # GET /blockers/1
@@ -66,6 +66,7 @@ class BlockersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to blockers_url, notice: 'Blocker was successfully destroyed.' }
       format.json { head :no_content }
+      Blocker.reset_pk_sequence
     end
   end
 

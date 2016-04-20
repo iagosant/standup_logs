@@ -20,7 +20,7 @@
         <td><%= completed.completed %></td>
         <td><%= link_to 'Show', completeds_path %></td>
         <td><%= link_to 'Edit', edit_completed_path(completed) %></td>
-        <td><%= link_to 'Destroy', completed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', completed, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
