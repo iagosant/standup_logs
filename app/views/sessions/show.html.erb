@@ -32,6 +32,8 @@
             <td><% @session_blockers.where(user_id: user.id, session_id: @session.id).each do |blocker| %>
             <ul>
               <li><%= render partial:'blockers/form', locals: {blocker: blocker} %></li>
+              <%#= f.submit "clear", :type => "reset" %>
+              <%#= link_to 'Destroy', blocker, method: :destroy, data: { confirm: 'Are you sure?' } %>
               <!-- <li><%#= link_to blocker.blocker, blocker_path(blocker) %></li> -->
             </ul>
             <% end %></td>
