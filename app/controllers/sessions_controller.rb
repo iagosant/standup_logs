@@ -41,8 +41,9 @@ class SessionsController < ApplicationController
   # POST /sessions
   # POST /sessions.json
   def create
+    @users = Session.get_users(params[:user_ids].map{|i| i.to_i})
 
-    @session = Session.create(users: Session.get_users(params[:user_ids].map{|i| i.to_i}))
+    @session = Session.create(users: @users)
 
     respond_to do |format|
       if @session.save
@@ -52,6 +53,19 @@ class SessionsController < ApplicationController
         format.html { render :new }
         format.json { render json: @session.errors, status: :unprocessable_entity }
       end
+    end
+    @users.each do |user|
+      @new_wip = Wip.create
+      user.wips << @new_wip
+      @session.wips << @new_wip
+
+      @new_completed = Completed.create
+      user.completeds << @new_completed
+      @session.completeds << @new_completed
+
+      @new_blocker = Blocker.create
+      user.blockers << @new_blocker
+      @session.blockers << @new_blocker
     end
   end
 

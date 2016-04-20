@@ -7,9 +7,9 @@
       <table>
         <thead>
           <tr>
-            <th>WIPs</th>
-            <th>Completeds</th>
-            <th>Blockers</th>
+            <th></th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -18,21 +18,21 @@
             <td><% @session_wips.where(user_id: user.id, session_id: @session.id).each do |wip| %>
             <ul>
               <li><%= render partial:'wips/form', locals: {wip: wip} %></li>
-              <li><%= link_to wip.wip_item, edit_wip_path(wip) %></li>
+              <!-- <li><%#= link_to wip.wip_item, wip_path(wip) %></li> -->
             </ul>
             <% end %></td>
 
             <td><% @session_completeds.where(user_id: user.id, session_id: @session.id).each do |completed| %>
             <ul>
               <li><%= render partial:'completeds/form', locals: {completed: completed} %></li>
-              <li><%= link_to completed.completed, edit_completed_path(completed) %></li>
+              <!-- <li><%#= link_to completed.completed, completed_path(completed) %></li> -->
             </ul>
             <% end %></td>
 
             <td><% @session_blockers.where(user_id: user.id, session_id: @session.id).each do |blocker| %>
             <ul>
               <li><%= render partial:'blockers/form', locals: {blocker: blocker} %></li>
-              <li><%= link_to blocker.blocker, edit_blocker_path(blocker) %></li>
+              <!-- <li><%#= link_to blocker.blocker, blocker_path(blocker) %></li> -->
             </ul>
             <% end %></td>
 
@@ -43,5 +43,5 @@
     <% end %>
 
 
-<%= link_to 'Edit', edit_session_path(@session) %> 
+<%= link_to 'Edit', edit_session_path(@session) %>
 <%= link_to 'Back', sessions_path %>
