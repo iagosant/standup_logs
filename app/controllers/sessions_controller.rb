@@ -81,6 +81,7 @@ class SessionsController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @session.errors, status: :unprocessable_entity }
+        redirect_to session_path
       end
     end
   end

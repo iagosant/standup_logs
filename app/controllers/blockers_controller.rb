@@ -1,10 +1,10 @@
 class BlockersController < ApplicationController
   # before_filter :get_session, only: [:show]
   before_action :set_blocker, only: [:show, :edit, :update, :destroy]
-
+  before_filter :get_session, only: [:edit, :update]
 
   def get_session
-    @session = Session.find(params[:id])
+    @session = Session.find(@blocker.session_id)
   end
 
   # GET /blockers
@@ -50,8 +50,8 @@ class BlockersController < ApplicationController
   def update
     respond_to do |format|
       if @blocker.update(blocker_params)
-        format.html { redirect_to @blocker, notice: 'Blocker was successfully updated.' }
-        format.json { render :show, status: :ok, location: @blocker }
+        format.html { redirect_to @session, notice: 'Blocker was successfully updated.' }
+        format.json { render :show, status: :ok, location: @session }
       else
         format.html { render :edit }
         format.json { render json: @blocker.errors, status: :unprocessable_entity }
