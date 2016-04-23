@@ -1,5 +1,4 @@
 class WeeklyUpdate < ApplicationMailer
-  before_action :set_date
   default from: 'sgarzaceja@gmail.com'
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -8,7 +7,13 @@ class WeeklyUpdate < ApplicationMailer
   #   en.weekly_update.wips.subject
   #
 
-  def set_date
+  def sample_email(user)
+      @user = user
+      mail(to: @user.email, subject: 'Sample Email')
+    end
+
+
+  def get_date
 
     @dow = Time.now.strftime("%I%M")
     if @dow  == "0147"

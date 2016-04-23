@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+       WeeklyUpdate.sample_email(@user).deliver
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -75,4 +76,4 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :last_name, :role, :email)
     end
-end
+  end
