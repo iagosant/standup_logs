@@ -3,7 +3,7 @@
 <h2>Session created <%= time_ago_in_words @session.created_at %> ago </h2>
 
     <% @session_users.each do |user| %>
-    <ul><%= "#{user.first_name}" " " "#{user.last_name}" %>
+    <ul><%= link_to  "#{user.first_name}" " " "#{user.last_name}", edit_user_path(user) %>
 
       <table>
         <thead>
