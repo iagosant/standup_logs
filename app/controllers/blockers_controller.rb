@@ -52,6 +52,7 @@ class BlockersController < ApplicationController
       if @blocker.update(blocker_params)
         format.html { redirect_to @session, notice: 'Blocker was successfully updated.' }
         format.json { render :show, status: :ok, location: @session }
+        format.js {render :nothing => true, notice: 'Wip was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @blocker.errors, status: :unprocessable_entity }
