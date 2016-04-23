@@ -1,4 +1,5 @@
 class WeeklyUpdate < ApplicationMailer
+
   default from: 'sgarzaceja@gmail.com'
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -10,6 +11,7 @@ class WeeklyUpdate < ApplicationMailer
   def sample_email(user)
       @user = user
       mail(to: @user.email, subject: 'Sample Email')
+
     end
 
 
