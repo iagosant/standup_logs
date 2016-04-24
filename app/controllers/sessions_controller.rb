@@ -1,16 +1,31 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
-  before_action :friday_recap, only:[:show]
+  # before_action :friday_recap, only:[:show]
 
   # GET /sessions
   # GET /sessions.json
 
   def friday_recap
-    WeeklyUpdate.send_recap(@session)
+    
+    @latest_session = @session
+    WeeklyUpdate.send_recap(@latest_session).deliver_now
+
+  end
+
+  def session_blockers
+
+    @session_users.each do |user|
+      @full_name = user.first_name
+      @weeks_blockers = user.blockers.where(user_id: user.id, session_id: @session.id)
+
+    end
+
   end
 
   def index
+
     @sessions = Session.all
+
   end
 
   # GET /sessions/1
@@ -21,7 +36,8 @@ class SessionsController < ApplicationController
     @session_blockers = @session.blockers
     @session_wips = @session.wips
     @session_completeds = @session.completeds
-    @user_sample = @session.users.first.email
+
+
     respond_to do |format|
       format.html
       format.json {render json: @session}

@@ -32,7 +32,9 @@
 #   runner "SomeModel.ladeeda"
 # end
 
-every :sunday, :at => '10:15am' do # Use any day of the week or :weekend, :weekday
+env :MAILTO, 'sgarzaceja@gmail.com'
+
+every :sunday, :at => '2:33pm' do # Use any day of the week or :weekend, :weekday
   runner "SessionsController.friday_recap"
 end
 
