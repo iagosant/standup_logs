@@ -1,8 +1,13 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
+  before_action :friday_recap, only:[:show]
 
   # GET /sessions
   # GET /sessions.json
+
+  def friday_recap
+    WeeklyUpdate.send_recap(@session)
+  end
 
   def index
     @sessions = Session.all
@@ -16,7 +21,7 @@ class SessionsController < ApplicationController
     @session_blockers = @session.blockers
     @session_wips = @session.wips
     @session_completeds = @session.completeds
-
+    @user_sample = @session.users.first.email
     respond_to do |format|
       format.html
       format.json {render json: @session}

@@ -14,15 +14,12 @@ class WeeklyUpdate < ApplicationMailer
 
     end
 
-
-  def get_date
-
-    @dow = Time.now.strftime("%I%M")
-    if @dow  == "0147"
-      wips
-    end
-
+  def send_recap(session)
+    @user_sample = session.users.first.email
+    byebug
+    mail(to: @user_sample, subject: 'Sample Email')
   end
+
 
   def all_users
 
