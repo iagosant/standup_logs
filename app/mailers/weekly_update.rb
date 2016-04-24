@@ -19,18 +19,18 @@ class WeeklyUpdate < ApplicationMailer
 
     @session_users = latest_session.users
 
-
     @session_users.each do |user|
       blockers = []
       email = user.email
       user.blockers.where(user_id: user.id, session_id: latest_session.id).each { |b| blockers << b.blocker  }
-      byebug
       send_mail(email, blockers)
     end
+
   end
 
       # @session_emails.each do |user|
   def send_mail(email, blockers)
+
       mail(to: email, subject: 'testing methods are connected', body: blockers)
     # end
   end

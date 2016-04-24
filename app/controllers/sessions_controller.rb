@@ -1,14 +1,14 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
-  # before_action :friday_recap, only:[:show]
+  
 
   # GET /sessions
   # GET /sessions.json
 
-  def friday_recap
-    
-    @latest_session = @session
-    WeeklyUpdate.send_recap(@latest_session).deliver_now
+  def self.friday_recap
+
+    @latest_session = Session.last
+    WeeklyUpdate.send_recap(@latest_session).deliver
 
   end
 
@@ -31,23 +31,26 @@ class SessionsController < ApplicationController
   # GET /sessions/1
   # GET /sessions/1.json
   def show
+
+    SessionsController.friday_recap
     @session = Session.find(params[:id])
     @session_users = @session.users
     @session_blockers = @session.blockers
     @session_wips = @session.wips
     @session_completeds = @session.completeds
 
-
     respond_to do |format|
       format.html
       format.json {render json: @session}
       format.xml {render xml: @session}
+
     end
 
   end
 
   # GET /sessions/new
   def new
+
     @session = Session.new
     @users = User.all
 

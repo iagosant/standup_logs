@@ -31,10 +31,10 @@
 # every :hour do # Many shortcuts available: :hour, :day, :month, :year, :reboot
 #   runner "SomeModel.ladeeda"
 # end
-
+set :environment, 'development'
 # env :MAILTO, 'sgarzaceja@gmail.com'
 
-every :sunday, :at => '2:33pm' do # Use any day of the week or :weekend, :weekday
+every :sunday, :at => '4:39pm' do # Use any day of the week or :weekend, :weekday
   runner "SessionsController.friday_recap"
 end
 
