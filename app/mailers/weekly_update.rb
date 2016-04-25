@@ -23,20 +23,24 @@ class WeeklyUpdate < ApplicationMailer
       blockers = []
       email = user.email
       user.blockers.where(user_id: user.id, session_id: latest_session.id).each { |b| blockers << b.blocker  }
+
       send_mail(email, blockers)
+      
     end
 
   end
 
-      # @session_emails.each do |user|
-  def send_mail(email, blockers)
 
+  def send_mail(email, blockers)
+    byebug
       mail(to: email, subject: 'testing methods are connected', body: blockers)
-    # end
+
   end
 
   def all_users
+
     @users = User.all
+
   end
 
   def wips
@@ -49,6 +53,7 @@ class WeeklyUpdate < ApplicationMailer
   #   en.weekly_update.completeds.subject
   #
   def completeds
+
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -61,9 +66,13 @@ class WeeklyUpdate < ApplicationMailer
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
+
     def set_user
+
       @user = User.find(params[:id])
+
     end
 
 end

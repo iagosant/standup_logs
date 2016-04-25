@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
-  
+
 
   # GET /sessions
   # GET /sessions.json
 
   def self.friday_recap
 
-    @latest_session = Session.last
+    @latest_session = Session.find(39)
     WeeklyUpdate.send_recap(@latest_session).deliver
 
   end
