@@ -34,7 +34,7 @@
 set :environment, 'development'
 # env :MAILTO, 'sgarzaceja@gmail.com'
 
-every :sunday, :at => '4:39pm' do # Use any day of the week or :weekend, :weekday
+every :friday, :at => '9:00am' do # Use any day of the week or :weekend, :weekday
   runner "SessionsController.friday_recap"
 end
 

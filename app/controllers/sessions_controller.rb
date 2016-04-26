@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def self.friday_recap
 
-    @latest_session = Session.find(39)
+    @latest_session = Session.find(40)
 
     @session_users = @latest_session.users
 
@@ -16,11 +16,10 @@ class SessionsController < ApplicationController
       email = user.email
       user.blockers.where(user_id: user.id, session_id: @latest_session.id).each { |b| blockers << b.blocker  }
 
-byebug
-
     WeeklyUpdate.send_mail(email, blockers).deliver_now
+
   end
-# iterate through users and their blockers here and send that in the argument to the method
+
   end
 
   def session_blockers
