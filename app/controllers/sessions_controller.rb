@@ -8,8 +8,19 @@ class SessionsController < ApplicationController
   def self.friday_recap
 
     @latest_session = Session.find(39)
-    WeeklyUpdate.send_recap(@latest_session).deliver
 
+    @session_users = @latest_session.users
+
+    @session_users.each do |user|
+      blockers = []
+      email = user.email
+      user.blockers.where(user_id: user.id, session_id: @latest_session.id).each { |b| blockers << b.blocker  }
+
+byebug
+
+    WeeklyUpdate.send_mail(email, blockers).deliver_now
+  end
+# iterate through users and their blockers here and send that in the argument to the method
   end
 
   def session_blockers
@@ -125,6 +136,7 @@ class SessionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_session
       @session = Session.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

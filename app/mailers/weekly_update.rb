@@ -17,23 +17,23 @@ class WeeklyUpdate < ApplicationMailer
 
   def send_recap(latest_session)
 
-    @session_users = latest_session.users
+    # @session_users = latest_session.users
+    #
+    # @session_users.each do |user|
+    #   blockers = []
+    #   email = user.email
+    #   user.blockers.where(user_id: user.id, session_id: latest_session.id).each { |b| blockers << b.blocker  }
+    #
+    #   send_mail(email, blockers)
 
-    @session_users.each do |user|
-      blockers = []
-      email = user.email
-      user.blockers.where(user_id: user.id, session_id: latest_session.id).each { |b| blockers << b.blocker  }
-
-      send_mail(email, blockers)
-      
-    end
+    # end
 
   end
 
 
   def send_mail(email, blockers)
-    byebug
-      mail(to: email, subject: 'testing methods are connected', body: blockers)
+
+    mail(to: email, subject: 'testing methods are connected', body: blockers)
 
   end
 
