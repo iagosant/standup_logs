@@ -9,9 +9,9 @@
       <table>
         <thead>
           <tr>
-            <th>THIS IS THE WIP</th>
             <th></th>
-            <th>BLOCKER</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
 
@@ -42,4 +42,5 @@
 
 
 <%= link_to 'Edit', edit_session_path(@session) %>
-<%= link_to 'Back', sessions_path %>
+<%= link_to 'Back', sessions_path %></br>
+Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>

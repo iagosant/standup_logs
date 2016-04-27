@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  attr_accessor :email, :name, :password, :password_confirmation
+
   # attr_accessor :email, :name, :password, :password_confirmation
 
   # GET /users
@@ -34,7 +36,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
        WeeklyUpdate.sample_email(@user).deliver_now
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to login_create_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -73,6 +75,7 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

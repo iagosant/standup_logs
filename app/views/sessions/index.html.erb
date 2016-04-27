@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Sessions</h1>
-<h2>THESE ARE ALL THE SESSIONS</h2>
 
   <ul>
     <% @sessions.reverse.each do |session| %>
@@ -10,4 +9,6 @@
     <% end %>
   </ul>
 
-<%= link_to 'New Session', new_session_path %>
+<%= link_to 'New Session', new_session_path %></br>
+
+Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>

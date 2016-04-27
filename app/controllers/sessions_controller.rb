@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
+  # before_action :authorize
 
 
   # GET /sessions
@@ -35,7 +36,7 @@ class SessionsController < ApplicationController
   end
 
   def index
-
+    # byebug
     @sessions = Session.all
 
   end
