@@ -1,7 +1,8 @@
 <h1><%= @user_sample %></h1>
 <p id="notice"><%= notice %></p>
-<%=@session.id %>
-<h2>Session created <%= time_ago_in_words @session.created_at %> ago </h2>
+
+<h2><%= @session.created_at.strftime("%A-%b-%d") %></h2>
+<p>Session <%=@session.id %>, created <%= time_ago_in_words @session.created_at %> ago </p></br>
 
     <% @session_users.each do |user| %>
     <ul><%= link_to  "#{user.first_name}" " " "#{user.last_name}", edit_user_path(user) %>
@@ -41,6 +42,6 @@
     <% end %>
 
 
-<%= link_to 'Edit', edit_session_path(@session) %>
+</br><%= link_to 'Edit', edit_session_path(@session) %>
 <%= link_to 'Back', sessions_path %></br>
 Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>

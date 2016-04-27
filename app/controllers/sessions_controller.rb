@@ -36,8 +36,8 @@ class SessionsController < ApplicationController
   end
 
   def index
-    # byebug
-    @sessions = Session.all
+
+    @sessions = Session.last(5)
 
   end
 
