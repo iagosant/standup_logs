@@ -17,17 +17,6 @@ class WeeklyUpdate < ApplicationMailer
 
   def send_recap(latest_session)
 
-    # @session_users = latest_session.users
-    #
-    # @session_users.each do |user|
-    #   blockers = []
-    #   email = user.email
-    #   user.blockers.where(user_id: user.id, session_id: latest_session.id).each { |b| blockers << b.blocker  }
-    #
-    #   send_mail(email, blockers)
-
-    # end
-
   end
 
 

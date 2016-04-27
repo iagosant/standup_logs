@@ -7,18 +7,20 @@ class SessionsController < ApplicationController
 
   def self.friday_recap
 
-    @latest_session = Session.find(40)
+    @latest_session = Session.find(params[:id])
 
     @session_users = @latest_session.users
 
     @session_users.each do |user|
+
       blockers = []
       email = user.email
+
       user.blockers.where(user_id: user.id, session_id: @latest_session.id).each { |b| blockers << b.blocker  }
 
-    WeeklyUpdate.send_mail(email, blockers).deliver_now
+      WeeklyUpdate.send_mail(email, blockers).deliver_now
 
-  end
+    end
 
   end
 
@@ -42,7 +44,7 @@ class SessionsController < ApplicationController
   # GET /sessions/1.json
   def show
 
-    SessionsController.friday_recap
+    # SessionsController.friday_recap
     @session = Session.find(params[:id])
     @session_users = @session.users
     @session_blockers = @session.blockers
