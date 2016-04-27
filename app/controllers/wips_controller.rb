@@ -1,9 +1,11 @@
 class WipsController < ApplicationController
-  # before_filter :get_session, only: [:show]
   before_action :set_wip, only: [:show, :edit, :update, :destroy]
+  before_filter :get_session, only: [:edit, :update]
 
   def get_session
-    @session = Session.find(params[:id])
+
+    @session = Session.find(@wip.session_id)
+
   end
 
   # GET /wips
@@ -33,8 +35,8 @@ class WipsController < ApplicationController
 
     respond_to do |format|
       if @wip.save
-        format.html { redirect_to @wip, notice: 'Wip was successfully created.' }
-        format.json { render :show, status: :created, location: @wip }
+        format.html { redirect_to @session, notice: 'Wip was successfully created.' }
+        format.json { render :show, status: :created, location: @session }
       else
         format.html { render :new }
         format.json { render json: @wip.errors, status: :unprocessable_entity }
@@ -47,12 +49,14 @@ class WipsController < ApplicationController
   def update
     respond_to do |format|
       if @wip.update(wip_params)
-        format.html { redirect_to @wip, notice: 'Wip was successfully updated.' }
-        format.json { render :show, status: :ok, location: @wip }
+        format.html { redirect_to @session, notice: 'Wip was successfully updated.' }
+        format.json { render :show, status: :ok, location: @session }
+        format.js {render :nothing => true, notice: 'Wip was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @wip.errors, status: :unprocessable_entity }
       end
+      # redirect_to session.delete(:return_to)
     end
   end
 

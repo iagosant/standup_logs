@@ -1,11 +1,12 @@
 class CompletedsController < ApplicationController
   before_action :set_completed, only: [:show, :edit, :update, :destroy]
+  before_filter :get_session, only: [:edit, :update]
 
   # GET /completeds
   # GET /completeds.json
 
   def get_session
-    @session = Session.find(params[:id])
+    @session = Session.find(@completed.session_id)
   end
 
   def index
@@ -47,8 +48,9 @@ class CompletedsController < ApplicationController
   def update
     respond_to do |format|
       if @completed.update(completed_params)
-        format.html { redirect_to @completed, notice: 'Completed was successfully updated.' }
-        format.json { render :show, status: :ok, location: @completed }
+        format.html { redirect_to @session, notice: 'Completed was successfully updated.' }
+        format.json { render :show, status: :ok, location: @session }
+        format.js {render :nothing => true, notice: 'Wip was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @completed.errors, status: :unprocessable_entity }
