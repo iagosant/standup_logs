@@ -4,7 +4,7 @@
 
   <ul>
     <% @sessions.reverse.each do |session| %>
-      <li><%= link_to time_ago_in_words(session.created_at), session %>
+      <li><%= link_to session.created_at.strftime("%A-%b-%d"), session %>
         <%= link_to 'Destroy', session, method: :delete %>
     <% end %>
   </ul>
