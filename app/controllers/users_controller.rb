@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # attr_accessor :email, :name, :password, :password_confirmation
 
   # GET /users
   # GET /users.json

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'login/create'
+
+  get 'login/destroy'
+
   resources :wips
   resources :users
   resources :completeds
@@ -9,6 +13,11 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+
+  get '/login' => 'login#new'
+  post '/login' => 'login#create'
+  get '/logout' => 'login#destroy'
+
   get 'sessions' => 'sessions#index'
   get 'sessions/:id' => 'sessions#show'
   get 'sessions/:session_id/blockers' => 'blockers#index'
