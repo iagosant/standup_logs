@@ -18,7 +18,16 @@
      v2.0 | 20110126
      License: none (public domain)
   */
-
+  @font-face {
+     font-family: 'ProximaNova-Light';
+     src:url('/assets/ProximaNova-Light.eot');
+     src:url('/assets/ProximaNova-Light.eot?#iefix') format('embedded-opentype'),
+         url('/assets/ProximaNova-Light.ttf') format('truetype'),
+         url('/assets/ProximaNova-Light.woff') format('woff'),
+         url('/assets/ProximaNova-Light.svg#icofonts') format('svg');
+     font-weight: normal;
+     font-style: normal;
+ }
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -72,6 +81,10 @@
  }*/
  /********** STYLE MISLEY  ************/
 
+ html{
+    font-family: 'ProximaNova-Light'!important;
+
+ }
  body{
    background: url("hd_bg.png");
    background-repeat: no-repeat;
@@ -79,7 +92,11 @@
  }
  h1, h2, h3, h4, h5, h6 {
     font-weight: 200!important;
+}
+h1 {
+    font-size: 2.2rem!important;
+    text-transform: uppercase;
+  }
 
- }
 
  /********* END ******/
