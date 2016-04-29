@@ -63,10 +63,23 @@
       border-spacing: 0;
   }
 
- /*#user_nav_partial {
+/*#user_nav_partial {
    padding-left: 0px !important;
    padding-right: 0px !important;
    background-color: #DBDBDB;
    height: 100vh;
    text-align: center;
  }*/
+ /********** STYLE MISLEY  ************/
+
+ body{
+   background: url("hd_bg.png");
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+ h1, h2, h3, h4, h5, h6 {
+    font-weight: 200!important;
+
+ }
+
+ /********* END ******/
