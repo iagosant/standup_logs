@@ -4,9 +4,16 @@
 
   <ul>
     <% @sessions.reverse.each do |session| %>
-      <li><%= link_to session.created_at.strftime("%A-%b-%d"), session %>
-        <%= link_to 'Destroy', session, method: :delete %>
-    <% end %>
+      <li>
+        <% if session.created_at.strftime("%A") == "Monday" %>
+          <%= link_to session.created_at.strftime("%A-%b-%d"), session %>
+          <li> week <%= session.created_at.strftime("%W") %><li>
+          <% else %>
+          <%= link_to session.created_at.strftime("%A-%b-%d"), session %>
+          <%= link_to 'Destroy', session, method: :delete %>
+          <% end %>
+        <% end %>
+      </li>
   </ul>
 
 </br><%= link_to 'New Session', new_session_path %>

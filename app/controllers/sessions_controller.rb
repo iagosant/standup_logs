@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
-  # before_action :authorize
+  before_action :require_logged_in
 
 
   # GET /sessions
