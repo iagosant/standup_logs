@@ -16,8 +16,10 @@
        <ul>
           <% @users.each do |user| %>
               <li>
-                <%= check_box_tag "user_ids[#{user.id}]", "#{user.id}", false, :name => "user_ids[]" %>
-                <%= label_tag "user_ids_#{user.id}", user.first_name + " "+ user.last_name %>
+                <div class="field">
+                   <%= check_box_tag "user_ids[#{user.id}]", "#{user.id}", false, :name => "user_ids[]" %>
+                   <%= label_tag "user_ids_#{user.id}", user.first_name + " "+ user.last_name %>
+               </div>
               </li>
           <% end %>
         </ul>
