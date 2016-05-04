@@ -1,47 +1,79 @@
-<h1><%= @user_sample %></h1>
-<p id="notice"><%= notice %></p>
+<div class="session" id="sessions">
+  <div class="row">
+  	<div class="col s12">
+      <div class="card">
+         <div class="card-title">
+             <% if  @user_sample %>
+              <h1><%= @user_sample %></h1>
+              <% end %>
+            <p id="notice"><%= notice %></p>
+            <div class="col s10 ">
+                  <h1><%= @session.created_at.strftime("%A") %> STAND-UP</h1>
+                  <h6>Session <%=@session.id %>, created <%= time_ago_in_words @session.created_at %> ago </h6>
+            </div>
+            <div class="col s2 right-align">
+              <i class="material-icons large">perm_identity</i>
+            </div>
+            <div class="col s12 right-align">
+               <h6><%= @session.created_at.strftime("%b")%><span> <%= @session.created_at.strftime("%d") %><span></h6>
+            </div>
 
-<h2><%= @session.created_at.strftime("%A-%b-%d") %></h2>
-<p>Session <%=@session.id %>, created <%= time_ago_in_words @session.created_at %> ago </p></br>
-
-    <% @session_users.each do |user| %>
-    <ul><%= link_to  "#{user.first_name}" " " "#{user.last_name}", edit_user_path(user) %>
-
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td><% @session_wips.where(user_id: user.id, session_id: @session.id).each do |wip| %>
+          </div>
+        <div class="card-content">
+          <% @session_users.each do |user| %>
+          <div class="session">
+            <h6><%= link_to  "#{user.first_name}" " " "#{user.last_name}", edit_user_path(user) %></h6>
             <ul>
-              <li><%= render partial:'wips/form', locals: {wip: wip} %></li>
+              <li>
+                  <table>
+                     <tbody>
+                        <tr>
+                         <td><% @session_wips.where(user_id: user.id, session_id: @session.id).each do |wip| %>
+                            <ul>
+                              <li><%= render partial:'wips/form', locals: {wip: wip} %></li>
+                            </ul>
+                            <% end %>
+                         </td>
+                         <td><% @session_completeds.where(user_id: user.id, session_id: @session.id).each do |completed| %>
+                            <ul>
+                              <li><%= render partial:'completeds/form', locals: {completed: completed} %></li>
+                            </ul>
+                            <% end %>
+                         </td>
+                         <td><% @session_blockers.where(user_id: user.id, session_id: @session.id).each do |blocker| %>
+                            <ul>
+                              <li><%= render partial:'blockers/form', locals: {blocker: blocker} %></li>
+                            </ul>
+                            <% end %>
+                          </td>
+
+                        </tr>
+                     </tbody>
+                  </table>
+               </li>
             </ul>
-            <% end %></td>
+          </div>
+          <div class="divider"></div></br>
+            <% end %>
+        </div>
+        <div class="card-action">
+          <div class="row center-align">
+              <div class="col s2">
+                <%= link_to 'EDIT SESSIONS', edit_session_path(@session) %>
+              </div>
+              <div class="col s2">
+                <%= link_to 'ALL SESSIONS', sessions_path %>
+              </div>
+              <div class="col s8">
+                <%= link_to 'SAVE', sessions_path %>
+              </div>
+              <div class="col s12 ">
+                Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>
+              </div>
+           </div>
 
-            <td><% @session_completeds.where(user_id: user.id, session_id: @session.id).each do |completed| %>
-            <ul>
-              <li><%= render partial:'completeds/form', locals: {completed: completed} %></li>
-            </ul>
-            <% end %></td>
-
-            <td><% @session_blockers.where(user_id: user.id, session_id: @session.id).each do |blocker| %>
-            <ul>
-              <li><%= render partial:'blockers/form', locals: {blocker: blocker} %></li>
-            <% end %></td>
-          </tr>
-
-        <tbody>
-      </table>
-    </ul>
-    <% end %>
-
-
-</br><%= link_to 'Edit', edit_session_path(@session) %>
-<%= link_to 'Back', sessions_path %></br>
-Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>
+        </div>
+       </div>
+     </div>
+    </div>
+</div>
