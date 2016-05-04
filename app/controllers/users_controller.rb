@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+
   end
 
   # GET /users/1/edit
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
   def create
 
     @user = User.new(user_params)
-
+byebug
     respond_to do |format|
       if @user.save
        WeeklyUpdate.sample_email(@user).deliver_now

@@ -20,7 +20,7 @@
                 <%#= h user.first_name %>
                 <%#= h user.last_name %>
                 <%= check_box_tag "user_ids[#{user.id}]", "#{user.id}", user.id, :name => "user_ids[]" %>
-                <%= label_tag "user_ids_#{user.id}", user.first_name + " "+ user.last_name %>
+                <%= label_tag "user_ids_#{user.id}", user.first_name  %>
               </li>
           <% end %>
         </ul>
