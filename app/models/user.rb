@@ -7,11 +7,12 @@ class User < ActiveRecord::Base
  has_many :completeds
  has_many :blockers, dependent: :destroy
 
- # before_save :encrypt_password
-
  validates_confirmation_of :password
  validates_presence_of :password, :on => :create
  validates_presence_of :email
  # validates_uniqueness_of :email
+
+ # validates :role, presence: true, inclusion: { in: ["player", "owner", "admin"] }
+ # enum role: [:player => 0, :owner => 1, :admin => 2]
 
 end

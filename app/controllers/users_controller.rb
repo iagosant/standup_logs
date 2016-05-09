@@ -30,10 +30,21 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
+
+  def role_type
+
+    if user_params[:role_type].to_i == 1
+      @user.owner!
+    else
+      @user.player!
+    end
+
+  end
+
   def create
 
     @user = User.new(user_params)
-byebug
+
     respond_to do |format|
       if @user.save
        WeeklyUpdate.sample_email(@user).deliver_now
@@ -44,6 +55,15 @@ byebug
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+    # if !@user.admin? && @user.save
+    # flash[:notice] = "Welcome, #{@user.username}!"
+    # session[:user_id] = @user.id
+    #
+    # redirect_accordingly(@user)
+    # else
+    # flash[:alert] = "Some of the info you provided needs tweaking."
+    # render :new
+    # end
 
   end
 
@@ -81,7 +101,7 @@ byebug
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
     end
 
   end
