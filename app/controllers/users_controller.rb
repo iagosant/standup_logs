@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   attr_accessor :email, :name, :password, :password_confirmation
-   before_filter :check_permissions, :only => [:new, :create, :cancel]
+  # before_filter :check_permissions, :only => [:new, :create, :cancel]
 
   # attr_accessor :email, :name, :password, :password_confirmation
 
@@ -31,6 +31,10 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
+
+  # def check_permissions
+  #     byebug
+  # end
 
   def role_type
 
