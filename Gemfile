@@ -31,7 +31,6 @@ gem 'whenever', require: false
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
-gem 'pundit'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -44,7 +43,9 @@ group :development, :test do
   gem 'byebug'
   #testing
   gem 'capybara'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails'
+  gem 'pundit'
+
 end
 
 group :development do

@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
-
+  # before_filter :authenticate_user!
 
   # GET /sessions
   # GET /sessions.json
@@ -37,6 +37,8 @@ class SessionsController < ApplicationController
 
   def index
 
+    # authorize User
+
     @sessions = Session.last(5)
 
   end
@@ -44,7 +46,7 @@ class SessionsController < ApplicationController
   # GET /sessions/1
   # GET /sessions/1.json
   def show
-
+    # authorize @current_user
     # SessionsController.friday_recap
     @session = Session.find(params[:id])
     @session_users = @session.users
@@ -131,7 +133,7 @@ class SessionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sessions_url, notice: 'Session was successfully destroyed.' }
       format.json { head :no_content }
-      Session.reset_pk_sequence 
+      Session.reset_pk_sequence
     end
   end
 

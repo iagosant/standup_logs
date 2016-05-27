@@ -1,13 +1,25 @@
 class UsersController < ApplicationController
+  before_action :require_logged_in
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   attr_accessor :email, :name, :password, :password_confirmation
   # before_filter :check_permissions, :only => [:new, :create, :cancel]
+  # before_filter :autenticate_user!
+  # after_action :verify_authorized
+
+  # enum role: [:user, :editor, :admin]
+  # after_initialize :set_default_role, :if => :new_record?
+
+  # def set_default_role
+  #   self.role | |= :user
+  # end
 
   # attr_accessor :email, :name, :password, :password_confirmation
 
   # GET /users
   # GET /users.json
   def index
+    this_user = User.find(session[:user_id])
+    authorize this_user
     @users = User.all
     # @attended = User.attended
     # @recent = User.recent
@@ -16,17 +28,20 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user
+    authorize @user
   end
 
   # GET /users/new
   def new
+    this_user = User.find(session[:user_id])
+    authorize this_user
     @user = User.new
 
   end
 
   # GET /users/1/edit
   def edit
+    authorize @user
   end
 
   # POST /users
@@ -53,7 +68,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
        WeeklyUpdate.sample_email(@user).deliver_now
-        format.html { redirect_to login_create_path, notice: 'User was successfully created.' }
+        format.html { redirect_to new_user_path, :success => 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -75,6 +90,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @user = User.find(params[:id])
+    authorize @user
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -89,6 +107,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    authorize @current_user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }

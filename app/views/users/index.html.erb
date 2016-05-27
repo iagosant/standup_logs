@@ -8,9 +8,6 @@
       <th>First name</th>
       <th>Last name</th>
       <th>Role</th>
-      <th>Attended</th>
-      <th>User id</th>
-      <th>Sessions</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,16 +17,13 @@
       <tr>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
-        <td><%= user.role %></td>
-        <td><%= user.attended %></td>
-        <td><%= user.id %></td>
-        <td><% user.sessions.each do |session| %>
-          <%= session.id %>
-
-        <%end %></td>
+        <%= form_for user do |u|%>
+        <td><%= u.text_field :role %></td>
+        <td><%= u.submit 'Change role' %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
