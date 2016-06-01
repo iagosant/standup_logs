@@ -20,7 +20,6 @@
         <%= form_for user do |u|%>
         <td><%= u.text_field :role %></td>
         <td><%= u.submit 'Change role' %></td>
-        <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete %></td>
         <% end %>
@@ -32,4 +31,4 @@
 <br>
 
 <%= link_to 'New User', new_user_path %>
-<%= link_to 'Session', new_session_path(session) %></td>
+<%= link_to 'Back', sessions_path(session) %></td>

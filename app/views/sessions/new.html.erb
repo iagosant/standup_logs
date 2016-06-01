@@ -22,6 +22,9 @@
             <div class="col s12 m4">
               <%= link_to 'Back', sessions_path %>
             </div>
+            <div class="col s12 m12">
+              Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>
+            </div>
           </div>
         </div>
       </div>

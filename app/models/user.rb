@@ -12,7 +12,14 @@ class User < ActiveRecord::Base
  validates_presence_of :email
  # validates_uniqueness_of :email
 
- # validates :role, presence: true, inclusion: { in: ["player", "owner", "admin"] }
- # enum role: [:player => 0, :owner => 1, :admin => 2]
+ # validates :role, presence: true, inclusion: { in: ["master", "admin", "manager", "employee"] }
+ # enum role: [:master => 0, :admin => 1, :manager => 2, :employee => 3]
+ enum role: [:master, :admin, :manager, :employee]
+ after_initialize :set_default_role, :if => :new_record?
+
+ def set_default_role
+  #  byebug
+   self.role ||= :employee
+ end
 
 end

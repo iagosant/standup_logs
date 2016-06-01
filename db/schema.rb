@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427031027) do
+ActiveRecord::Schema.define(version: 20160527190040) do
 
   create_table "blockers", force: :cascade do |t|
     t.integer  "session_id"
@@ -47,12 +47,12 @@ ActiveRecord::Schema.define(version: 20160427031027) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "role"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "attended",        default: false
     t.string   "email"
     t.string   "password_digest"
+    t.integer  "role"
   end
 
   create_table "wips", force: :cascade do |t|

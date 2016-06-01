@@ -5,11 +5,18 @@
     <div class="col s12 m7">
       <div class="card">
         <div class="card-title">
-          <div class="col s12 m10">
+          <div class="col s12 m9">
             <h1>ALL Sessions</h1>
             <h6>recent activity</h6>
           </div>
-          <i class="material-icons large col s12 m2">date_range</i>
+          <i class="material-icons large col s12 m3">date_range</i>
+        </div>
+        <div class="input-field col s12 m3">
+          <label for="select">Select Date</label>
+          <%#= collection_select(nil, 'date_select', Session.all, :created_at, {:prompt=>true}, {:id=>'date_select'}) %>
+        </div>
+        <div class="input-field col s12 m12">
+          <input type="text" name="datepicker" id ="datepicker">
         </div>
         <div class="card-content">
           <table class="striped bordered">
@@ -37,6 +44,7 @@
         <div class="card-action">
           <div class="row center-align">
             <div class="col s12 m12">
+              <%= link_to 'All Users', users_path %>
               <%= link_to 'New User', new_user_path %>
               <%= link_to 'New Session', new_session_path %>
             </div>

@@ -19,10 +19,6 @@
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :role %><br>
-    <%= f.text_field :role %>
-  </div>
-  <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
@@ -36,5 +32,8 @@
   </div>
   <div class="actions">
     <%= f.submit 'create user' %>
+  </div>
+  <div class="col s12 m12">
+    Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>
   </div>
 <% end %>

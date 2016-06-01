@@ -36,7 +36,6 @@ class UsersController < ApplicationController
     this_user = User.find(session[:user_id])
     authorize this_user
     @user = User.new
-
   end
 
   # GET /users/1/edit
@@ -44,27 +43,9 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  # POST /users
-  # POST /users.json
-
-  # def check_permissions
-  #     byebug
-  # end
-
-  def role_type
-
-    if user_params[:role_type].to_i == 1
-      @user.owner!
-    else
-      @user.player!
-    end
-
-  end
 
   def create
-
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
        WeeklyUpdate.sample_email(@user).deliver_now
@@ -75,27 +56,14 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-    # if !@user.admin? && @user.save
-    # flash[:notice] = "Welcome, #{@user.username}!"
-    # session[:user_id] = @user.id
-    #
-    # redirect_accordingly(@user)
-    # else
-    # flash[:alert] = "Some of the info you provided needs tweaking."
-    # render :new
-    # end
-
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
-    @user = User.find(params[:id])
-    authorize @user
-
+    this_user = User.find(params[:id])
+    authorize this_user
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to users_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -104,8 +72,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     authorize @current_user
     @user.destroy
@@ -117,6 +83,12 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def user_not_authorized
+      flash[:alert] = "You are not cool enough to do this - go back from whence you came."
+      redirect_to(sessions_path)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
