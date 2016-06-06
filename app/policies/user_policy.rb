@@ -23,10 +23,6 @@ class UserPolicy
     @logged_user.role == "master"
   end
 
-  def new?
-    @logged_user.role == "master"
-  end
-
   def update?
     @logged_user.role == "master"
   end
