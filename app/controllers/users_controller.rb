@@ -2,19 +2,7 @@ class UsersController < ApplicationController
   before_action :require_logged_in, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   attr_accessor :email, :name, :password, :password_confirmation
-  # before_filter :check_permissions, :only => [:new, :create, :cancel]
-  # before_filter :autenticate_user!
-  # after_action :verify_authorized
-
-  # enum role: [:user, :editor, :admin]
-  # after_initialize :set_default_role, :if => :new_record?
-
-  # def set_default_role
-  #   self.role | |= :user
-  # end
-
-  # attr_accessor :email, :name, :password, :password_confirmation
-
+  
 
   def index
     this_user = User.find(session[:user_id])
