@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # before_filter :check_permissions, :only => [:new, :create, :cancel]
   # before_filter :autenticate_user!
   # after_action :verify_authorized
-
+git
   # enum role: [:user, :editor, :admin]
   # after_initialize :set_default_role, :if => :new_record?
 
@@ -15,30 +15,27 @@ class UsersController < ApplicationController
 
   # attr_accessor :email, :name, :password, :password_confirmation
 
-  # GET /users
-  # GET /users.json
+
   def index
     this_user = User.find(session[:user_id])
     authorize this_user
     @users = User.all
-    # @attended = User.attended
-    # @recent = User.recent
+
   end
 
-  # GET /users/1
-  # GET /users/1.json
+
   def show
     authorize @user
   end
 
-  # GET /users/new
+
   def new
     this_user = User.find(session[:user_id])
     authorize this_user
     @user = User.new
   end
 
-  # GET /users/1/edit
+
   def edit
     authorize @user
   end

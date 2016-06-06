@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 gem 'rails-erd'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -38,6 +37,13 @@ gem 'bcrypt'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :production do
+  gem 'pg'
+  gem 'pundit'
+  gem 'bcrypt'
+  gem 'figaro'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'jquery-ui-rails'
@@ -46,6 +52,8 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'pundit'
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
 
 end
 
