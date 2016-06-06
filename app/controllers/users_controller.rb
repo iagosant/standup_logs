@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def new
     this_user = User.find(session[:user_id])
-    authorize this_user
+    # authorize this_user
     @user = User.new
   end
 
