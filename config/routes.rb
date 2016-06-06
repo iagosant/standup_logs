@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/logout' => 'login#destroy'
 
   get 'sessions' => 'sessions#index'
+  get 'sessions/new' => 'wips#new'
   get 'sessions/:id' => 'sessions#show'
   get 'sessions/:session_id/blockers' => 'blockers#index'
   get 'sessions/:session_id/completeds' => 'completeds#index'
