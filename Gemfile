@@ -25,12 +25,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'activerecord-reset-pk-sequence'
 
-gem 'figaro'
+
 
 gem 'whenever', require: false
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
