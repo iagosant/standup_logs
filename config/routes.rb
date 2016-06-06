@@ -3,16 +3,10 @@ Rails.application.routes.draw do
   get 'login/create'
 
   get 'login/destroy'
-
-  resources :wips
-  resources :completeds
-  resources :blockers
-  resources :sessions
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'sign_up' => 'users#new', :as => 'sign_up'
   root :to => 'login#new'
-  resources :users
   # You can have the root of your site routed with "root"
 
   get '/login' => 'login#new'
@@ -24,6 +18,12 @@ Rails.application.routes.draw do
   get 'sessions/:session_id/blockers' => 'blockers#index'
   get 'sessions/:session_id/completeds' => 'completeds#index'
   get 'sessions/:session_id/wips' => 'wips#index'
+  
+  resources :wips
+  resources :completeds
+  resources :blockers
+  resources :sessions
+  resources :users
   # get 'new_session' => 'sessions#new', as: 'new_session'
   # <%= link_to "New Session", new_session_path %>
 

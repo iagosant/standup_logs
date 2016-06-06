@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_logged_in
+  before_action :require_logged_in, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   attr_accessor :email, :name, :password, :password_confirmation
   # before_filter :check_permissions, :only => [:new, :create, :cancel]
