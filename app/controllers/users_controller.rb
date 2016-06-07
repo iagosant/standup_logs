@@ -3,19 +3,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   attr_accessor :email, :name, :password, :password_confirmation
 
-
   def index
     this_user = User.find(session[:user_id])
     authorize this_user
     @users = User.all
-
   end
-
 
   def show
     authorize @user
   end
-
 
   def new
     # this_user = User.find(session[:user_id])
@@ -23,17 +19,15 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-
   def edit
     authorize @user
   end
-
 
   def create
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-      #  WeeklyUpdate.sample_email(@user).deliver_now
+       WeeklyUpdate.sample_email(@user).deliver_now
         format.html { redirect_to new_user_path, :success => 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -68,7 +62,6 @@ class UsersController < ApplicationController
   end
 
   private
-
     def user_not_authorized
       flash[:alert] = "You are not cool enough to do this - go back from whence you came."
       redirect_to(sessions_path)
@@ -77,12 +70,10 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
-
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
     end
-
   end
