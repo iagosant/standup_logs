@@ -12,7 +12,7 @@
                   <h6>Session <%=@session.id %>, created <%= time_ago_in_words @session.created_at %> ago </h6>
             </div>
             <div class="col s2 right-align">
-              <i class="material-icons large">perm_identity</i>
+              <%= image_tag "stand-up.png", :height => "80" %>
             </div>
             <div class="col s12 right-align">
                <h6><%= @session.created_at.strftime("%b")%><span> <%= @session.created_at.strftime("%d") %><span></h6>
