@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # before_filter :check_permissions, :only => [:new, :create, :cancel]
   # before_filter :autenticate_user!
   # after_action :verify_authorized
-git
+
   # enum role: [:user, :editor, :admin]
   # after_initialize :set_default_role, :if => :new_record?
 

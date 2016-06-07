@@ -1,4 +1,3 @@
-
 <p id="notice"><%= notice %></p>
 <div class="section" id="sessions-list">
   <div class="row">
@@ -24,7 +23,6 @@
               <% @sessions.reverse.each do |session| %>
               <tr>
                 <% if session.created_at.strftime("%A") == "Monday" %>
-
                 <td><%= link_to session.created_at.strftime("%A-%b-%d"), session %></td>
                 <td>week <%= session.created_at.strftime("%W") %></td>
                 <% else %>
@@ -38,7 +36,6 @@
                 <% end %>
               </tr>
             </tbody>
-
           </table>
         </div>
         <div class="card-action">
