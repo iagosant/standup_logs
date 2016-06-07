@@ -1,19 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_logged_in
+  before_action :require_logged_in, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   attr_accessor :email, :name, :password, :password_confirmation
-  # before_filter :check_permissions, :only => [:new, :create, :cancel]
-  # before_filter :autenticate_user!
-  # after_action :verify_authorized
-
-  # enum role: [:user, :editor, :admin]
-  # after_initialize :set_default_role, :if => :new_record?
-
-  # def set_default_role
-  #   self.role | |= :user
-  # end
-
-  # attr_accessor :email, :name, :password, :password_confirmation
 
 
   def index
@@ -30,8 +18,8 @@ class UsersController < ApplicationController
 
 
   def new
-    this_user = User.find(session[:user_id])
-    authorize this_user
+    # this_user = User.find(session[:user_id])
+    # authorize this_user
     @user = User.new
   end
 
@@ -45,6 +33,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
+       byebug
        WeeklyUpdate.sample_email(@user).deliver_now
         format.html { redirect_to new_user_path, :success => 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
