@@ -34,6 +34,10 @@
     <%= f.submit 'create user' %>
   </div>
   <div class="col s12 m12">
+    <% if current_user != nil %>
     Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>
+    <% else %>
+    <% login_path %>
+    <% end %>
   </div>
 <% end %>

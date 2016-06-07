@@ -7,9 +7,7 @@ class UserPolicy
   end
 
   def index?
-    unless @logged_user.role == "master"
-      redirect_to :back, :alert => "Access denied."
-    end
+    @logged_user.role == "master"
   end
 
   def show?
@@ -20,10 +18,6 @@ class UserPolicy
   end
 
   def edit?
-    @logged_user.role == "master"
-  end
-
-  def new?
     @logged_user.role == "master"
   end
 
