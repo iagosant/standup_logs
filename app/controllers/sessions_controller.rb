@@ -81,7 +81,6 @@ class SessionsController < ApplicationController
     @users = Session.get_users(params[:user_ids].map{|i| i.to_i})
 
     @session = Session.create(users: @users)
-    byebug
 
     respond_to do |format|
       if @session.save
