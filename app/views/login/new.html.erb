@@ -14,22 +14,17 @@
           </div>
           <div class="input-field">
             <%= password_field_tag :password %>
-            <label for="password" class="">Password</label>
+            <label for="password" class="">Password</label><br>
+            <%= link_to "(forgot password)", new_password_reset_path %>
           </div>
-
           <a class="waves-effect waves-light btn"><%= submit_tag "Enter" %></a>
           <% end %>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col s12 m6 right-align">
-
-        <a href="#">Forgot password?</a>
-      </div>
       <div class="col s12 m6 left-align">
         <%= link_to 'Create account', new_user_path %>
-
       </div>
     </div>
   </div>
