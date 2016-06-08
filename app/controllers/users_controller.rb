@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_logged_in, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :create_activation_digest, only: [:create]
+  before_action :new_token, only: [:create]
   before_action :downcase_email, only: [:save]
   attr_accessor :remember_token, :activation_token
   attr_accessor :email, :name, :password, :password_confirmation
@@ -38,7 +38,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        byebug
         UserMailer.account_activation(@user).deliver_now
         flash[:info] = "Please check your email to activate your account."
         redirect_to root_url
@@ -85,7 +84,8 @@ class UsersController < ApplicationController
 
   def new_token
     byebug
-    SecureRandom.urlsafe_base64
+    self.token = SecureRandom.urlsafe_base64
+    generate_token if User.exists?(token: self.token)
   end
 
   private
