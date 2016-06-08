@@ -1,6 +1,5 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
   # config.action_mailer.delivery_method = :smtp
   # # SMTP settings for gmail
   # config.action_mailer.smtp_settings = {
@@ -24,11 +23,9 @@ Rails.application.configure do
     domain: "standupsessions.herokuapp.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    user_name: ENV["gmail_username"],
+    password: ENV["gmail_password"]
   }
-
-
   config.action_mailer.perform_deliveries = true
 
   # In the development environment your application's code is reloaded on

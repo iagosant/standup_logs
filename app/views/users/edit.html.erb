@@ -1,6 +1,34 @@
-<h1>Editing User</h1>
-
-<%= render 'form' %>
-
-
-<%= link_to 'Back', users_path %>
+<div class="user" id="user-new">
+  <div class="row">
+  	<div class="col s12 m6">
+      <div class="card">
+         <div class="card-title">
+           <div class="col s12 m9">
+             <h1>Editing User</h1>
+             <h6><%= @user.first_name %> <%= @user.last_name %></h6>
+           </div>
+            <i class="material-icons large col s12 m3">portrait</i>
+        </div>
+        <div class="card-content">
+          <%= render 'form' %>
+        </div>
+        <div class="card-action">
+          <div class="row center-align">
+              <div class="col s12 m6">
+                <%= link_to 'USER', @user %>
+              </div>
+              <div class="col s12 m6">
+                <%= link_to 'BACK', users_path %>
+              </div>
+              <div class="col s12 m12">
+                Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>
+              </div>
+           </div>
+         </div>
+       </div>
+    </div>
+  </div>
+</div>
+<div>
+  <p>hello</p>
+</div>

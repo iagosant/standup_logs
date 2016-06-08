@@ -87,16 +87,19 @@
 
  }
  body{
-   /*background: url("hd_bg.png");*/
+   background: url('<%= asset_path("hd_bg.png") %>');
    background-repeat: no-repeat;
    background-size: cover;
  }
  h1, h2, h3, h4, h5, h6 {
     font-weight: 200!important;
-}
-h1 {
+  }
+  h1 {
     font-size: 2.2rem!important;
     text-transform: uppercase;
+  }
+  .card-title .row {
+    margin: 0!important;
   }
 
 
