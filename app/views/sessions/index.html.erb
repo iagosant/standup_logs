@@ -27,7 +27,7 @@
                 <td>week <%= session.created_at.strftime("%W") %></td>
                 <% else %>
                 <td>
-                  <i class="material-icons small">textsms</i>
+                  <%= image_tag "wip.png", :height => "15" %>
                 </td>
                 <td>  <%= link_to session.created_at.strftime("%A")+ " STAND-UP", session %></td>
                 <td>  <%= link_to session.created_at.strftime("%b %d"), session %></td>
@@ -45,8 +45,8 @@
               <%= link_to 'New User', new_user_path %>
               <%= link_to 'New Session', new_session_path %>
             </div>
-            <div class="col s12 m12">
-              Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>
+            <div class="col s12 m12 signed_user">
+              Signed in as <%= link_to current_user.first_name.capitalize, edit_user_path(current_user) %> | <%= link_to "Logout", '/logout' %>
             </div>
           </div>
         </div>

@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'sessions/:session_id/completeds' => 'completeds#index'
   get 'sessions/:session_id/wips' => 'wips#index'
 
+  # get 'user/:id' => 'users#edit'
+
   resources :wips
   resources :completeds
   resources :blockers
