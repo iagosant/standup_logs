@@ -1,19 +1,15 @@
 class UserMailer < ApplicationMailer
 
-  # Preview this email at
-  # http://localhost:3000/rails/mailers/user_mailer/account_activation
   def account_activation(user)
-    byebug
-    user = User.first
-    user.activation_token = User.new_token
-    UserMailer.account_activation(user)
+    @user = user
+    mail to: user.email, subject: "Account activation"
   end
 
   # Preview this email at
   # http://localhost:3000/rails/mailers/user_mailer/password_reset
   def password_reset
-    user = User.first
-    user.reset_token = User.new_token
-    UserMailer.password_reset(user)
+    @user = user
+    mail to: user.email, subject: "Password Reset"
   end
+  
 end
