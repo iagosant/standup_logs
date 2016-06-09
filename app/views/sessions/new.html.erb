@@ -16,13 +16,13 @@
               <!--  Create more users section by Santiago -->
               <%= link_to 'New Users', new_user_path %>
             </div>
-            <div class="col s12 m4">
+            <div class="col s12 m5">
               <%= link_to 'Edit Sessions', sessions_path %>
             </div>
-            <div class="col s12 m4">
+            <div class="col s12 m3">
               <%= link_to 'Back', sessions_path %>
             </div>
-            <div class="col s12 m12">
+            <div class="col s12 m12 signed_user">
               Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>
             </div>
           </div>

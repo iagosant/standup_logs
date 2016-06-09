@@ -20,20 +20,26 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
     authorize @user
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_columns(reset_digest:  FILL_IN,
+    reset_sent_at: FILL_IN)
   end
 
   def create
     @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-       WeeklyUpdate.sample_email(@user).deliver_now
-        format.html { redirect_to new_user_path, :success => 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to new_user_path
+      # WeeklyUpdate.sample_email(@user).deliver_now
+      # format.html { redirect_to new_user_path, :success => 'User was successfully created.' }
+      # format.json { render :show, status: :created, location: @user }
+    else
     end
   end
 
@@ -62,18 +68,23 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_not_authorized
-      flash[:alert] = "You are not cool enough to do this - go back from whence you came."
-      redirect_to(sessions_path)
-    end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
-    end
+  def user_not_authorized
+    flash[:alert] = "You are not cool enough to do this - go back from whence you came."
+    redirect_to(sessions_path)
   end
+
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
+  end
+end
