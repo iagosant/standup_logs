@@ -16,3 +16,4 @@
 //= require turbolinks
 //= require jquery-ui/datepicker
 //= require_tree .
+//= javascript_include_tag :application

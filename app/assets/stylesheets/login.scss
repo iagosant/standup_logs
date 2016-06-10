@@ -14,16 +14,29 @@
   color:#aeb0b4;
   margin: 0 auto;
   width: 50%;
+  background: none!important;
 }
 #ms-login .card .card-title{
-   height: 120px;
-   background-color: #081729;
+  height: 120px;
+  background-color: #081729;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+#ms-login .card .card-content{
+  border-radius: 0px !important;
+}
+#ms-login .card .card-action{
+  background-color: #fff;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 #ms-login .card .card-title img{
   margin: 0 auto;
 }
+
 @media only screen and (max-width: 1200px){
   #ms-login .card {
     width: 90%;
   }
+
 }

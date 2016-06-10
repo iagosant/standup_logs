@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  # before_action :set_session, only: [:show, :edit, :update, :destroy]
+  before_action :set_session, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
   # before_filter :authenticate_user!
 
