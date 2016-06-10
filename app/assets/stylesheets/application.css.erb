@@ -1,103 +1,110 @@
 /*
-  * This is a manifest file that'll be compiled into application.css, which will include all the files
-  * listed below.
-  *
-  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
-  * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
-  *
-  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
-  * compiled file so the styles you add here take precedence over styles defined in any styles
-  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
-  * file per style scope.
-  *
-  *= require jquery-ui/datepicker
-  *= require_tree .
-  *= require_self
-  */
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any styles
+* defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+* file per style scope.
+*
+*= require jquery-ui/datepicker
+*= require_tree .
+*= require_self
+*/
 
-  /* http://meyerweb.com/eric/tools/css/reset/
-     v2.0 | 20110126
-     License: none (public domain)
-  */
-  @font-face {
-     font-family: 'ProximaNova-Light';
-     src:url('<%= asset_path("ProximaNova-Light.eot") %>');
-     src:url('<%= asset_path("ProximaNova-Light.eot")%>?#iefix') format('embedded-opentype'),
-         url('<%= asset_path("ProximaNova-Light.ttf") %>') format('truetype'),
-         url('<%= asset_path("ProximaNova-Light.woff") %>') format('woff'),
-         url('<%= asset_path("ProximaNova-Light.svg") %>#icofonts') format('svg');
-     font-weight: normal;
-     font-style: normal;
- }
-  html, body, div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      font-size: 100%;
-      font: inherit;
-      vertical-align: baseline;
-  }
-  /* HTML5 display-role reset for older browsers */
-  article, aside, details, figcaption, figure,
-  footer, header, hgroup, menu, nav, section {
-      display: block;
-  }
-  body {
-      line-height: 1;
-  }
-  ol, ul {
-      list-style: none;
-  }
-  blockquote, q {
-      quotes: none;
-  }
-  blockquote:before, blockquote:after,
-  q:before, q:after {
-      content: '';
-      content: none;
-  }
-  table {
-      border-collapse: collapse;
-      border-spacing: 0;
-  }
+/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+@font-face {
+  font-family: 'ProximaNova-Light';
+  src:url('<%= asset_path("ProximaNova-Light.eot") %>');
+  src:url('<%= asset_path("ProximaNova-Light.eot")%>?#iefix') format('embedded-opentype'),
+  url('<%= asset_path("ProximaNova-Light.ttf") %>') format('truetype'),
+  url('<%= asset_path("ProximaNova-Light.woff") %>') format('woff'),
+  url('<%= asset_path("ProximaNova-Light.svg") %>#icofonts') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 
 /*#user_nav_partial {
-   padding-left: 0px !important;
-   padding-right: 0px !important;
-   background-color: #DBDBDB;
-   height: 100vh;
-   text-align: center;
- }*/
- /********** STYLE MISLEY  ************/
+padding-left: 0px !important;
+padding-right: 0px !important;
+background-color: #DBDBDB;
+height: 100vh;
+text-align: center;
+}*/
+/********** STYLE MISLEY  ************/
 
- html{
-    font-family: 'ProximaNova-Light'!important;
+html{
+  font-family: 'ProximaNova-Light'!important;
 
- }
- body{
-   background:url('<%= asset_path("hd_bg.png") %>');
-   background-repeat: no-repeat;
-   background-size: cover;
- }
- h1, h2, h3, h4, h5, h6 {
-    font-weight: 200!important;
+}
+body{
+  background:url('<%= asset_path("hd_bg.png") %>');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #808080 !important;
+}
+
+div .card{
+  box-shadow: 0px 0px 64px rgba(238, 238, 255, 0.73);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #808080 !important;
+  font-weight: 200!important;
 }
 h1 {
-    font-size: 2.2rem!important;
-    text-transform: uppercase;
-  }
+  font-size: 2.2rem!important;
+  text-transform: uppercase;
+}
 
 .signed_user {
   margin-top: 40px;
@@ -107,11 +114,7 @@ h1 {
   /*width: 525px;*/
   /*background-color: #2f2f2f;
   opacity: 0.4;
-   filter: alpha(opacity=40);*/
-}
-
-body{
-  color: #efefef !important;
+  filter: alpha(opacity=40);*/
 }
 
 a:hover {
@@ -119,9 +122,9 @@ a:hover {
 }
 
 i.small {
-    font-size: 22px !important;
+  font-size: 22px !important;
 }
 /*.btn .btn-large {
-  background-color: #56a2bc !important;
+background-color: #56a2bc !important;
 }*/
- /********* END ******/
+/********* END ******/
