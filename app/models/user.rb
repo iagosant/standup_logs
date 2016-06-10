@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
    before_create :create_activation_digest
 
    def set_default_role
-    #  byebug
      self.role ||= :employee
    end
 
