@@ -32,6 +32,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
       UserMailer.account_activation(@user).deliver_now
       flash[:info] = "Please check your email to activate your account."
@@ -39,7 +40,7 @@ class UsersController < ApplicationController
       # WeeklyUpdate.sample_email(@user).deliver_now
       # format.html { redirect_to new_user_path, :success => 'User was successfully created.' }
       # format.json { render :show, status: :created, location: @user }
-    else
+
     end
   end
 

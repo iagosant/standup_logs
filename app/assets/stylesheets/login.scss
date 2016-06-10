@@ -1,18 +1,42 @@
 // Place all the styles related to the Login controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.ms-login.card {
-  border-radius: 5px;
-  width: 80%;
+#ms-login{
+  height: 100vh;
+  // display: table;
+}
+#ms-login > div{
+  // display: table-cell;
+  // vertical-align: middle;
+  height: 100%;
+}
+#ms-login .card {
   color:#aeb0b4;
   margin: 0 auto;
-  margin-top: 12%;
+  width: 50%;
+  background: none!important;
 }
-.ms-login.card .card-title{
-   height: 120px;
-   background-color: #081729;
+#ms-login .card .card-title{
+  height: 120px;
+  background-color: #081729;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
-.ms-login.card .card-title img{
+#ms-login .card .card-content{
+  border-radius: 0px !important;
+}
+#ms-login .card .card-action{
+  background-color: #fff;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+#ms-login .card .card-title img{
   margin: 0 auto;
+}
+
+@media only screen and (max-width: 1200px){
+  #ms-login .card {
+    width: 90%;
+  }
+
 }
