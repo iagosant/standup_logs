@@ -29,28 +29,31 @@
                 <td>
                   <%= image_tag "wip.png", :height => "15" %>
                 </td>
-                <td>  <%= link_to session.created_at.strftime("%A")+ " STAND-UP", session %></td>
-                <td>  <%= link_to session.created_at.strftime("%b %d"), session %></td>
-                <td>  <%= link_to 'Destroy', session, method: :delete %></td>
-                <% end %>
-                <% end %>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-action">
-          <div class="row center-align">
-            <div class="col s12 m12">
-              <%= link_to 'All Users', users_path %>
-              <%= link_to 'New User', new_user_path %>
-              <%= link_to 'New Session', new_session_path %>
-            </div>
-            <div class="col s12 m12 signed_user">
-              Signed in as <%= link_to current_user.first_name.capitalize, edit_user_path(current_user) %> | <%= link_to "Logout", '/logout' %>
-            </div>
+                <td> <%= link_to session.created_at.strftime("%A")+ " STAND-UP", session %></td>
+                <td> <%= link_to session.created_at.strftime("%b %d"), session %></td>
+                <td> <a data-confirm="Delete this session?" rel="nofollow" data-method="delete" href="/sessions/1">
+                  <i class="small material-icons">delete</i>
+                </a>
+              </td>
+              <% end %>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-action">
+        <div class="row center-align">
+          <div class="col s12 m12">
+            <%= link_to 'All Users', users_path %>
+            <%= link_to 'New User', new_user_path %>
+            <%= link_to 'New Session', new_session_path %>
+          </div>
+          <div class="col s12 m12 signed_user">
+            Signed in as <%= link_to current_user.first_name.capitalize, edit_user_path(current_user) %> | <%= link_to "Logout", '/logout' %>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
