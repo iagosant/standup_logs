@@ -46,6 +46,7 @@ group :development, :test do
   gem 'pundit'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'figaro'
 end
 
 group :development do
