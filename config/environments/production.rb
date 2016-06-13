@@ -88,7 +88,7 @@ Rails.application.configure do
     domain: "standupsessions.herokuapp.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["gmail_username"],
-    password: ENV["gmail_password"]
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD']
   }
 end
