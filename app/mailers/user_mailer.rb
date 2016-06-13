@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+  default from: 'standupsessionsapp@gmail.com'
 
   def account_activation(user)
     @user = user
@@ -11,5 +12,5 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: user.email, subject: "Password Reset"
   end
-  
+
 end
