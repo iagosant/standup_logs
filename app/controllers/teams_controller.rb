@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  attr_accessor :email, :name, :password, :password_confirmation, :team_name
+  # attr_accessor :email, :name, :password, :password_confirmation, :team_name
   # before_filter :configure_permitted_parameters
 
   def new
@@ -8,8 +8,10 @@ class TeamsController < ApplicationController
 
   def create
     byebug
-    @team = Team.create.params[:team])
+    @team = Team.create(team_params)
     @team.users.build
+    # (params[:team][:user].permit(:first_name, :last_name, :email, :password, :password_confirmation, :role))
+    byebug
     # @user = User.new(user_params)
     if @team.save
       redirect_to root_path
@@ -21,7 +23,7 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:team_name, user_params: [:first_name, :last_name, :email, :password, :password_confirmation, :role])
+    params.require(:team).permit(:team_name, users_attributes: [:first_name, :last_name, :email, :password, :password_confirmation, :role])
   end
 
 end
