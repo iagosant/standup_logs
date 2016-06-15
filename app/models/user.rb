@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
 
+  belongs_to :team
   has_and_belongs_to_many :sessions
   has_many :wips
   has_many :completeds
@@ -9,6 +10,8 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates_presence_of :email
+  validates_presence_of :team_id
+
   enum role: [:master, :admin, :manager, :employee]
   after_initialize :set_default_role, :if => :new_record?
   attr_accessor :remember_token, :activation_token
