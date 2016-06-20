@@ -6,6 +6,12 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "Account activation"
   end
 
+  def team_user(user)
+    @user = user
+    byebug
+    mail to: user.email, subjec: "Sessions account activation"
+  end
+
   # Preview this email at
   # http://localhost:3000/rails/mailers/user_mailer/password_reset
   def password_reset

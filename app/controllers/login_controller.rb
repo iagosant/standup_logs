@@ -10,7 +10,8 @@ class LoginController < ApplicationController
       if user && user.authenticate(params[:password]) && user.activated
         # Save the user id inside the browser cookie. This is how we keep the user
         # logged in when they navigate around our website.
-        log_in user
+        session[:user_id] = user.id
+        session[:team_id] = user.team_id
         redirect_to '/sessions'
       else
       # If user's login doesn't work, send them back to the login form.

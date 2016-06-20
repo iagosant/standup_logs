@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   belongs_to :team
-  has_and_belongs_to_many :sessions
+  has_many :sessions
   has_many :wips
   has_many :completeds
   has_many :blockers, dependent: :destroy
@@ -20,7 +20,13 @@ class User < ActiveRecord::Base
 
   def set_default_role
     self.role ||= :employee
+    # assign_team
   end
+
+  # def assign_team
+  #   # @logged_user = User.find_by(session[:user_id])
+  #   self.team_id ||= current_user.team.team_id
+  # end
 
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)

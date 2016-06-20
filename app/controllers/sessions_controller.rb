@@ -1,46 +1,33 @@
 class SessionsController < ApplicationController
+  # before_action :current_team, only: [:show, :edit, :update, :destroy]
   before_action :set_session, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
   # before_filter :authenticate_user!
 
-  # GET /sessions
-  # GET /sessions.json
-
   def self.friday_recap
-
     @latest_session = Session.find(params[:id])
-
     @session_users = @latest_session.users
-
     @session_users.each do |user|
-
       blockers = []
       email = user.email
-
       user.blockers.where(user_id: user.id, session_id: @latest_session.id).each { |b| blockers << b.blocker  }
-
       WeeklyUpdate.send_mail(email, blockers).deliver_now
-
     end
 
   end
 
   def session_blockers
-
     @session_users.each do |user|
       @full_name = user.first_name
       @weeks_blockers = user.blockers.where(user_id: user.id, session_id: @session.id)
-
     end
 
   end
 
   def index
-
+    # current_team
     # authorize User
-
     @sessions = Session.last(5)
-
   end
 
   # GET /sessions/1
@@ -53,14 +40,11 @@ class SessionsController < ApplicationController
     @session_blockers = @session.blockers
     @session_wips = @session.wips
     @session_completeds = @session.completeds
-
     respond_to do |format|
       format.html
       format.json {render json: @session}
       format.xml {render xml: @session}
-
     end
-
   end
 
   # GET /sessions/new

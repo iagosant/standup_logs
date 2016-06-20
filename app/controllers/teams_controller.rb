@@ -4,20 +4,11 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
+    @team.users.new
   end
 
   def create
-    byebug
-    @team = Team.create(team_params)
-    @team.users.build
-    # (params[:team][:user].permit(:first_name, :last_name, :email, :password, :password_confirmation, :role))
-    byebug
-    # @user = User.new(user_params)
-    if @team.save
-      redirect_to root_path
-    else
-      redirect_to new_team_path
-    end
+    team_user_create
   end
 
   private

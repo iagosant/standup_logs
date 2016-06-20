@@ -31,17 +31,26 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
-    @user = User.new(user_params)
+    # @team = Team.create(team_params)
+    # @team_name = @team.team_name
+    @team = Team.find(session[:team_id])
+    @user = @team.users.build(user_params)
     if @user.save
-      UserMailer.account_activation(@user).deliver_now
+      UserMailer.team_user(@user).deliver_now
       flash[:info] = "Please check your email to activate your account."
-      redirect_to root_path
-      # WeeklyUpdate.sample_email(@user).deliver_now
-      # format.html { redirect_to new_user_path, :success => 'User was successfully created.' }
-      # format.json { render :show, status: :created, location: @user }
+      redirect_to sessions_path
     end
   end
+  #   @user = User.new(user_params)
+  #   byebug
+  #   @user.save
+  #   UserMailer.account_activation(@user).deliver_now
+  #   flash[:info] = "Please check your email to activate your account."
+  #   redirect_to sessions_path
+    # WeeklyUpdate.sample_email(@user).deliver_now
+  #   # format.html { redirect_to new_user_path, :success => 'User was successfully created.' }
+  #   # format.json { render :show, status: :created, location: @user }
+  # end
 
   def update
     this_user = User.find(params[:id])
@@ -80,7 +89,9 @@ class UsersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @user = User.find(params[:id])
+    @logged_user = User.find_by(session[:user_id])
+    # @user = User.find(params[:id])
+    byebug
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
