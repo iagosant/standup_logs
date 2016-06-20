@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
     end
 
     def current_team
-      byebug
         @current_team ||= @current_user.team
     end
 

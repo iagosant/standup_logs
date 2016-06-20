@@ -8,7 +8,6 @@ class UserMailer < ApplicationMailer
 
   def team_user(user)
     @user = user
-    byebug
     mail to: user.email, subjec: "Sessions account activation"
   end
 
