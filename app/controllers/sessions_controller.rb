@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  # before_action :current_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_session, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
   # before_filter :authenticate_user!
@@ -21,20 +21,13 @@ class SessionsController < ApplicationController
       @full_name = user.first_name
       @weeks_blockers = user.blockers.where(user_id: user.id, session_id: @session.id)
     end
-
   end
 
   def index
-    # current_team
-    # authorize User
     @sessions = Session.last(5)
   end
 
-  # GET /sessions/1
-  # GET /sessions/1.json
   def show
-    # authorize @current_user
-    # SessionsController.friday_recap
     @session = Session.find(params[:id])
     @session_users = @session.users
     @session_blockers = @session.blockers
@@ -47,25 +40,19 @@ class SessionsController < ApplicationController
     end
   end
 
-  # GET /sessions/new
   def new
     @session = Session.new
     @users = User.all
   end
 
-  # GET /sessions/1/edit
   def edit
     @users = User.all
 
   end
 
-  # POST /sessions
-  # POST /sessions.json
   def create
     @users = Session.get_users(params[:user_ids].map{|i| i.to_i})
-
     @session = Session.create(users: @users)
-
     respond_to do |format|
       if @session.save
         format.html { redirect_to @session, notice: 'Session was successfully created.' }
@@ -122,11 +109,23 @@ class SessionsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_session
     @session = Session.find(params[:id])
-
   end
 
+  def set_team
+    @team = Team.find(session[:team_id])
+  end
   # Never trust parameters from the scary internet, only allow the white list through.
   def session_params
     params.require(:session).permit(:user_id)
   end
 end
+
+# class AddTeamIdToSessionModel < ActiveRecord::Migration
+#   def up
+#     add_column :sessions, :team_id, :integer
+#     add_index  :sessions, :team_id
+#   end
+#   def down
+#     remove_column :sessions, :team_id, :integer
+#   end
+# end
