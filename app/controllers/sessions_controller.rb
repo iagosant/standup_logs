@@ -51,8 +51,11 @@ class SessionsController < ApplicationController
   end
 
   def create
+    @team = Team.find(session[:team_id])
+    byebug
     @users = Session.get_users(params[:user_ids].map{|i| i.to_i})
-    @session = Session.create(users: @users)
+    @session = Session.create(users: @users, team_id: @team.id)
+    byebug
     respond_to do |format|
       if @session.save
         format.html { redirect_to @session, notice: 'Session was successfully created.' }
@@ -81,7 +84,6 @@ class SessionsController < ApplicationController
   # PATCH/PUT /sessions/1.json
   def update
     # @session = Session.find(params[:id]).update(users: Session.get_users(params[:user_ids].map{|i| i.to_i}))
-
     respond_to do |format|
       if @session.update(session_params)
         format.html { redirect_to @session, notice: 'Session was successfully updated.' }
@@ -119,13 +121,3 @@ class SessionsController < ApplicationController
     params.require(:session).permit(:user_id)
   end
 end
-
-# class AddTeamIdToSessionModel < ActiveRecord::Migration
-#   def up
-#     add_column :sessions, :team_id, :integer
-#     add_index  :sessions, :team_id
-#   end
-#   def down
-#     remove_column :sessions, :team_id, :integer
-#   end
-# end
