@@ -39,7 +39,6 @@ class UsersController < ApplicationController
     user_info[:password_confirmation] = temp_password
     @team = Team.find(session[:team_id])
     @user = @team.users.build(user_info)
-    byebug
     @user.save
     UserMailer.team_user(@user, temp_password).deliver_now
     flash[:info] = "Please check your email to activate your account."
