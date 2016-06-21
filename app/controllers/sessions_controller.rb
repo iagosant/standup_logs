@@ -24,7 +24,8 @@ class SessionsController < ApplicationController
   end
 
   def index
-    @sessions = Session.last(5)
+    @team = Team.find(session[:team_id])
+    @sessions = @team.sessions.last(5)
   end
 
   def show
@@ -41,13 +42,13 @@ class SessionsController < ApplicationController
   end
 
   def new
+    @team = Team.find(session[:team_id])
     @session = Session.new
-    @users = User.all
+    @users = @team.users.all
   end
 
   def edit
     @users = User.all
-
   end
 
   def create
@@ -55,7 +56,6 @@ class SessionsController < ApplicationController
     byebug
     @users = Session.get_users(params[:user_ids].map{|i| i.to_i})
     @session = Session.create(users: @users, team_id: @team.id)
-    byebug
     respond_to do |format|
       if @session.save
         format.html { redirect_to @session, notice: 'Session was successfully created.' }
