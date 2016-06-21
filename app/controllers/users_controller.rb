@@ -14,14 +14,14 @@ class UsersController < ApplicationController
   end
 
   def new
-    # this_user = User.find(session[:user_id])
-    # authorize this_user
+    user = User.find(session[:user_id])
+    authorize user
     @user = User.new
   end
 
   def edit
-    @user = User.find(params[:id])
     authorize @user
+    @user = User.find(params[:id])
   end
 
   def create_reset_digest
@@ -31,15 +31,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    # @team = Team.create(team_params)
-    # @team_name = @team.team_name
+    user = User.find(session[:user_id])
+    authorize user
+    user_info = user_params
+    temp_password = SecureRandom.hex(8)
+    user_info[:password] = temp_password
+    user_info[:password_confirmation] = temp_password
     @team = Team.find(session[:team_id])
-    @user = @team.users.build(user_params)
-    if @user.save
-      UserMailer.team_user(@user).deliver_now
-      flash[:info] = "Please check your email to activate your account."
-      redirect_to sessions_path
-    end
+    @user = @team.users.build(user_info)
+    byebug
+    @user.save
+    UserMailer.team_user(@user, temp_password).deliver_now
+    flash[:info] = "Please check your email to activate your account."
+    redirect_to sessions_path
   end
 
   def update

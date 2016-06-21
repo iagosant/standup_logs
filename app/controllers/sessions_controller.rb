@@ -53,7 +53,6 @@ class SessionsController < ApplicationController
 
   def create
     @team = Team.find(session[:team_id])
-    byebug
     @users = Session.get_users(params[:user_ids].map{|i| i.to_i})
     @session = Session.create(users: @users, team_id: @team.id)
     respond_to do |format|
