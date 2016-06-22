@@ -6,12 +6,14 @@ class UsersController < ApplicationController
   def index
     this_user = User.find(session[:user_id])
     authorize this_user
-    @users = User.all
+    @team = Team.find(session[:team_id])
+    @users = @team.users.all
   end
 
   def show
     # authorize @user
     #FIX SET USER
+
     @user = User.find(session[:user_id])
   end
 
