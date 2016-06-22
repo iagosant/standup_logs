@@ -1,8 +1,11 @@
 class Session < ActiveRecord::Base
+  belongs_to :user
+  # has_and_belongs_to_many :users
   has_and_belongs_to_many :users
   has_many :completeds, :dependent => :destroy
   has_many :wips, :dependent => :destroy
   has_many :blockers, :dependent => :destroy
+  belongs_to :team
 
   def self.get_users(ids)
 
