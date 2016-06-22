@@ -1,13 +1,37 @@
-<% provide(:title, "Forgot password") %>
-<h1>Forgot password</h1>
+<div class="user" id="user-new">
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-title">
+          <div class="row">
+            <div class="col s12 m9"><h1 >Enter your email</h1></div>
+            <div class="col s12 m3"><i class="material-icons large">portrait</i></div>
+          </div>
+        </div>
+        <div class="card-content">
+          <%= render 'new_reset' %>
+        </div>
+        <div class="card-action">
+          <div class="row center-align">
+            <div class="col s12 m4">
+              <%= link_to 'Back', '/' %>
+            </div>
+            <div class="col s12 m4">
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+            </div>
+            <div class="col s12 m4">
 
-      <%= f.submit "Submit", class: "btn btn-primary" %>
-    <% end %>
+            </div>
+            <div class="col s12 m12">
+              <% if current_user != nil %>
+              Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>
+              <% else %>
+              <% login_path %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

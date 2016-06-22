@@ -10,7 +10,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    authorize @user
+    # authorize @user
+    #FIX SET USER
+    @user = User.find(session[:user_id])
   end
 
   def new
@@ -24,11 +26,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def create_reset_digest
-    self.reset_token = User.new_token
-    update_columns(reset_digest:  FILL_IN,
-    reset_sent_at: FILL_IN)
-  end
+
 
   def create
     user = User.find(session[:user_id])
@@ -74,10 +72,6 @@ class UsersController < ApplicationController
   def user_not_authorized
     flash[:alert] = "You are not cool enough to do this - go back from whence you came."
     redirect_to(sessions_path)
-  end
-
-  def send_password_reset_email
-    UserMailer.password_reset(self).deliver_now
   end
 
   # Use callbacks to share common setup or constraints between actions.
