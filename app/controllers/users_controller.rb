@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    byebug
     this_user = User.find(params[:id])
     authorize this_user
     respond_to do |format|

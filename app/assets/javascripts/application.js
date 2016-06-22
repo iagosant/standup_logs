@@ -17,3 +17,7 @@
 //= require jquery-ui/datepicker
 //= require_tree .
 //= javascript_include_tag :application
+
+$(document).on("page:change", function(){
+  $('select').material_select();
+});

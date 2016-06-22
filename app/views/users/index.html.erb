@@ -20,18 +20,20 @@
             </thead>
             <tbody>
               <% @users.each do |user| %>
-                <tr>
-                  <td><div class="input-field"><%= user.first_name %></div></td>
-                  <td><%= user.last_name %></td>
-                  <%= form_for user do |u|%>
-                  <td>
-                    <div class="input-field col s12 m3"><%= collection_select(nil, 'options_for_user_role', User.all, :role, :role, {:prompt=>'Role'}, {:id=>'role_select'}) %></div>
-                  </td>
-                  <td><%= u.submit 'Save' %></td>
-                  <td><%= link_to 'Edit', edit_user_path(user) %></td>
-                  <td><%= link_to 'Destroy', user, method: :delete %></td>
-                  <% end %>
-                </tr>
+              <tr>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %><%= user.role %></td>
+                <%= form_for user do |u|%>
+                <td>
+                  <div class="input-field">
+                    <%= u.select :role, options_for_user_role, :selected => 'user.role'  %>
+                  </div>
+                </td>
+                <td><%= u.submit 'Save' %></td>
+                <td><%= link_to 'Edit', edit_user_path(user) %></td>
+                <td><%= link_to 'Destroy', user, method: :delete %></td>
+                <% end %>
+              </tr>
               <% end %>
             </tbody>
           </table>
