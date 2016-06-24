@@ -21,12 +21,12 @@
             <tbody>
               <% @users.each do |user| %>
               <tr>
-                <td><%= user.first_name %></td>
-                <td><%= user.last_name %><%= user.role %></td>
+                <td><%= user.first_name %><%= user.id %></td>
+                <td><%= user.last_name %></td>
                 <%= form_for user do |u|%>
-                <td>
-                  <div class="input-field">
-                    <%= u.select :role, options_for_user_role, :selected => 'user.role'  %>
+                 <td id='<%= user.id %>' class="selected_role">
+                  <div class="input-field" >
+                    <%= u.select :role, options_for_select([['admin', 'admin'], ['manager', 'manager'], ['employee', 'employee']], :selected => user.role), :id => user.id %>
                   </div>
                 </td>
                 <td><%= u.submit 'Save' %></td>

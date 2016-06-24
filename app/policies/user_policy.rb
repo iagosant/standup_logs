@@ -7,7 +7,11 @@ class UserPolicy
   end
 
   def index?
-    @logged_user.role == "master" || "manager"
+    @logged_user.role == "master" || @logged_user.role == "admin" || @logged_user.role == "manager"
+  end
+
+  def role_update?
+      @logged_user.role == "master" || @logged_user.role == "admin" || @logged_user.role == "manager"
   end
 
   def show?
@@ -15,23 +19,23 @@ class UserPolicy
   end
 
   def new?
-    @logged_user.role == "master" || @logged_user.role == "manager" || @logged_user.role == "admin"
+    @logged_user.role == "master" || @logged_user.role == "admin" || @logged_user.role == "manager"
   end
 
   def create?
-    @logged_user.role == "master" || @logged_user.role == "manager" || @logged_user.role == "admin"
+    @logged_user.role == "master" || @logged_user.role == "admin" || @logged_user.role == "manager"
   end
 
   def destroy?
-    @logged_user.role == "master"
+    @logged_user.role == "master" || @logged_user.role == "admin" || @logged_user.role == "manager"
   end
 
   def edit?
-    @logged_user.role == "master"
+    @logged_user.role == "master" || @logged_user.role == "admin" || @logged_user.role == "manager"
   end
 
   def update?
-    @logged_user.role == "master"
+    @logged_user.role == "master" || @logged_user.role == "admin" || @logged_user.role == "manager"
   end
 
 end
