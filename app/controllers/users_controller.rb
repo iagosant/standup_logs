@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include UsersHelper
   before_action :require_logged_in, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   attr_accessor :email, :name, :password, :password_confirmation
@@ -6,45 +7,58 @@ class UsersController < ApplicationController
   def index
     this_user = User.find(session[:user_id])
     authorize this_user
-    @users = User.all
+    @team = Team.find(session[:team_id])
+    @users = @team.users.all
+  end
+
+  def roleUpdate
+    this_user = User.find(session[:user_id])
+    authorize this_user
+    user_id = params[:user_id]
+    new_role = params[:new_role]
+    update_this_user = User.find(user_id)
+    update_this_user.update(role: new_role)
+    # byebug
   end
 
   def show
-    authorize @user
+    # authorize @user
+    #FIX SET USER
+
+    @user = User.find(session[:user_id])
   end
 
   def new
-    # this_user = User.find(session[:user_id])
-    # authorize this_user
+    user = User.find(session[:user_id])
+    authorize user
     @user = User.new
   end
 
   def edit
-    @user = User.find(params[:id])
+    byebug
     authorize @user
-  end
-
-  def create_reset_digest
-    self.reset_token = User.new_token
-    update_columns(reset_digest:  FILL_IN,
-    reset_sent_at: FILL_IN)
+    @user = User.find(params[:id])
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      UserMailer.account_activation(@user).deliver_now
-      flash[:info] = "Please check your email to activate your account."
-      redirect_to new_user_path
-      # WeeklyUpdate.sample_email(@user).deliver_now
-      # format.html { redirect_to new_user_path, :success => 'User was successfully created.' }
-      # format.json { render :show, status: :created, location: @user }
-    end
+    user = User.find(session[:user_id])
+    authorize user
+    user_info = user_params
+    temp_password = SecureRandom.hex(8)
+    user_info[:password] = temp_password
+    user_info[:password_confirmation] = temp_password
+    @team = Team.find(session[:team_id])
+    @user = @team.users.build(user_info)
+    @user.save
+    UserMailer.team_user(@user, temp_password).deliver_now
+    flash[:info] = "Please check your email to activate your account."
+    redirect_to sessions_path
   end
 
   def update
-    this_user = User.find(params[:id])
-    authorize this_user
+    # this_user = User.find(params[:id])
+byebug
+    # authorize this_user
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to users_path, notice: 'User was successfully updated.' }
@@ -73,17 +87,14 @@ class UsersController < ApplicationController
     redirect_to(sessions_path)
   end
 
-  def send_password_reset_email
-    UserMailer.password_reset(self).deliver_now
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by(session[:user_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
+    byebug
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
   end
 end

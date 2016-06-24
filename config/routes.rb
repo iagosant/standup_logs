@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get 'sessions/:session_id/completeds' => 'completeds#index'
   get 'sessions/:session_id/wips' => 'wips#index'
 
+  post 'users/roleUpdate' => 'users#roleUpdate'
+
   # get 'user/:id' => 'users#edit'
 
   resources :wips
@@ -33,6 +35,7 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :teams
   # get 'new_session' => 'sessions#new', as: 'new_session'
   # <%= link_to "New Session", new_session_path %>
 

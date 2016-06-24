@@ -1,87 +1,60 @@
 class SessionsController < ApplicationController
+  before_action :set_team, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_session, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
   # before_filter :authenticate_user!
 
-  # GET /sessions
-  # GET /sessions.json
-
   def self.friday_recap
-
     @latest_session = Session.find(params[:id])
-
     @session_users = @latest_session.users
-
     @session_users.each do |user|
-
       blockers = []
       email = user.email
-
       user.blockers.where(user_id: user.id, session_id: @latest_session.id).each { |b| blockers << b.blocker  }
-
       WeeklyUpdate.send_mail(email, blockers).deliver_now
-
     end
 
   end
 
   def session_blockers
-
     @session_users.each do |user|
       @full_name = user.first_name
       @weeks_blockers = user.blockers.where(user_id: user.id, session_id: @session.id)
-
     end
-
   end
 
   def index
-
-    # authorize User
-
-    @sessions = Session.last(5)
-
+    @team = Team.find(session[:team_id])
+    @sessions = @team.sessions.last(5)
   end
 
-  # GET /sessions/1
-  # GET /sessions/1.json
   def show
-    # authorize @current_user
-    # SessionsController.friday_recap
     @session = Session.find(params[:id])
     @session_users = @session.users
     @session_blockers = @session.blockers
     @session_wips = @session.wips
     @session_completeds = @session.completeds
-
     respond_to do |format|
       format.html
       format.json {render json: @session}
       format.xml {render xml: @session}
-
     end
-
   end
 
-  # GET /sessions/new
   def new
+    @team = Team.find(session[:team_id])
     @session = Session.new
-    @users = User.all
+    @users = @team.users.all
   end
 
-  # GET /sessions/1/edit
   def edit
     @users = User.all
-
   end
 
-  # POST /sessions
-  # POST /sessions.json
   def create
+    @team = Team.find(session[:team_id])
     @users = Session.get_users(params[:user_ids].map{|i| i.to_i})
-
-    @session = Session.create(users: @users)
-
+    @session = Session.create(users: @users, team_id: @team.id)
     respond_to do |format|
       if @session.save
         format.html { redirect_to @session, notice: 'Session was successfully created.' }
@@ -110,7 +83,6 @@ class SessionsController < ApplicationController
   # PATCH/PUT /sessions/1.json
   def update
     # @session = Session.find(params[:id]).update(users: Session.get_users(params[:user_ids].map{|i| i.to_i}))
-
     respond_to do |format|
       if @session.update(session_params)
         format.html { redirect_to @session, notice: 'Session was successfully updated.' }
@@ -138,9 +110,11 @@ class SessionsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_session
     @session = Session.find(params[:id])
-
   end
 
+  def set_team
+    @team = Team.find(session[:team_id])
+  end
   # Never trust parameters from the scary internet, only allow the white list through.
   def session_params
     params.require(:session).permit(:user_id)
