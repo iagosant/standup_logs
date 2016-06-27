@@ -35,6 +35,7 @@ group :production do
   gem 'bcrypt'
   gem 'figaro'
   gem 'whenever', require: false
+  
   gem 'jquery-ui-rails'
 end
 
