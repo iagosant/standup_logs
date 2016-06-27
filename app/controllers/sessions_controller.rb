@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   before_action :require_logged_in
   # before_filter :authenticate_user!
 
+
   def self.friday_recap
     @latest_session = Session.find(params[:id])
     @session_users = @latest_session.users
@@ -31,9 +32,9 @@ class SessionsController < ApplicationController
   def show
     @session = Session.find(params[:id])
     @session_users = @session.users
-    @session_blockers = @session.blockers
     @session_wips = @session.wips
     @session_completeds = @session.completeds
+    @session_blockers = @session.blockers
     respond_to do |format|
       format.html
       format.json {render json: @session}
@@ -65,24 +66,20 @@ class SessionsController < ApplicationController
       end
     end
     @users.each do |user|
-      @new_wip = Wip.create
+      @new_wip = @session.wips.create
       user.wips << @new_wip
-      @session.wips << @new_wip
 
-      @new_completed = Completed.create
+      @new_completed = @session.completeds.create
       user.completeds << @new_completed
-      @session.completeds << @new_completed
 
-      @new_blocker = Blocker.create
+      @new_blocker = @session.blockers.create
       user.blockers << @new_blocker
-      @session.blockers << @new_blocker
     end
   end
 
   # PATCH/PUT /sessions/1
   # PATCH/PUT /sessions/1.json
   def update
-    # @session = Session.find(params[:id]).update(users: Session.get_users(params[:user_ids].map{|i| i.to_i}))
     respond_to do |format|
       if @session.update(session_params)
         format.html { redirect_to @session, notice: 'Session was successfully updated.' }

@@ -1,9 +1,8 @@
 class WipsController < ApplicationController
   before_action :set_wip, only: [:show, :edit, :update, :destroy]
-  before_filter :get_session, only: [:edit, :update]
+  before_action :get_session, only: [:show, :edit, :update]
 
   def get_session
-
     @session = Session.find(@wip.session_id)
 
   end
@@ -47,14 +46,15 @@ class WipsController < ApplicationController
   # PATCH/PUT /wips/1
   # PATCH/PUT /wips/1.json
   def update
+    wip_item = params[:content]
     respond_to do |format|
-      if @wip.update(wip_params)
-        format.html { redirect_to @session, notice: 'Wip was successfully updated.' }
-        format.json { render :show, status: :ok, location: @session }
-        format.js {render :nothing => true, notice: 'Wip was successfully updated.' }
+      if @wip.update(wip_item: wip_item)
+        # format.html { redirect_to @session, notice: 'Wip was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @session }
+        # format.js {render :nothing => true, notice: 'Wip was successfully updated.' }
       else
-        format.html { render :edit }
-        format.json { render json: @wip.errors, status: :unprocessable_entity }
+        # format.html { render :edit }
+        # format.json { render json: @wip.errors, status: :unprocessable_entity }
       end
       # redirect_to session.delete(:return_to)
     end
