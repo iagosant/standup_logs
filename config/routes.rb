@@ -26,11 +26,20 @@ Rails.application.routes.draw do
 
   post 'users/roleUpdate' => 'users#roleUpdate'
 
+  post 'sessions/:session_id/wips/:id/update' => 'wips#update'
+  post 'sessions/:session_id/completeds/:id/update' => 'completeds#update'
+  post 'sessions/:session_id/blockers/:id/update' => 'blockers#update'
+
   # get 'user/:id' => 'users#edit'
 
-  resources :wips
   resources :completeds
   resources :blockers
+  resources :wips
+  # resources :sessions do
+  #   resources :wips
+  #   resources :completeds
+  #   resources :blockers
+  # end
   resources :sessions
   resources :users
   resources :account_activations, only: [:edit]
