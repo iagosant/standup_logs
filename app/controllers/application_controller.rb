@@ -15,7 +15,10 @@ class ApplicationController < ActionController::Base
       return false
     end
 
-    def team_user_create
+    def team_user_create(team_params)
+      team_avatar = team_params[:avatar]
+      # @team.avatar = team_avatar
+      byebug
       @team = Team.create(team_params)
       u_params = (team_params[:users_attributes]["0"])
       @user = @team.users.build(u_params)

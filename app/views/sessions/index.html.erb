@@ -5,7 +5,7 @@
       <div class="card">
         <div class="card-title">
           <div class="col s12 m9">
-            <h1>Team <%= @team.team_name %></h1>
+            <h1>Team <%= link_to @team.team_name, edit_team_path(@team) %></h1>
             <h6>ALL Sessions</h6>
           </div>
           <%= image_tag "all-sessions.png", :height => "62" %>
