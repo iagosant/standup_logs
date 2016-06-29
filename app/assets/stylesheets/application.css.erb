@@ -85,54 +85,180 @@ text-align: center;
 html{
   font-family: 'ProximaNova-Light'!important;
  }
- body{
-   background: url('<%= asset_path("hd_bg.png") %>');
-   background-repeat: no-repeat;
-   background-size: cover;
-   color: #808080;
+body{
+  background: url('<%= asset_path("hd-bg.png") %>');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #808080;
  }
- h1, h2, h3, h4, h5, h6 {
-    font-weight: 200!important;
-    color: #808080 !important;
-  }
-  h1 {
-    font-size: 2.2rem!important;
-    text-transform: uppercase;
-  }
-  .card-title .row {
-    margin: 0!important;
-  }
-  div .card{
-    /*box-shadow: 0px 0px 64px rgba(238, 238, 255, 0.73);*/
-    box-shadow: 0px 0px 100px rgba(147, 161, 185, 0.59);
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-weight: lighter!important;
+  color: #808080 !important;
+}
 
 .signed_user {
   margin-top: 40px;
 }
-
+#stand-up nav{
+  background-color: transparent;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+#stand-up nav .brand-logo img{
+  display: inline-table;
+  vertical-align: middle;
+}
+/* STYLE FOR CARD ELEMENT*/
 .card {
-    border-radius: 5px!important;
-    margin: 0 auto!important;
+  margin: 0 auto!important;
+  padding: 1.5rem 0.6rem 1.5rem 0.8rem;
+  border-radius: 5px!important;
+  -moz-border-radius: 5px;
+  /* for Safari y Chrome*/
+  -webkit-border-radius: 5px;
+
+}
+.card-title .row {
+  margin: 0!important;
+}
+div .card{
+  box-shadow: 0px 0px 100px rgba(147, 161, 185, 0.59);
+  -moz-box-shadow: 0px 0px 100px rgba(147, 161, 185, 0.59);
+  -webkit-box-shadow: 0px 0px 100px rgba(147, 161, 185, 0.59);
+
+}
+.card .card-title {
+  border-bottom: 1px solid rgba(160,160,160,0.2);
+  min-height: 100px;
+}
+.card .card-title h1{
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 2rem!important;
+  text-transform: uppercase;
+  color: #92daee!important;
+  line-height: 1.5rem;
+}
+.container .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+  color: #989797;
+}
+.container .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover {
+  color: #92e1f4;
+}
+/* END STYLE FOR CARD ELEMENT */
+/* STYLE FOR BUTTON*/
+.su-btn.btn-flat {
+  color: #989797;
+  background-color: #fff;
+  border: 1px solid #92e1f4!important;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  /* for Safari y Chrome*/
+  -webkit-border-radius: 5px;
+
+
+}
+.su-btn input{
+  border:0px;
+}
+/* END STYLE FOR BUTTON */
+/* STYLE FOR INPUT */
+/** CHANGE COLOR IN FOCUS (MATERIALIZE) **/
+.container input:not([type]):focus:not([readonly]),
+.container input[type=text]:focus:not([readonly]),
+.container input[type=password]:focus:not([readonly]),
+.container input[type=email]:focus:not([readonly]),
+.container input[type=url]:focus:not([readonly]),
+.container input[type=time]:focus:not([readonly]),
+.container input[type=date]:focus:not([readonly]),
+.container input[type=datetime]:focus:not([readonly]),
+.container input[type=datetime-local]:focus:not([readonly]),
+.container input[type=tel]:focus:not([readonly]),
+.container input[type=number]:focus:not([readonly]),
+.container input[type=search]:focus:not([readonly]),
+.container textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #92e1f4;
+  box-shadow: 0 1px 0 0 #92e1f4;
+  -moz-box-shadow: 0 1px 0 0 #92e1f4;
+  /* for Safari y Chrome*/
+  -webkit-box-shadow: 0 1px 0 0 #92e1f4;
+
 }
 
-a:hover {
-  background: none!important;
+.container input:not([type]):focus:not([readonly]) + label,
+.container input[type=text]:focus:not([readonly]) + label,
+.container input[type=password]:focus:not([readonly]) + label,
+.container input[type=email]:focus:not([readonly]) + label,
+.container input[type=url]:focus:not([readonly]) + label,
+.container input[type=time]:focus:not([readonly]) + label,
+.container input[type=date]:focus:not([readonly]) + label,
+.container input[type=datetime]:focus:not([readonly]) + label,
+.container input[type=datetime-local]:focus:not([readonly]) + label,
+.container input[type=tel]:focus:not([readonly]) + label,
+.container input[type=number]:focus:not([readonly]) + label,
+.container input[type=search]:focus:not([readonly]) + label,
+.container textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #92e1f4;
 }
+.container .input-field .prefix.active {
+  color: #92e1f4;
+}
+/** END CHANGE COLOR IN FOCUS (MATERIALIZE) **/
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background: none !important;
+  background-image: none;
+  color: rgb(0, 0, 0);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active{
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+textarea:focus, input:focus, select:focus{
+  outline: none;
+}
+/* END STYLE FOR INPUT */
 a:hover{
- background: none!important;
+  background: none!important;
 }
 
 i.small {
   font-size: 22px !important;
 }
-
-input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-    background: none !important;
-    background-image: none;
-    color: rgb(0, 0, 0);
+.div-right:after {
+    content: "";
+  }
+.border-right, .div-right:after{
+  border-right: 1px solid #9c9c9c;
 }
-/*.btn .btn-large {
-background-color: #56a2bc !important;
-}*/
+.border-bottom{
+  border-bottom: 1px solid #9c9c9c;
+}
+#stand-up nav.menu .dropdown-button{
+  margin-left: 2rem;
+}
+#stand-up nav.menu .dropdown-content li > a, #stand-up nav.menu .dropdown-content li > span {
+  font-size: 16px;
+  line-height: 20px;
+  padding: 10px 16px;
+}
+/* MEDIA SCREEN */
+@media only screen and (min-width: 601px){
+ #stand-up nav.menu, #stand-up nav.menu .nav-wrapper i, #stand-up nav.menu a.button-collapse, #stand-up nav.menu a.button-collapse i {
+    height: 90px;
+    line-height: 90px;
+}
+}
 /********* END ******/

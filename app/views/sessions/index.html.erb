@@ -1,23 +1,25 @@
 <p id="notice"><%= notice %></p>
 <div class="section" id="sessions-list">
   <div class="row">
-    <div class="col s12 m7">
+    <div class="col s12 m5">
       <div class="card">
         <div class="card-title">
+         <div class="row">
           <div class="col s12 m9">
             <h1>Team <%= @team.team_name %></h1>
             <h6>ALL Sessions</h6>
           </div>
-          <%= image_tag "all-sessions.png", :height => "62" %>
+          <div class="col s12 m3 right-align">
+            <%= image_tag "all-sessions.png", :height => "62" %>
+          </div>
         </div>
-        <div class="input-field col s12 m3">
-          <label for="select">Select Date</label>
-          <%#= collection_select(nil, 'date_select', Session.all, :created_at, {:prompt=>true}, {:id=>'date_select'}) %>
-        </div>
-        <div class="input-field col s12 m12">
-          <input type="text" name="datepicker" id ="datepicker">
         </div>
         <div class="card-content">
+          <div class="input-field col s12 m6">
+            <label for="select">Select Date</label>
+            <input type="text" name="datepicker" id ="datepicker">
+            <!-- <input type="date" class="datepicker"> -->
+          </div>
           <table class="">
             <tbody>
               <% @sessions.reverse.each do |session| %>
