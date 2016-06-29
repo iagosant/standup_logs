@@ -15,9 +15,9 @@ $(document).on('ready page:load', function () {
       type: 'POST',
       dataType: 'json',
       data: {'itemId': itemId, 'sessionId': sessionId, 'content': content},
-      success: function(){
-        alert (itemEdited + ' was updated');
-      }
+      // success: function(){
+      //   alert (itemEdited + ' was updated');
+      // }
     });
   });
 });

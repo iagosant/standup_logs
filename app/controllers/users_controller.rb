@@ -18,7 +18,6 @@ class UsersController < ApplicationController
     new_role = params[:new_role]
     update_this_user = User.find(user_id)
     update_this_user.update(role: new_role)
-    # byebug
   end
 
   def show
@@ -35,7 +34,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    byebug
     authorize @user
     @user = User.find(params[:id])
   end
@@ -56,9 +54,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    # this_user = User.find(params[:id])
-byebug
-    # authorize this_user
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to users_path, notice: 'User was successfully updated.' }
@@ -94,7 +89,6 @@ byebug
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    byebug
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
   end
 end
