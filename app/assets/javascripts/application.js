@@ -17,3 +17,15 @@
 //= require jquery-ui/datepicker
 //= require_tree .
 //= javascript_include_tag :application
+$(document).on("page:change", function() {
+  $("#stand-up nav.menu a").hover(function(){
+    var elem = this +" #icon-change",
+        path =  $(elem).attr("src"),
+        pathN = path.substring(0, path.length-3) + "-lightblue";
+           alert(pathN);
+       $(this).attr("src", pathN);
+       }, function(){
+       $(this).css("color", path);
+   });
+
+});

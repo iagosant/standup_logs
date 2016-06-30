@@ -23,9 +23,9 @@
           <a href="" class="brand-logo valign-wrapper"><%= image_tag "sessions_logo.png", :size => "160x48", :alt => "StandUp", :title => "StandUp Logo"%></a>
           <a class="dropdown-button right" href="#!" data-activates="dropdown1"><%= @current_user.first_name %><i class="material-icons right">arrow_drop_down</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="div-right"><%= link_to "All Sessions", sessions_path %></li>
-            <li class="div-right"><%= link_to "New Session", "#" %></li>
-            <li><%= link_to "Stand-up", "#" %></li>
+            <li class="div-right active"><a href="/sessions"><i class="material-icons left"><%= image_tag "all-sessions-menu.png", :size => "25x29", :alt => "All Sessions", :id =>"icon-change"%></i>All Sessions</a></li>
+            <li class="div-right"><a href="/sessions/new"><i class="material-icons left"><%= image_tag "new-session-menu.png", :size => "25x29", :alt => "New Sessions",:id =>"icon-change"%></i>New Session</a></li>
+            <li><a href="/sessions/new"><i class="material-icons left"><%= image_tag "stand-up-menu.png", :size => "25x29", :alt => "Stand Up",:id =>"icon-change"%></i>Stand Up</a></li>
          </ul>
         </div>
       </nav>
