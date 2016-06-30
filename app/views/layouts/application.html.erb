@@ -21,11 +21,11 @@
       <nav class="border-bottom menu">
         <div class="nav-wrapper">
           <a href="" class="brand-logo valign-wrapper"><%= image_tag "sessions_logo.png", :size => "160x48", :alt => "StandUp", :title => "StandUp Logo"%></a>
-          <a class="dropdown-button right" href="#!" data-activates="dropdown1"><%= @current_user.first_name %><i class="material-icons right">arrow_drop_down</i></a>
+          <a class="dropdown-button right" href="#!" data-activates="dropdown1"><%= @current_user.first_name %><i class="material-icons right"><%= image_tag(@team.avatar(:medium), height: '42', width: '42',id:'icon-avatar') %></i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="div-right active"><a href="/sessions"><i class="material-icons left"><%= image_tag "all-sessions-menu.png", :size => "25x29", :alt => "All Sessions", :id =>"icon-change"%></i>All Sessions</a></li>
-            <li class="div-right"><a href="/sessions/new"><i class="material-icons left"><%= image_tag "new-session-menu.png", :size => "25x29", :alt => "New Sessions",:id =>"icon-change"%></i>New Session</a></li>
-            <li><a href="/sessions/new"><i class="material-icons left"><%= image_tag "stand-up-menu.png", :size => "25x29", :alt => "Stand Up",:id =>"icon-change"%></i>Stand Up</a></li>
+            <li class="div-right active"><a href="/sessions"><i class="material-icons left"><img alt="All Sessions" id="icon-change" src="/assets/all-sessions-menu.png" width="25" height="29"></i>All Sessions</a></li>
+            <li class="div-right"><a href="/sessions/new"><i class="material-icons left"><img alt="New Sessions" id="icon-change"  src="/assets/new-session-menu.png" width="25" height="29"></i>New Session</a></li>
+            <li><a href="/sessions/new"><i class="material-icons left"><img alt="StandUp Sessions" id="icon-change"  src="/assets/standup-menu.png" width="25" height="29"></i>Stand Up</a></li>
          </ul>
         </div>
       </nav>

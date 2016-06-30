@@ -1,4 +1,5 @@
 $(document).on('ready page:load', function () {
+
   $('textarea').focus(function() {
     $(this).css("background-color","#e6ffff");
   }).blur(function() {
