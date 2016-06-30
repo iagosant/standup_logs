@@ -7,15 +7,34 @@
   <%= csrf_meta_tags %>
   <!--Import materialize.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-
-<div class=container>
-
-<%= yield %>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<body id="stand-up">
+  <% if @current_user %>
+  <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!">Settings</a></li>
+        <li class="divider"></li>
+        <li> <%= link_to "Logout", '/logout' %></li>
+      </ul>
+      <nav class="border-bottom menu">
+        <div class="nav-wrapper">
+          <a href="" class="brand-logo valign-wrapper"><%= image_tag "sessions_logo.png", :size => "160x48", :alt => "StandUp", :title => "StandUp Logo"%></a>
+          <a class="dropdown-button right" href="#!" data-activates="dropdown1"><%= @current_user.first_name %><i class="material-icons right"><%= image_tag(@team.avatar(:medium), height: '42', width: '42',id:'icon-avatar') %></i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="div-right active"><a href="/sessions"><i class="material-icons left"><img alt="All Sessions" id="icon-change" src="/assets/all-sessions-menu.png" width="25" height="29"></i>All Sessions</a></li>
+            <li class="div-right"><a href="/sessions/new"><i class="material-icons left"><img alt="New Sessions" id="icon-change"  src="/assets/new-session-menu.png" width="25" height="29"></i>New Session</a></li>
+            <li><a href="/sessions/new"><i class="material-icons left"><img alt="StandUp Sessions" id="icon-change"  src="/assets/standup-menu.png" width="25" height="29"></i>Stand Up</a></li>
+         </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <% end %>
+  <div class="container">
+    <%= yield %>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 </body>
 </html>

@@ -91,4 +91,7 @@ Rails.application.configure do
     :user_name => ENV['SENDGRID_USERNAME'],
     :password => ENV['SENDGRID_PASSWORD']
   }
+  # Paperclip config:
+ Paperclip.options[:command_path] == "/opt/local/bin"
+
 end
