@@ -24,9 +24,33 @@ class SessionsController < ApplicationController
     end
   end
 
+  def clean_date
+    @team = Team.find(session[:team_id])
+    date_select = params[:dateTypeVar]
+    converted = date_select.to_time
+    clean = Time.at(converted)
+    team_sessions = Session.where(team_id: @team.id)
+    found_sessions = team_sessions.where(:created_at => clean..clean + 4.days)
+    search_results = Array.new
+    found_sessions.each do |session|
+      a = []
+      a << session.id
+      a << session.created_at
+      search_results << a
+    end
+    respond_to do |format|
+      format.html { redirect_to :back, notice: "success"}
+      format.json {render json: search_results}
+    end
+  end
+
   def index
     @team = Team.find(session[:team_id])
-    @sessions = @team.sessions.last(5)
+    # if params[:dateTypeVar].nil?
+      @sessions = @team.sessions.last(5)
+  #   else
+  #     @sessions = @search_results
+  # end
   end
 
   def show
@@ -114,6 +138,6 @@ class SessionsController < ApplicationController
   end
   # Never trust parameters from the scary internet, only allow the white list through.
   def session_params
-    params.require(:session).permit(:user_id)
+    params.require(:session).permit(:user_id, :dateTypeVar)
   end
 end
