@@ -4,7 +4,6 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:edit, :update]
 
   def new
-    byebug
     @team = Team.new
     @team.users.new
   end
@@ -14,11 +13,10 @@ class TeamsController < ApplicationController
   end
 
   def edit
-    byebug
+  
   end
 
   def update
-    byebug
     team_avatar = params[:team][:avatar]
     @team.update(avatar: team_avatar)
     redirect_to :back
