@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   post 'sessions/:session_id/completeds/:id/update' => 'completeds#update'
   post 'sessions/:session_id/blockers/:id/update' => 'blockers#update'
 
+  # get the date from sessions index jquery-ui datepicker
+  post 'sessions/search' => 'sessions#clean_date'
   # get 'user/:id' => 'users#edit'
 
   resources :completeds

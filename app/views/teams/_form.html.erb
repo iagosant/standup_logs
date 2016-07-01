@@ -1,8 +1,15 @@
 <%= form_for @team do |f| %>
 <div class="row">
   <div class="col s12">
-    <%= f.label :team_name %><br />
-    <%= f.text_field :team_name %>
+    <div class="field">
+      <%= f.label :team_name %><br />
+      <%= f.text_field :team_name %>
+    </div>
+    <div class="field">
+      <%= f.label :avatar %></br>
+      <%= f.file_field :avatar %>
+    </div>
+
     <div class="field">
 
       <%= f.fields_for :users do |builder| %>
