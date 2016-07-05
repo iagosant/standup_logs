@@ -1,43 +1,25 @@
 $(document).on('ready page:load', function () {
   // alert('works');
-  $('input#datepicker').on('change',function(){
-    var dateTypeVar = $(this).datepicker('getDate');
+  $('#datepicker2').on('change',function(){
+    var dateTypeVar = $('input#datepicker').datepicker('getDate');
+    var dateTypeVarTwo = $(this).datepicker('getDate');
     $.ajax({
       url: 'sessions/' + 'search',
       type: 'POST',
       dataType: 'json',
-      data: {'dateTypeVar': dateTypeVar},
+      data: {'dateTypeVar': dateTypeVar, 'dateTypeVarTwo': dateTypeVarTwo},
       success: function(data, textStatus) {
         if (data != ""){
           $('tbody').html("")
           for (i=0;i<data.length;i++){
             var id = data[i][0];
             var date = data[i][1];
-            var weekday = new Array(7);
-            weekday[0] = "Sunday";
-            weekday[1] = "Monday";
-            weekday[2] = "Tuesday";
-            weekday[3] = "Wednesday";
-            weekday[4] = "Thursday";
-            weekday[5] = "Friday";
-            weekday[6] = "Saturday";
+            var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
             var clean_date = new Date(date);
             var n = new Date(clean_date).getDay();
             var dayOfWeek = weekday[n];
             var m = new Date(clean_date).getMonth();
-            var monthIs = new Array(12);
-            monthIs[0] = 'January';
-            monthIs[1] = 'February';
-            monthIs[2] = 'March';
-            monthIs[3] = 'April';
-            monthIs[4] = 'May';
-            monthIs[5] = 'June';
-            monthIs[6] = 'July';
-            monthIs[7] = 'August';
-            monthIs[8] = 'September';
-            monthIs[9] = 'October';
-            monthIs[10] = 'November';
-            monthIs[11] = 'December';
+            var monthIs = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
             var month = monthIs[m];
             var dayOfMonth = new Date(clean_date).getDate();
             var html = '<tr>';

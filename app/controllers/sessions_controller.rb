@@ -27,10 +27,13 @@ class SessionsController < ApplicationController
   def clean_date
     @team = Team.find(session[:team_id])
     date_select = params[:dateTypeVar]
+    end_date = params[:dateTypeVarTwo]
     converted = date_select.to_time
+    converted_end_date = end_date.to_time
     clean = Time.at(converted)
+    clean_end_date = Time.at(converted_end_date)
     team_sessions = Session.where(team_id: @team.id)
-    found_sessions = team_sessions.where(:created_at => clean..clean + 4.days)
+    found_sessions = team_sessions.where(:created_at => clean..clean_end_date)
     search_results = Array.new
     found_sessions.each do |session|
       a = []
@@ -42,9 +45,11 @@ class SessionsController < ApplicationController
       format.html { redirect_to :back, notice: "success"}
       format.json {render json: search_results}
     end
+    byebug
   end
 
   def index
+
     @team = Team.find(session[:team_id])
     # if params[:dateTypeVar].nil?
       @sessions = @team.sessions.last(5)
