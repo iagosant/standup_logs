@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem "paperclip", "~> 4.3"
+gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
 
-gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk'
 
 gem 'rails-erd'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -39,6 +39,8 @@ group :production do
   gem 'bcrypt'
   gem 'figaro'
   gem 'whenever', require: false
+  gem 'aws-sdk'
+  gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
 end
 
 group :development, :test do

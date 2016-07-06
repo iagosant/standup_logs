@@ -41,6 +41,9 @@ class SessionsController < ApplicationController
       a << session.created_at
       search_results << a
     end
+    # if search_results.nil?
+    #   format.html {redirect_to :back, notice: "There are no sessions during the dates you selected."}
+    # end
     respond_to do |format|
       format.html { redirect_to :back, notice: "success"}
       format.json {render json: search_results}
