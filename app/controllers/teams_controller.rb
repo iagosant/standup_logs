@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
     team_avatar = params[:team][:avatar]
 
     @team.update(avatar: team_avatar)
-    redirect_to :back
+    # redirect_to :back
   end
   private
 
