@@ -13,11 +13,13 @@ class TeamsController < ApplicationController
   end
 
   def edit
-  
+
   end
 
   def update
+    byebug
     team_avatar = params[:team][:avatar]
+
     @team.update(avatar: team_avatar)
     redirect_to :back
   end

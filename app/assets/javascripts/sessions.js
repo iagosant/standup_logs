@@ -1,16 +1,61 @@
 $(document).on('ready page:load', function () {
+  // alert('works');
+  $('#datepicker2').on('change',function(){
+    var dateTypeVar = $('input#datepicker').datepicker('getDate');
+    var dateTypeVarTwo = $(this).datepicker('getDate');
+    $.ajax({
+      url: 'sessions/' + 'search',
+      type: 'POST',
+      dataType: 'json',
+      data: {'dateTypeVar': dateTypeVar, 'dateTypeVarTwo': dateTypeVarTwo},
+      success: function(data, textStatus) {
+        if (data != ""){
+          $('tbody').html("")
+          for (i=0;i<data.length;i++){
+            var id = data[i][0];
+            var date = data[i][1];
+            var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            var clean_date = new Date(date);
+            var n = new Date(clean_date).getDay();
+            var dayOfWeek = weekday[n];
+            var m = new Date(clean_date).getMonth();
+            var monthIs = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+            var month = monthIs[m];
+            var dayOfMonth = new Date(clean_date).getDate();
+            var html = '<tr>';
+            html += '<td>';
+            html += '<img height="15" src="/assets/wip-5b4657932e2940c3bed7f403256b308a9b8a2034765b544e0b64ca428b7f3845.png" alt="Wip">';
+            html += '</td>';
+            html += '<td>';
+            html += '<a href="/sessions/' + id + '">' + dayOfWeek + ' STAND-UP' + '</a>';
+            html += '</td>';
+            html += '<td>';
+            html += '<a href="/sessions/' + id + '">' + month + ' ' + dayOfMonth + '</a>';
+            html += '</td>';
+            html += '<td>';
+            html += '<a data-confirm="Delete this session?" rel="nofollow" data-method="delete" href="/sessions/' + id + '">';
+            html += '<i class="small material-icons">delete</i>';
+            html += '</a>';
+            html += '</td>';
+            html += '</tr>';
+            $('tbody').append(html);
+          }
+        }
+      }
+    });
+  });
 
   $('textarea').focus(function() {
     $(this).css("background-color","#e6ffff");
   }).blur(function() {
     $(this).css("background-color","white");
     $(this).height("39px");
-      var content = $(this).val();
-      var str = $(this).attr('name');
-      var itemEdited = str.split("[")[0] + "s"
-      var itemId = $(this).parents("li").attr("id")
-      var sessionId = $('.session_tag').attr('id')
-      // alert(content + itemEdited + itemId)
+    var content = $(this).val();
+    var str = $(this).attr('name');
+    var itemEdited = str.split("[")[0] + "s"
+    var itemId = $(this).parents("li").attr("id")
+    var sessionId = $('.session_tag').attr('id')
+    // alert(content + itemEdited + itemId)
     $.ajax({
       url: sessionId + '/' + itemEdited +'/' + itemId + '/update',
       type: 'POST',
