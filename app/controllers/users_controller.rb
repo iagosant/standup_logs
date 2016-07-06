@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   include UsersHelper
   before_action :require_logged_in, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_action :set_team, only: [:index, :show, :edit, :update, :destroy, :new, :create]
   attr_accessor :email, :name, :password, :password_confirmation
 
   def index
@@ -90,5 +91,10 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
+  end
+  # Remembers a user in the database for use in persistent sessions.
+  def remember
+    self.remember_token = User.new_token
+    update_attribute(:remember_digest, User.digest(remember_token))
   end
 end

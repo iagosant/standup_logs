@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :set_team, only: [:index, :show, :edit, :update, :destroy]
+  # before_action :set_team, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_session, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
   # before_filter :authenticate_user!
@@ -141,9 +141,7 @@ class SessionsController < ApplicationController
     @session = Session.find(params[:id])
   end
 
-  def set_team
-    @team = Team.find(session[:team_id])
-  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def session_params
     params.require(:session).permit(:user_id, :dateTypeVar)

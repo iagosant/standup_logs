@@ -4,15 +4,11 @@ class Team < ActiveRecord::Base
   validates :team_name, presence: true
   accepts_nested_attributes_for :users, :reject_if => lambda { |a| a[:content].blank? }
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, storage: :s3,
-  s3_credentials: {
-    bucket: ENV.fetch('S3_BUCKET_NAME'),
-    access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
-    secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
-    s3_region: ENV.fetch('AWS_REGION'),
-  }
   
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  has_attached_file :avatar,
+                    styles: { :medium => "200x200>", :thumb => "100x100>" }
+  validates_attachment_content_type :avatar, :content_type => /^image\/(png|gif|jpeg|jpg)/
+
 
 
 end
