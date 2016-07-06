@@ -95,7 +95,9 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: lighter!important;
   color: #808080 !important;
 }
-
+ #content{
+   padding-top: 60px;
+ }
 .signed_user {
   margin-top: 40px;
 }
@@ -109,29 +111,51 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-table;
   vertical-align: middle;
 }
-#stand-up nav.menu a{
+#stand-up nav a{
   text-transform: uppercase;
-  padding: 0 24px;
-  color: #fff;
 }
-#stand-up nav.menu .dropdown-button{
+#stand-up nav .menu a,
+#stand-up nav .dropdown-button,
+#stand-up nav .dropdown-content li > a,
+#stand-up nav .dropdown-content li > span{
+  font-size: 0.9rem;
+}
+#stand-up nav .menu a,
+#stand-up nav a.dropdown-button:visited {
+    color: #fff;
+}
+#stand-up nav .menu a {
+    padding: 0 20px;
+
+}
+#stand-up nav .dropdown-button{
   margin-left: 2rem;
 }
-#stand-up nav.menu .dropdown-content li > a, #stand-up nav.menu .dropdown-content li > span {
-  font-size: 16px;
-  line-height: 20px;
-  padding: 15px 16px;
+#stand-up nav .dropdown-content {
+  min-width: 110px;
 }
-#stand-up nav.menu .dropdown-content li > a{
+#stand-up nav .dropdown-content li > a,
+#stand-up nav .dropdown-content li > span{
+  line-height: 22px;
+  text-align: center;
+}
+#stand-up nav .dropdown-content li > a{
   color: #808080;
 }
-#stand-up nav.menu ul a:hover {
+#stand-up nav ul.menu a:hover,
+#stand-up nav .dropdown-content li > a:hover {
   background-color: none;
   color: #92daee;
 }
-#stand-up nav.menu #icon-avatar {
+#stand-up nav .avatar-icons{
+  display: table;
+  height: 70px;
+}
+#stand-up nav .avatar-icons img {
   background-color: #fff;
-  border-radius: 2px;
+  border-radius: 5px;
+  display: inline-table;
+  vertical-align: middle;
   padding: 5px;
 }
 /* STYLE FOR CARD ELEMENT*/
@@ -264,7 +288,7 @@ i.small {
 }
 .div-right:after {
     content: "";
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     line-height: 20px;
     vertical-align: middle;
 }
@@ -277,9 +301,9 @@ i.small {
 
 /* MEDIA SCREEN */
 @media only screen and (min-width: 601px){
- #stand-up nav.menu, #stand-up nav.menu .nav-wrapper i, #stand-up nav.menu a.button-collapse, #stand-up nav.menu a.button-collapse i {
-    height: 90px;
-    line-height: 90px;
+ #stand-up nav, #stand-up nav .nav-wrapper i, #stand-up nav a.button-collapse, #stand-up nav a.button-collapse i {
+    height: 70px;
+    line-height: 70px;
 }
 }
 /********* END ******/
