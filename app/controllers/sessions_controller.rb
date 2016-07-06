@@ -48,7 +48,7 @@ class SessionsController < ApplicationController
       format.html { redirect_to :back, notice: "success"}
       format.json {render json: search_results}
     end
-    byebug
+  
   end
 
   def index

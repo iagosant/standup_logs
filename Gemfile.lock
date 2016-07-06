@@ -215,7 +215,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-reset-pk-sequence
-  aws-sdk
+  aws-sdk (~> 2)
   bcrypt
   byebug
   capybara

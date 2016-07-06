@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem "paperclip"
 # Amazon web services
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 2'
 
 gem 'rails-erd'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

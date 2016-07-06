@@ -2,7 +2,7 @@ class UserPolicy
   attr_reader :current, :model
 
   def initialize(current, model)
-    byebug
+    
     @logged_user = current
     @user = model
   end
