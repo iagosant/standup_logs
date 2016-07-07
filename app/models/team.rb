@@ -4,7 +4,7 @@ class Team < ActiveRecord::Base
   validates :team_name, presence: true
   accepts_nested_attributes_for :users, :reject_if => lambda { |a| a[:content].blank? }
 
-  
+
   has_attached_file :avatar,
                     styles: { :medium => "200x200>", :thumb => "100x100>" }
   validates_attachment_content_type :avatar, :content_type => /^image\/(png|gif|jpeg|jpg)/
