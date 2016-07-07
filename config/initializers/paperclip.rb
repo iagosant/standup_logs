@@ -14,7 +14,7 @@
 
 
   Paperclip::Attachment.default_options[:storage] = :s3
-  Paperclip::Attachment.default_options[:s3_protocol] = 'http'
+  Paperclip::Attachment.default_options[:s3_protocol] = 'https'
   Paperclip::Attachment.default_options[:s3_credentials] =
   { :bucket => ENV['S3_BUCKET_NAME'],
     :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
