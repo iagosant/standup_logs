@@ -1,14 +1,8 @@
 class ApplicationController < ActionController::Base
   include LoginHelper
-  protect_from_forgery with: :exception
-  # helper_method :current_user, :logged_in?,:current_team
   include Pundit
+  protect_from_forgery with: :exception
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
-    # def current_user
-    #   @current_user ||= User.find_by(id: session[:user_id])
-    #
-    # end
 
     def require_logged_in
       return true if current_user
@@ -30,14 +24,6 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    # def current_team
-    #   byebug
-    #     @current_team ||= @current_user.team
-    # end
-    # def set_team
-    #   byebug
-    #   @team = Team.find(session[:team_id])
-    # end
     def user_not_authorized
         flash[:alert] = "Access denied."
         redirect_to (request.referrer || root_path)

@@ -1,6 +1,4 @@
 class TeamsController < ApplicationController
-  # attr_accessor :email, :name, :password, :password_confirmation, :team_name
-  # before_filter :configure_permitted_parameters
   before_action :set_team, only: [:edit, :update]
 
   def new
@@ -19,12 +17,13 @@ class TeamsController < ApplicationController
   def update
     team_avatar = params[:team][:avatar]
     @team.update(avatar: team_avatar)
-    redirect_to :back
+    redirect_to edit_team_path
   end
+
   private
 
   def set_team
-    @team = Team.find(current_user.team.id)
+    @team = current_team
   end
 
   def team_params

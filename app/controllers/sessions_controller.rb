@@ -1,9 +1,6 @@
 class SessionsController < ApplicationController
-  # before_action :set_team, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_session, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
-  # before_filter :authenticate_user!
-
 
   def self.friday_recap
     @latest_session = Session.find(params[:id])
@@ -48,7 +45,7 @@ class SessionsController < ApplicationController
       format.html { redirect_to :back, notice: "success"}
       format.json {render json: search_results}
     end
-    byebug
+
   end
 
   def index
@@ -90,7 +87,7 @@ class SessionsController < ApplicationController
     @session = Session.create(users: @users, team_id: @team.id)
     respond_to do |format|
       if @session.save
-        format.html { redirect_to @session, notice: 'Session was successfully created.' }
+        format.html { redirect_to @session}
         format.json { render :show, status: :created, location: @session }
       else
         format.html { render :new }
