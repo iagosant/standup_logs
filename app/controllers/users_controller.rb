@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
   before_action :require_logged_in, only: [:show, :edit, :update, :destroy]
-  # before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_action :set_team, only: [:index, :show, :edit, :update, :destroy, :new, :create]
   attr_accessor :email, :name, :password, :password_confirmation
 
   def index

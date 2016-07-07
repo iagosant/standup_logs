@@ -15,7 +15,7 @@
   <header class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
       <ul id="dropdown1" class="dropdown-content">
-        <li><%= link_to "Settings", edit_team_path(@team) %></li>
+        <li><%= link_to "Settings", edit_team_path(current_team) %></li>
         <li class="divider"></li>
         <li> <%= link_to "Logout", '/logout' %></li>
       </ul>

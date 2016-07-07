@@ -1,14 +1,8 @@
 class ApplicationController < ActionController::Base
   include LoginHelper
-  protect_from_forgery with: :exception
-  # helper_method :current_user, :logged_in?,:current_team
   include Pundit
+  protect_from_forgery with: :exception
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
-    # def current_user
-    #   @current_user ||= User.find_by(id: session[:user_id])
-    #
-    # end
 
     def require_logged_in
       return true if current_user
@@ -28,10 +22,6 @@ class ApplicationController < ActionController::Base
         flash[:info] = "Please check your email to activate your account."
         redirect_to root_path
       end
-    end
-
-    def set_team
-      @team = Team.find(current_user.team.id)
     end
 
     def user_not_authorized
