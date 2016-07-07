@@ -23,9 +23,9 @@ class TeamsController < ApplicationController
   end
   private
 
-  def set_team
-    @team = Team.find(current_user.team.id)
-  end
+  # def set_team
+  #   @team = Team.find(current_user.team.id)
+  # end
 
   def team_params
     params.require(:team).permit(:team_name, :avatar, users_attributes: [:first_name, :last_name, :email, :password, :password_confirmation, :role])

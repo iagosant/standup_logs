@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   # before_action :set_team, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_session, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
+  before_action :set_team
   # before_filter :authenticate_user!
 
 
@@ -48,7 +49,7 @@ class SessionsController < ApplicationController
       format.html { redirect_to :back, notice: "success"}
       format.json {render json: search_results}
     end
-  
+
   end
 
   def index
@@ -62,6 +63,7 @@ class SessionsController < ApplicationController
   end
 
   def show
+    byebug
     @session = Session.find(params[:id])
     @session_users = @session.users
     @session_wips = @session.wips

@@ -30,14 +30,10 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    # def current_team
-    #   byebug
-    #     @current_team ||= @current_user.team
-    # end
-    # def set_team
-    #   byebug
-    #   @team = Team.find(session[:team_id])
-    # end
+    def set_team
+      @team = Team.find(current_user.team.id)
+    end
+
     def user_not_authorized
         flash[:alert] = "Access denied."
         redirect_to (request.referrer || root_path)
