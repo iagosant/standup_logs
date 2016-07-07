@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
     def team_user_create(team_params)
       team_avatar = team_params[:avatar]
       # @team.avatar = team_avatar
-      byebug
       @team = Team.new(team_params)
       @team.save
       u_params = (team_params[:users_attributes]["0"])
