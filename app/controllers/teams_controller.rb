@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   # attr_accessor :email, :name, :password, :password_confirmation, :team_name
   # before_filter :configure_permitted_parameters
-  before_action :set_team, only: [:edit, :update]
+  before_action :set_team, only: [:edit, :update,:show]
 
   def new
     @team = Team.new
@@ -15,7 +15,9 @@ class TeamsController < ApplicationController
   def edit
 
   end
+  def show
 
+  end
   def update
 
     team_avatar = params[:team][:avatar]
