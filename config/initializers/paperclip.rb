@@ -11,6 +11,8 @@
 # Paperclip::Attachment.default_options[:bucket] = ENV['S3_BUCKET_NAME']
 # config/initializers/paperclip.rb
   # only use Amazon S2 on production servers
+
+
   Paperclip::Attachment.default_options[:storage] = :s3
 Paperclip::Attachment.default_options[:s3_protocol] = 'https'
 Paperclip::Attachment.default_options[:s3_credentials] =
@@ -22,5 +24,6 @@ Paperclip::Attachment.default_options[:s3_credentials] =
 
   # # config/initializers/paperclip.rb
   # Paperclip::Attachment.default_options[:s3_host_name] = 's3-us-west-2.amazonaws.com'
+
   Paperclip::Attachment.default_options[:url] = ':s3.amazonaws.com'
   Paperclip::Attachment.default_options[:path] = '/:class/:attachment/:id_partition/:style/:filename'

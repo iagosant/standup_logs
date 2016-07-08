@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
     def team_user_create(team_params)
       team_avatar = team_params[:avatar]
       # @team.avatar = team_avatar
-      @team = Team.create(team_params)
+      @team = Team.new(team_params)
+      @team.save
       u_params = (team_params[:users_attributes]["0"])
       @user = @team.users.build(u_params)
       if @user.save
