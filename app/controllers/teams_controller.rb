@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+
   before_action :set_team, only: [:edit, :update,:show]
 
   def new
@@ -16,9 +17,11 @@ class TeamsController < ApplicationController
   def show
 
   end
+
   def show_users
      @team_users = User.where(team_id:current_team.id)
   end
+
 
   def update
     team_avatar = params[:team][:avatar]
