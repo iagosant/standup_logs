@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  def clean_date
+  def cleanDate
     @team = Team.find(session[:team_id])
     date_select = params[:dateTypeVar]
     end_date = params[:dateTypeVarTwo]
@@ -32,10 +32,9 @@ class SessionsController < ApplicationController
     team_sessions = Session.where(team_id: @team.id)
     found_sessions = team_sessions.where(:created_at => clean..clean_end_date).reverse
     respond_to do |format|
-      format.html { redirect_to :back, notice: "success"}
+      format.html { redirect_to sessions_path, notice: "success"}
       format.json {render json: found_sessions}
     end
-
   end
 
   def index
