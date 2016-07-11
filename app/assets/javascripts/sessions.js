@@ -4,12 +4,12 @@ $(document).on('turbolinks:load',function(){
     var dateTypeVar = $('input#datepicker').datepicker('getDate');
     var dateTypeVarTwo = $(this).datepicker('getDate');
     $.ajax({
-      url: 'sessions/' + 'search',
+      url: 'sessions/' + 'cleanDate',
       type: 'POST',
       dataType: 'json',
       data: {'dateTypeVar': dateTypeVar, 'dateTypeVarTwo': dateTypeVarTwo},
       success: function(data, textStatus) {
-        alert(data)
+        alert(data);
         if (data != ""){
           $('tbody').html("")
           for (i=0;i<data.length;i++){
@@ -78,6 +78,7 @@ $(document).on('turbolinks:load',function(){
       data: {'sessionId': sessionId},
       success: function(data, textStatus){
         if ( data != ""){
+          alert('data');
           $('tbody').html("")
           for (i=0;i<data.length;i++){
             var id = data[i].id;

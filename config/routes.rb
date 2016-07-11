@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   post 'sessions/:session_id/blockers/:id/update' => 'blockers#update'
 
   # get the date from sessions index jquery-ui datepicker
-  post 'sessions/search' => 'sessions#cleanDate'
+  post 'sessions/cleanDate' => 'sessions#cleanDate'
   post 'teams/users' => 'teams#show_users'
   # get 'user/:id' => 'users#edit'
 

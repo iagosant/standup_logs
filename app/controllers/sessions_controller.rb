@@ -38,13 +38,8 @@ class SessionsController < ApplicationController
   end
 
   def index
-
     @team = Team.find(session[:team_id])
-    # if params[:dateTypeVar].nil?
     @sessions = @team.sessions.last(5).reverse
-    #   else
-    #     @sessions = @search_results
-    # end
   end
 
   def show
@@ -114,6 +109,7 @@ class SessionsController < ApplicationController
   # DELETE /sessions/1.json
 
   def deleteSession
+    destroy
     @team = Team.find(session[:team_id])
     sessions = @team.sessions.last(5).reverse
     respond_to do |format|
