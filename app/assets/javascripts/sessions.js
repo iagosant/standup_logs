@@ -1,6 +1,7 @@
 $(document).on('turbolinks:load',function(){
-  // alert('works');
+   alert('works');
   $('#datepicker2').on('change',function(){
+    alert('datepicker2');
     var dateTypeVar = $('input#datepicker').datepicker('getDate');
     var dateTypeVarTwo = $(this).datepicker('getDate');
     $.ajax({
