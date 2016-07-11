@@ -126,7 +126,7 @@ class SessionsController < ApplicationController
   def destroy
     @session.destroy
     respond_to do |format|
-      format.html { redirect_to sessions_url, notice: 'Session was successfully destroyed.' }
+      format.html { redirect_to sessions_path }
       format.json { head :no_content }
       Session.reset_pk_sequence
     end
@@ -141,6 +141,6 @@ class SessionsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def session_params
-    params.require(:session).permit(:user_id, :dateTypeVar)
+    params.require(:session).permit(:user_id, :dateTypeVar, :sessionId)
   end
 end

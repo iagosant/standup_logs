@@ -28,13 +28,13 @@
           <table class="">
             <tbody>
               <% @sessions.reverse.each do |session| %>
-              <tr>
+              <tr data="<%= session.id %>">
                 <% if session.created_at.strftime("%A") == "Monday" %>
                 <td><%= image_tag "wip.png", :height => "15" %></td>
                 <td><%= link_to session.created_at.strftime("%A") + " Stand-up", session %></td>
                 <td><%= link_to session.created_at.strftime("%b %d"), session %></td>
-                <td>
-                  <a data-confirm="Delete this session?" rel="nofollow" data-method="delete" href="/sessions/1">
+                <td class="delete">
+                  <a data-confirm="Delete this session?" rel="nofollow" data-method="delete" href="/sessions/<%= session.id %>">
                     <i class="small material-icons">delete</i>
                   </a>
                 </td>
@@ -44,8 +44,9 @@
                 </td>
                 <td><%= link_to session.created_at.strftime("%A")+ " Stand-up", session %></td>
                 <td><%= link_to session.created_at.strftime("%b %d"), session %></td>
-                <td><a data-confirm="Delete this session?" rel="nofollow" data-method="delete" href="/sessions/1">
-                  <i class="small material-icons">delete</i>
+                <td class="delete">
+                  <a data-confirm="Delete this session?" rel="nofollow" data-method="delete" href="/sessions/<%= session.id %>">
+                    <i class="small material-icons">delete</i>
                 </a>
               </td>
               <% end %>

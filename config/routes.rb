@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'sessions' => 'sessions#index'
   get 'sessions/new' => 'sessions#new'
   get 'sessions/:id' => 'sessions#show'
+  post 'sessions/remove/:id' => 'sessions#destroy'
   get 'sessions/:session_id/blockers' => 'blockers#index'
   get 'sessions/:session_id/completeds' => 'completeds#index'
   get 'sessions/:session_id/wips' => 'wips#index'

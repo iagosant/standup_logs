@@ -52,18 +52,30 @@ $(document).on('ready page:load', function () {
     $(this).height("39px");
     var content = $(this).val();
     var str = $(this).attr('name');
-    var itemEdited = str.split("[")[0] + "s"
-    var itemId = $(this).parents("li").attr("id")
-    var sessionId = $('.session_tag').attr('id')
+    var itemEdited = str.split("[")[0] + "s";
+    var itemId = $(this).parents("li").attr("id");
+    var sessionId = $('.session_tag').attr('id');
     // alert(content + itemEdited + itemId)
     $.ajax({
       url: sessionId + '/' + itemEdited +'/' + itemId + '/update',
       type: 'POST',
       dataType: 'json',
-      data: {'itemId': itemId, 'sessionId': sessionId, 'content': content},
+      data: {'itemId': itemId, 'sessionId': sessionId, 'content': content}
       // success: function(){
       //   alert (itemEdited + ' was updated');
       // }
     });
   });
+
+  // $('td.delete').click(function(){
+  //   var sessionId = $('tr').attr('data');
+  //   // alert(sessionId);
+  //   $.ajax({
+  //     url: 'sessions' + '/' + 'remove' + '/' + sessionId,
+  //     type: 'POST',
+  //     dataType: 'json',
+  //     data: {'sessionId': sessionId}
+  //   });
+  // });
+
 });
