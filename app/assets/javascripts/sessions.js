@@ -11,7 +11,7 @@ $(document).on('turbolinks:load',function(){
       success: function(data, textStatus) {
         alert(data);
         if (data != ""){
-          $('tbody').html("")
+          $('tbody').html("");
           for (i=0;i<data.length;i++){
             var id = data[i].id;
             var date = data[i].created_at;
@@ -79,7 +79,7 @@ $(document).on('turbolinks:load',function(){
       success: function(data, textStatus){
         if ( data != ""){
           alert('data');
-          $('tbody').html("")
+          $('tbody').html("");
           for (i=0;i<data.length;i++){
             var id = data[i].id;
             var date = data[i].created_at;
