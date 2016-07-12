@@ -1,4 +1,3 @@
-alert('works');
 $(document).on('turbolinks:load',function(){
   $('#datepicker2').on('change',function(){
     alert('datepicker2');
