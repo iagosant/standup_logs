@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load',function(){
   $('#datepicker2').on('change',function(){
-    alert('datepicker2');
+    // alert('datepicker2');
     var dateTypeVar = $('input#datepicker').datepicker('getDate');
     var dateTypeVarTwo = $(this).datepicker('getDate');
     $.ajax({
@@ -9,7 +9,7 @@ $(document).on('turbolinks:load',function(){
       dataType: 'json',
       data: {'dateTypeVar': dateTypeVar, 'dateTypeVarTwo': dateTypeVarTwo},
       success: function(data, textStatus) {
-        alert(data);
+        // alert(data);
         if (data != ""){
           $('tbody').html("");
           for (i=0;i<data.length;i++){
