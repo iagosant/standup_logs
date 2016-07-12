@@ -1,6 +1,10 @@
 <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-<%= f.label :email %>
-<%= f.email_field :email, class: 'form-control' %>
-
-<%= f.submit "Submit", class: "btn btn-primary" %>
+  <div class="input-field">
+    <i class="material-icons prefix">lock_outline</i>
+    <input class="form-control" type="email" name="password_reset[email]" id="password_reset_email icon_prefix">
+    <label for="icon_prefix" class="">Password</label>
+  </div>
+ <div class="input-field center-align">
+  <a class="waves-effect waves-light su-btn btn-flat submit"><%= submit_tag "Enter" %></a>
+ </div>
 <% end %>

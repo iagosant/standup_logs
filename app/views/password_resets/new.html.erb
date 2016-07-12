@@ -1,34 +1,35 @@
-<div class="user" id="user-new">
-  <div class="row">
-    <div class="col s12 m6">
-      <div class="card">
-        <div class="card-title">
-          <div class="row">
-            <div class="col s12 m9"><h1 >Enter your email</h1></div>
-            <div class="col s12 m3"><i class="material-icons large">portrait</i></div>
+<div class="section" id="ms-reset-password">
+  <div class="row valign-wrapper">
+    <div class="card">
+      <div class="card-title center-align valign-wrapper" >
+        <%= image_tag "sessions_logo.png", :size => "171x55", :alt => "StandUp", :title => "StandUp"%>
+      </div>
+      <div class="white card-content">
+        <div class="row">
+          <div class="col s8 offset-s2">
+              <div class="card-content">
+               <h5 class="center-align">Password Reset</h5>
+               <div class="notice">
+                  <% flash.each do |key, value| %>
+                    <%= content_tag :div, value, class: "flash #{key}" %>
+                   <% end %>
+                </div>
+               <p class="center-align">To reset your password, enter the email address you use to sign in.</p>
+               <div class="form">
+                  <%= render 'new_reset' %>
+                </div>
+              </div>
           </div>
         </div>
-        <div class="card-content">
-          <%= render 'new_reset' %>
-        </div>
-        <div class="card-action">
-          <div class="row center-align">
-            <div class="col s12 m4">
-              <%= link_to 'Back', '/' %>
-            </div>
-            <div class="col s12 m4">
-
-            </div>
-            <div class="col s12 m4">
-
-            </div>
-            <div class="col s12 m12">
-              <% if current_user != nil %>
-              Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>
-              <% else %>
-              <% login_path %>
-              <% end %>
-            </div>
+      </div>
+      <div class="card-action">
+        <div class="row center-align">
+          <div class="col s12 m6 right-align border-right">
+            <%= link_to "Log in", root_path %>
+            <%#= link_to 'Create User', new_user_path %>
+          </div>
+          <div class="col s12 m6 left-align">
+            <%= link_to 'Create Team', new_team_path %>
           </div>
         </div>
       </div>

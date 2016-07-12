@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   #Paperclip images
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
   post 'sessions/cleanDate' => 'sessions#cleanDate'
   post 'teams/users' => 'teams#show_users'
   # get 'user/:id' => 'users#edit'
+
 
   resources :completeds
   resources :blockers
