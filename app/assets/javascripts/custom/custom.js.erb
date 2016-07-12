@@ -1,0 +1,36 @@
+$(document).on('turbolinks:load',function(){
+  var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
+  $("#stand-up ul li a").each(function(){
+       alert($(this).attr("href") );
+         if($(this).attr("href") == pgurl || $(this).attr("href") == '' )
+         $(this).addClass("active");
+    })
+  $("#stand-up ul.menu li a").hover(function(){
+    var img = jQuery(this).find("img#icon-change"),
+        img_path;
+    if (img.length){
+      img_path = img.attr('src');
+      img_path = img_path.substr(0,img_path.lastIndexOf("."))+'-lightblue.png';
+      img.attr('src',img_path);
+      }
+    }, function(){
+      var img = jQuery(this).find("img#icon-change"),
+          img_path;
+      if (img.length){
+        img_path = img.attr('src');
+
+        img_path = img_path.substr(0,img_path.lastIndexOf("-lightblue"))+'.png';
+        img.attr('src',img_path);
+      }
+   });
+
+  $( "#datepicker" ).datepicker({
+    dateFormat: 'yy-mm-dd',
+    disabled: false
+   });
+   $( "#datepicker2" ).datepicker({
+     dateFormat: 'yy-mm-dd',
+     disabled: false
+    });
+
+})

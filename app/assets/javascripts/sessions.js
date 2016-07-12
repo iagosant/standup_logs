@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function () {
+$(document).on('turbolinks:load',function() {
   // alert('works');
   $('#datepicker2').on('change',function(){
     var dateTypeVar = $('input#datepicker').datepicker('getDate');
