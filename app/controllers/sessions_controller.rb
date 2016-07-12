@@ -109,7 +109,9 @@ class SessionsController < ApplicationController
   # DELETE /sessions/1.json
 
   def deleteSession
+    byebug
     destroy
+    byebug
     @team = Team.find(session[:team_id])
     sessions = @team.sessions.last(5).reverse
     respond_to do |format|
