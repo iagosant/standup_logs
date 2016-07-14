@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
-  before_action :set_session, only: [:show, :edit, :update, :destroy, :deleteSession]
+  before_action :set_session, only: [:show, :edit, :update, :destroy, :deleteSession, :searchByUser]
   before_action :require_logged_in
+  before_action :team_users, only: [:new, :index, :cleanDate]
+  include SessionsHelper
 
   def self.friday_recap
     @latest_session = Session.find(params[:id])
@@ -22,6 +24,8 @@ class SessionsController < ApplicationController
   end
 
   def cleanDate
+    users_searched = params[:selectedUsers]
+    users_found = searchByUser(users_searched)
     @team = Team.find(session[:team_id])
     date_select = params[:dateTypeVar]
     end_date = params[:dateTypeVarTwo]
@@ -31,14 +35,15 @@ class SessionsController < ApplicationController
     clean_end_date = Time.at(converted_end_date)
     team_sessions = Session.where(team_id: @team.id)
     found_sessions = team_sessions.where(:created_at => clean..clean_end_date).reverse
+    @sessions_result = session_includes_user(found_sessions, users_found)
+    byebug
     respond_to do |format|
       format.html { redirect_to sessions_path, notice: "success"}
-      format.json {render json: found_sessions}
+      format.json {render json: @sessions_result}
     end
   end
 
   def index
-    @team = Team.find(session[:team_id])
     @sessions = @team.sessions.last(5).reverse
   end
 
@@ -56,9 +61,7 @@ class SessionsController < ApplicationController
   end
 
   def new
-    @team = Team.find(session[:team_id])
     @session = Session.new
-    @users = @team.users.all
   end
 
   def edit
@@ -126,6 +129,12 @@ class SessionsController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
+
+  def team_users
+    @team = Team.find(session[:team_id])
+    @users = @team.users.all
+  end
+
   def set_session
     @session = Session.find(params[:id])
   end

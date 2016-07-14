@@ -1,13 +1,15 @@
 $(document).on('turbolinks:load',function(){
-  $('#datepicker2').on('change',function(){
-    alert('datepicker2');
+
+  $('button#narrowSearch').on('click', function(){
+    var selectedUsers = $('select#searchByUser').val();
+    alert(selectedUsers);
     var dateTypeVar = $('input#datepicker').datepicker('getDate');
-    var dateTypeVarTwo = $(this).datepicker('getDate');
+    var dateTypeVarTwo = $('#datepicker2').datepicker('getDate');
     $.ajax({
       url: 'sessions/' + 'cleanDate',
       type: 'POST',
       dataType: 'json',
-      data: {'dateTypeVar': dateTypeVar, 'dateTypeVarTwo': dateTypeVarTwo},
+      data: {'dateTypeVar': dateTypeVar, 'dateTypeVarTwo': dateTypeVarTwo, 'selectedUsers': selectedUsers},
       success: function(data, textStatus) {
         alert(data);
         if (data != ""){
@@ -114,5 +116,16 @@ $(document).on('turbolinks:load',function(){
       }
     });
   });
+
+  // $('select#searchByUser').on('contentChanged', function(){
+  //   var selectedUsers = $(this).val();
+  //   alert(selectedUsers);
+  //   $.ajax({
+  //     url: 'sessions' + '/' + 'searchByUser',
+  //     type: 'POST',
+  //     dataType: 'json',
+  //     data: {'selectedUsers': selectedUsers},
+  //   });
+  // });
 
 });

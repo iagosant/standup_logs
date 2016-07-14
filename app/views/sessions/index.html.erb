@@ -15,6 +15,16 @@
           </div>
         </div>
         <div class="card-content">
+
+          <div class="input-field col s12">
+            <select multiple id="searchByUser">
+              <option id="selectUser" value="" disabled selected>Choose your option</option>
+              <% @users.each do |u| %>
+              <option value='<%= u.id %>'><%= u.first_name %></option>
+              <% end %>
+            </select>
+            <label>Find sessions by user</label>
+          </div>
           <div class="input-field col s12 m6">
             <label for="select">Select Date</label>
             <input type="text" name="datepicker" id ="datepicker">
@@ -25,6 +35,9 @@
             <input type="text" name="datepicker" id ="datepicker2">
             <!-- <input type="date" class="datepicker"> -->
           </div>
+          <button class="btn waves-effect waves-light" type="submit" name="action" id="narrowSearch">Search
+            <i class="material-icons right">send</i>
+          </button>
           <table class="">
             <tbody>
               <% @sessions.each do |session| %>
@@ -47,27 +60,27 @@
                 <td class="delete">
                   <a data-confirm="Delete this session?">
                     <i class="small material-icons">delete</i>
-                </a>
-              </td>
-              <% end %>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="card-action">
-        <div class="row center-align">
-          <div class="col s12 m12">
-            <%= link_to 'All Users', users_path %>
-            <%= link_to 'New User', new_user_path %>
-            <%= link_to 'New Session', new_session_path %>
-          </div>
-          <div class="col s12 m12 signed_user">
-            Signed in as <%= link_to current_user.first_name.capitalize, edit_user_path(current_user) %> | <%= link_to "Logout", '/logout' %>
+                  </a>
+                </td>
+                <% end %>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <div class="row center-align">
+            <div class="col s12 m12">
+              <%= link_to 'All Users', users_path %>
+              <%= link_to 'New User', new_user_path %>
+              <%= link_to 'New Session', new_session_path %>
+            </div>
+            <div class="col s12 m12 signed_user">
+              Signed in as <%= link_to current_user.first_name.capitalize, edit_user_path(current_user) %> | <%= link_to "Logout", '/logout' %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>

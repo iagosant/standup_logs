@@ -1,10 +1,10 @@
 $(document).on('ready page:load', function () {
 
   $('select').material_select();
-  $('select').on('change', function(){
+  $('select#user_role').on('change', function(){
     var newSelect = $('select').val();
     console.log(newSelect);
-    var userId = $(this).parents('.selected_role').attr('id');
+    var userId = $(this).parents('.selected_role').attr('data');
     $.ajax({
       url: 'users/roleUpdate',
       type: 'POST',

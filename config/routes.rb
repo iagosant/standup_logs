@@ -36,8 +36,8 @@ Rails.application.routes.draw do
   # get the date from sessions index jquery-ui datepicker
   post 'sessions/cleanDate' => 'sessions#cleanDate'
   post 'teams/users' => 'teams#show_users'
+  post 'sessions/searchByUser' => 'sessions#searchByUser'
   # get 'user/:id' => 'users#edit'
-
 
   resources :completeds
   resources :blockers
