@@ -35,9 +35,14 @@
             <input type="text" name="datepicker" id ="datepicker2">
             <!-- <input type="date" class="datepicker"> -->
           </div>
-          <button class="btn waves-effect waves-light" type="submit" name="action" id="narrowSearch">Search
+          <!-- <div>
+            <button>Search
             <i class="material-icons right">send</i>
-          </button>
+            </button>
+          </div> -->
+          <div class="col s12 center-align">
+            <a class="waves-effect waves-light su-btn btn-flat" id="narrowSearch">Search</a>
+          </div>
           <table class="">
             <tbody>
               <% @sessions.each do |session| %>

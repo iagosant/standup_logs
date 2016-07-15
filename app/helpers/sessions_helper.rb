@@ -9,17 +9,19 @@ module SessionsHelper
   end
 
   def session_includes_user(found_sessions, users_found)
+    # byebug
     @sessions_result = []
-    found_sessions.each do |s|
+    found_sessions.each do |sn|
+      # byebug
       users_found.each do |u|
-        if s.users.include?(u)
-          @sessions_result << s
+        # byebug
+        if sn.users.include?(u) && !@sessions_result.include?(sn)
+          @sessions_result << sn
         end
       end
-      @sessions_result
-      byebug
     end
+    @sessions_result
+    # byebug
   end
-
 
 end

@@ -27,18 +27,22 @@ class SessionsController < ApplicationController
     users_searched = params[:selectedUsers]
     users_found = searchByUser(users_searched)
     @team = Team.find(session[:team_id])
-    date_select = params[:dateTypeVar]
-    end_date = params[:dateTypeVarTwo]
-    converted = date_select.to_time
-    converted_end_date = end_date.to_time
-    clean = Time.at(converted)
-    clean_end_date = Time.at(converted_end_date)
-    team_sessions = Session.where(team_id: @team.id)
-    found_sessions = team_sessions.where(:created_at => clean..clean_end_date).reverse
-    @sessions_result = session_includes_user(found_sessions, users_found)
-    byebug
+    if params[:dateTypeVar] == "" || params[:dateTypeVarTwo] == ""
+      found_sessions = @team.sessions
+    else
+      date_select = params[:dateTypeVar]
+      end_date = params[:dateTypeVarTwo]
+      converted = date_select.to_time
+      converted_end_date = end_date.to_time
+      clean = Time.at(converted)
+      clean_end_date = Time.at(converted_end_date)
+      team_sessions = Session.where(team_id: @team.id)
+      found_sessions = team_sessions.where(:created_at => clean..clean_end_date).reverse
+    end
+    session_includes_user(found_sessions, users_found)
     respond_to do |format|
       format.html { redirect_to sessions_path, notice: "success"}
+      # byebug
       format.json {render json: @sessions_result}
     end
   end

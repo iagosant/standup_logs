@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load',function(){
 
-  $('button#narrowSearch').on('click', function(){
+  $('#narrowSearch').on('click', function(){
     var selectedUsers = $('select#searchByUser').val();
     alert(selectedUsers);
     var dateTypeVar = $('input#datepicker').datepicker('getDate');
