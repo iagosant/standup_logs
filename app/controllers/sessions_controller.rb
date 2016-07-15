@@ -42,7 +42,6 @@ class SessionsController < ApplicationController
     session_includes_user(found_sessions, users_found)
     respond_to do |format|
       format.html { redirect_to sessions_path, notice: "success"}
-      # byebug
       format.json {render json: @sessions_result}
     end
   end
