@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :set_session, only: [:show, :edit, :update, :destroy]
+  before_action :set_session, only: [:show, :edit, :update, :destroy, :deleteSession]
   before_action :require_logged_in
 
   def self.friday_recap
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  def clean_date
+  def cleanDate
     @team = Team.find(session[:team_id])
     date_select = params[:dateTypeVar]
     end_date = params[:dateTypeVarTwo]
@@ -30,32 +30,16 @@ class SessionsController < ApplicationController
     clean = Time.at(converted)
     clean_end_date = Time.at(converted_end_date)
     team_sessions = Session.where(team_id: @team.id)
-    found_sessions = team_sessions.where(:created_at => clean..clean_end_date)
-    search_results = Array.new
-    found_sessions.each do |session|
-      a = []
-      a << session.id
-      a << session.created_at
-      search_results << a
-    end
-    # if search_results.nil?
-    #   format.html {redirect_to :back, notice: "There are no sessions during the dates you selected."}
-    # end
+    found_sessions = team_sessions.where(:created_at => clean..clean_end_date).reverse
     respond_to do |format|
-      format.html { redirect_to :back, notice: "success"}
-      format.json {render json: search_results}
+      format.html { redirect_to sessions_path, notice: "success"}
+      format.json {render json: found_sessions}
     end
-
   end
 
   def index
-
     @team = Team.find(session[:team_id])
-    # if params[:dateTypeVar].nil?
-      @sessions = @team.sessions.last(5)
-  #   else
-  #     @sessions = @search_results
-  # end
+    @sessions = @team.sessions.last(5).reverse
   end
 
   def show
@@ -123,14 +107,24 @@ class SessionsController < ApplicationController
 
   # DELETE /sessions/1
   # DELETE /sessions/1.json
-  def destroy
-    @session.destroy
+
+  def deleteSession
+    byebug
+    destroy
+    byebug
+    @team = Team.find(session[:team_id])
+    sessions = @team.sessions.last(5).reverse
     respond_to do |format|
-      format.html { redirect_to sessions_path }
-      format.json { head :no_content }
-      Session.reset_pk_sequence
+      format.html { redirect_to sessions_url }
+      format.json {render json: sessions}
     end
   end
+
+  def destroy
+    @session.destroy
+    Session.reset_pk_sequence
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.
