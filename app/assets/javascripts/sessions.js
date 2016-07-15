@@ -11,7 +11,7 @@ $(document).on('turbolinks:load',function(){
       dataType: 'json',
       data: {'dateTypeVar': dateTypeVar, 'dateTypeVarTwo': dateTypeVarTwo, 'selectedUsers': selectedUsers},
       success: function(data, textStatus) {
-        alert(data);
+        // alert(data);
         if (data != ""){
           $('tbody').html("");
           for (i=0;i<data.length;i++){
@@ -116,16 +116,5 @@ $(document).on('turbolinks:load',function(){
       }
     });
   });
-
-  // $('select#searchByUser').on('contentChanged', function(){
-  //   var selectedUsers = $(this).val();
-  //   alert(selectedUsers);
-  //   $.ajax({
-  //     url: 'sessions' + '/' + 'searchByUser',
-  //     type: 'POST',
-  //     dataType: 'json',
-  //     data: {'selectedUsers': selectedUsers},
-  //   });
-  // });
 
 });
