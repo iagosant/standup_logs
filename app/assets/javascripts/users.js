@@ -1,6 +1,4 @@
-$(document).on('ready page:load', function () {
-
-  $('select').material_select();
+$(document).on('turbolinks:load',function(){
   $('select#user_role').on('change', function(){
     var newSelect = $('select').val();
     console.log(newSelect);
