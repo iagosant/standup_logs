@@ -1,13 +1,18 @@
 $(document).on('turbolinks:load',function(){
-  $('#datepicker2').on('change',function(){
+  // $('#datepicker2').on('change',function(){
     // alert('datepicker2');
+
+  $('#narrowSearch').on('click', function(){
+    var selectedUsers = $('select#searchByUser').val();
+    // alert(selectedUsers);
+
     var dateTypeVar = $('input#datepicker').datepicker('getDate');
-    var dateTypeVarTwo = $(this).datepicker('getDate');
+    var dateTypeVarTwo = $('#datepicker2').datepicker('getDate');
     $.ajax({
       url: 'sessions/' + 'cleanDate',
       type: 'POST',
       dataType: 'json',
-      data: {'dateTypeVar': dateTypeVar, 'dateTypeVarTwo': dateTypeVarTwo},
+      data: {'dateTypeVar': dateTypeVar, 'dateTypeVarTwo': dateTypeVarTwo, 'selectedUsers': selectedUsers},
       success: function(data, textStatus) {
         // alert(data);
         if (data != ""){
@@ -70,7 +75,7 @@ $(document).on('turbolinks:load',function(){
 
   $('td.delete').click(function(){
     var sessionId = $('tr').attr('data');
-    // alert(sessionId);
+    alert('clicked on delete');
     $.ajax({
       url: 'sessions' + '/' + 'deleteSession' + '/' + sessionId,
       type: 'POST',
@@ -78,7 +83,7 @@ $(document).on('turbolinks:load',function(){
       data: {'sessionId': sessionId},
       success: function(data, textStatus){
         if ( data != ""){
-          alert('data');
+          // alert('data');
           $('tbody').html("");
           for (i=0;i<data.length;i++){
             var id = data[i].id;
@@ -112,6 +117,23 @@ $(document).on('turbolinks:load',function(){
           }
         }
       }
+    });
+  });
+
+  $('#removeUser').on('click', function(){
+    var selectedUser = $(this).closest('div');
+    var sessionUser = $(this).closest('div').attr('data');
+    var splitSessionUser = sessionUser.split(" ");
+    alert(splitSessionUser)
+    var sessionId = splitSessionUser[0];
+    var userId = splitSessionUser[1];
+    alert(sessionId + " " + userId);
+    $(selectedUser).fadeOut();
+    $.ajax({
+      url: '/' + 'sessions' + '/' + sessionId + '/' + 'removeUser',
+      type: 'POST',
+      dataType: 'json',
+      data: {'sessionId': sessionId, 'userId':userId}
     });
   });
 
