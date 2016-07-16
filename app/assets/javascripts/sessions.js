@@ -117,4 +117,21 @@ $(document).on('turbolinks:load',function(){
     });
   });
 
+  $('#removeUser').on('click', function(){
+    var selectedUser = $(this).closest('div');
+    var sessionUser = $(this).closest('div').attr('data');
+    var splitSessionUser = sessionUser.split(" ");
+    alert(splitSessionUser)
+    var sessionId = splitSessionUser[0];
+    var userId = splitSessionUser[1];
+    alert(sessionId + " " + userId);
+    $(selectedUser).fadeOut();
+    $.ajax({
+      url: '/' + 'sessions' + '/' + sessionId + '/' + 'removeUser',
+      type: 'POST',
+      dataType: 'json',
+      data: {'sessionId': sessionId, 'userId':userId}
+    });
+  });
+
 });

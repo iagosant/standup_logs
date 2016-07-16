@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy, :deleteSession, :searchByUser]
   before_action :require_logged_in
-  before_action :team_users, only: [:new, :index, :cleanDate]
+  before_action :team_users, only: [:new, :index, :cleanDate, :show]
   include SessionsHelper
 
   def self.friday_recap
@@ -50,7 +50,20 @@ class SessionsController < ApplicationController
     @sessions = @team.sessions.last(5).reverse
   end
 
+  def removeUser
+    session = Session.find(params[:sessionId])
+    remove_user = User.find(params[:userId])
+    users = removeUserIdFinder(session.users)
+    user_to_array = params[:userId].split(",").map(&:to_i)
+    new_user_array = users - user_to_array
+    byebug
+    new_users = userFinder(new_user_array)
+    byebug
+    session.update(users: new_users)
+  end
+
   def show
+    @users
     @session = Session.find(params[:id])
     @session_users = @session.users
     @session_wips = @session.wips

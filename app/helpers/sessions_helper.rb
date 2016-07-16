@@ -1,10 +1,11 @@
 module SessionsHelper
 
   def searchByUser(users)
+
     found_users = []
-     users.each do |id|
-       found_users << User.find(id)
-     end
+    users.each do |id|
+      found_users << User.find(id)
+    end
     found_users
   end
 
@@ -18,6 +19,23 @@ module SessionsHelper
       end
     end
     @sessions_result
+  end
+
+  def removeUserIdFinder(users)
+    ids = []
+    users.each do |u|
+      ids << u.id
+    end
+    ids
+  end
+
+  def userFinder(user_ids)
+    users = []
+    user_ids.each do |ui|
+      byebug
+      users << User.find(ui)
+    end
+    users
   end
 
 end

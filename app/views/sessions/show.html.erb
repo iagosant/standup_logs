@@ -20,8 +20,14 @@
 
           </div>
           <div class="card-content">
+            <select multiple id="searchByUser">
+              <option id="selectUser" value="" disabled selected>Choose your option</option>
+              <% @users.each do |u| %>
+              <option value='<%= u.id %>'><%= u.first_name %></option>
+              <% end %>
+            </select>
             <% @session_users.each do |user| %>
-            <div class="session">
+            <div class="session_user" data="<%= @session.id %> <%= user.id %>">
               <h6><%= link_to  "#{user.first_name}" " " "#{user.last_name}", edit_user_path(user) %></h6>
               <ul>
                 <li>
@@ -49,7 +55,10 @@
 
                       </tr>
                     </tbody>
+                    <a class="waves-effect waves-light su-btn btn-flat" id="removeUser">Remove User</a>
                   </table>
+                  <!-- <div class="col s12 center-align"> -->
+                  <!-- </div> -->
                 </li>
               </ul>
             </div>

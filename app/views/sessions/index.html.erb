@@ -17,12 +17,6 @@
         <div class="card-content">
 
           <div class="input-field col s12">
-            <select multiple id="searchByUser">
-              <option id="selectUser" value="" disabled selected>Choose your option</option>
-              <% @users.each do |u| %>
-              <option value='<%= u.id %>'><%= u.first_name %></option>
-              <% end %>
-            </select>
             <label>Find sessions by user</label>
           </div>
           <div class="input-field col s12 m6">
@@ -66,6 +60,12 @@
               </tr>
             </tbody>
           </table>
+          <select multiple id="searchByUser">
+            <option id="selectUser" value="" disabled selected>Choose your option</option>
+            <% @users.each do |u| %>
+            <option value='<%= u.id %>'><%= u.first_name %></option>
+            <% end %>
+          </select>
         </div>
         <div class="card-action">
           <div class="row center-align">
