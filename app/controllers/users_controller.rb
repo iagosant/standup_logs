@@ -73,7 +73,13 @@ class UsersController < ApplicationController
       User.reset_pk_sequence
     end
   end
-
+  def resend_activation
+    @user = User.find_by(email:params[:email])
+    @user.activation_token = User.new_token
+    UserMailer.account_activation(@user).deliver_now
+    flash[:info] = "Please check your email to activate your account."
+    redirect_to new_password_reset_url
+  end
   private
 
   def user_not_authorized

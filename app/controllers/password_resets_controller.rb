@@ -1,17 +1,24 @@
 class PasswordResetsController < ApplicationController
   before_action :get_user,   only: [:edit, :update]
   before_action :valid_user, only: [:edit, :update]
+  before_filter -> { flash.now[:notice] = flash[:notice].html_safe if flash[:html_safe] && flash[:notice] }
 
   def new
   end
 
   def create
     @user = User.find_by(email: params[:password_reset][:email].downcase)
-    if @user
+    if (@user && @user.activated?)
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "Email sent with password reset instructions"
-      redirect_to root_url
+      flash[:info] = "Email sent with password reset instructions."
+      render 'new'
+    elsif @user
+      redirect_to(
+        new_password_reset_url,
+        notice: %Q[ Your account is not activated, click here to re-send #{view_context.link_to("activation", users_resend_activation_url(:email => @user.email), :method => :post )}.],
+        flash: { html_safe: true }
+        )
     else
       flash.now[:danger] = "Email address not found"
       render 'new'
@@ -46,7 +53,7 @@ class PasswordResetsController < ApplicationController
 
   # Confirms a valid user.
   def valid_user
-    unless (@user && @user.activated? &&
+    unless (@user && @user.activated? &
       @user.authenticated?(:reset, params[:id]))
       redirect_to root_url
     end

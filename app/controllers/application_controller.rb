@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :exception
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  before_filter -> { flash.now[:notice] = flash[:notice].html_safe if flash[:html_safe] && flash[:notice] }
 
     def require_logged_in
       return true if current_user
@@ -29,4 +30,6 @@ class ApplicationController < ActionController::Base
         flash[:alert] = "Access denied."
         redirect_to (request.referrer || root_path)
     end
+
+
   end

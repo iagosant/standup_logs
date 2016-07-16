@@ -1,8 +1,11 @@
 $(document).on('turbolinks:load',function(){
+  // $('#datepicker2').on('change',function(){
+    // alert('datepicker2');
 
   $('#narrowSearch').on('click', function(){
     var selectedUsers = $('select#searchByUser').val();
     // alert(selectedUsers);
+
     var dateTypeVar = $('input#datepicker').datepicker('getDate');
     var dateTypeVarTwo = $('#datepicker2').datepicker('getDate');
     $.ajax({

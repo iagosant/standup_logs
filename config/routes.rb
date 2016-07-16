@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'password_resets/new'
 
   get 'password_resets/edit'
-
+  get 'password_resets' => 'password_resets#new'
   get 'login/create'
 
   get 'login/destroy'
@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'sessions/:session_id/wips' => 'wips#index'
 
   post 'users/roleUpdate' => 'users#roleUpdate'
+  post 'users/resend_activation' => 'users#resend_activation'
 
   post 'sessions/:session_id/wips/:id/update' => 'wips#update'
   post 'sessions/:session_id/completeds/:id/update' => 'completeds#update'
@@ -51,6 +52,7 @@ Rails.application.routes.draw do
   resources :sessions
   resources :users
   resources :account_activations, only: [:edit]
+
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :teams
   # get 'new_session' => 'sessions#new', as: 'new_session'

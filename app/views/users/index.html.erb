@@ -26,7 +26,7 @@
                 <%= form_for user do |u|%>
                  <td data='<%= user.id %>' id='roleUpdate' class='selected_role'>
                   <div class="input-field" >
-                    <%= u.select :role, options_for_select([['admin', 'admin'], ['manager', 'manager'], ['employee', 'employee']], :selected => user.role), :id => user.id %>
+                    <%= u.select :role, id: role, options_for_select([['admin', 'admin'], ['manager', 'manager'], ['employee', 'employee']], :selected => user.role), :id => user.id %>
                   </div>
                 </td>
                 <td><%= u.submit 'Save' %></td>
