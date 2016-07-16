@@ -137,4 +137,9 @@ $(document).on('turbolinks:load',function(){
     });
   });
 
+  $('#addUser').on('click', function(){
+    var userIds = $('select#addUserToSession').val();
+    alert(userIds);
+  });
+
 });
