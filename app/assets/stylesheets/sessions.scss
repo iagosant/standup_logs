@@ -20,8 +20,6 @@
 //   margin-top: 10px;
 //   margin-bottom: 0px;
 // }
-#sessions-list .card-title h6,
-#sessions .card-title h6,
 #sessions h6{
   text-transform: uppercase;
 }
@@ -36,4 +34,20 @@
 // }
 #sessions-list .card-content{
   min-height: 350px;
+}
+/* Checkboxes
+   ========================================================================== */
+#sessions-new [type="checkbox"]+label {
+  width: 85%;
+  padding-left: 0px;
+}
+#sessions-new [type="checkbox"] + label:before,
+#sessions-new [type="checkbox"]:not(.filled-in) + label:after {
+  top: 0;
+  left: 100%;
+}
+[type="checkbox"]:checked+label:before {
+    left: 100%;
+    border-right: 2px solid #12aaeb!important;
+    border-bottom: 2px solid #12aaeb!important;
 }

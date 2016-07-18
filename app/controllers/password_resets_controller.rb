@@ -11,12 +11,12 @@ class PasswordResetsController < ApplicationController
     if (@user && @user.activated?)
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "Email sent with password reset instructions."
+      flash[:info] = "Email sent with password reset instructions"
       render 'new'
     elsif @user
       redirect_to(
         new_password_reset_url,
-        notice: %Q[ Your account is not activated, click here to re-send #{view_context.link_to("activation", users_resend_activation_url(:email => @user.email), :method => :post )}.],
+        notice: %Q[ Your account is not activated, click here to re-send #{view_context.link_to("activation", users_resend_activation_url(:email => @user.email), :method => :post )}],
         flash: { html_safe: true }
         )
     else
@@ -34,7 +34,7 @@ class PasswordResetsController < ApplicationController
       render 'edit'
     elsif @user.update_attributes(user_params)
       log_in @user
-      flash[:success] = "Password has been reset."
+      flash[:success] = "Password has been reset"
       redirect_to sessions_path
     else
       render 'edit'
