@@ -56,10 +56,48 @@ class SessionsController < ApplicationController
     users = removeUserIdFinder(session.users)
     user_to_array = params[:userId].split(",").map(&:to_i)
     new_user_array = users - user_to_array
-    byebug
     new_users = userFinder(new_user_array)
-    byebug
     session.update(users: new_users)
+    #Only works when remove user is done one at a time
+    # byebug
+    Wip.where(user_id: params[:userId], session_id: params[:sessionId]).destroy_all
+    Wip.reset_pk_sequence
+    # byebug
+    Completed.where(user_id: params[:userId], session_id: params[:sessionId]).destroy_all
+    Completed.reset_pk_sequence
+    Blocker.where(user_id: params[:userId], session_id: params[:sessionId]).destroy_all
+    Blocker.reset_pk_sequence
+  end
+
+  def addUser
+    session = Session.find(params[:sessionId])
+    current_users = session.users
+    users = params[:userIds]
+    add_users = userFinder(users)
+    new_user_info = []
+    add_users.each do |u|
+      user_info = Hash.new
+      user_info["sessionId"] = session.id
+      user_info["userId"] = u.id
+      user_info["userFirstName"] = u.first_name.capitalize
+      user_info["userLastName"] = u.last_name.capitalize
+      wip = session.wips.build(user_id: u.id, session_id: session.id)
+      u.wips << wip
+      user_info["wipId"] = wip.id
+      completed = session.completeds.build(user_id: u.id, session_id: session.id)
+      u.completeds << completed
+      user_info["completedId"] = completed.id
+      blocker = session.blockers.build(user_id: u.id, session_id: session.id)
+      u.blockers << blocker
+      user_info["blockerId"] = blocker.id
+      new_user_info << user_info
+    end
+    new_users = current_users + add_users
+    session.update(users: new_users)
+    respond_to do |format|
+      format.html { redirect_to sessions_path, notice: "success"}
+      format.json {render json: new_user_info}
+    end
   end
 
   def show
