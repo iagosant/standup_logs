@@ -1,24 +1,28 @@
 <%= form_for(@session) do |f| %>
 <% if @session.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@session.errors.count, "error") %> prohibited this session from being saved:</h2>
+<div class="row">
+  <div id="error_explanation">
+    <p class="danger"><%= pluralize(@session.errors.count, "error") %> prohibited this session from being saved:</p>
+    <ul>
+      <% @session.errors.full_messages.each do |message| %>
+      <li><p class="danger"><%= message %></p></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+<div class="row">
   <ul>
-    <% @session.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+    <% @users.each do |user| %>
+    <li>
+        <div class="input-field">
+          <%= check_box_tag "user_ids[#{user.id}]", "#{user.id}", false, :name => "user_ids[]", :class => "with-gap" %>
+          <%= label_tag "user_ids_#{user.id}", user.first_name + " "+ user.last_name %>
+        </div>
+    </li>
     <% end %>
   </ul>
 </div>
-<% end %>
-<ul>
-  <% @users.each do |user| %>
-  <li>
-      <div class="input-field">
-        <%= check_box_tag "user_ids[#{user.id}]", "#{user.id}", false, :name => "user_ids[]", :class => "with-gap" %>
-        <%= label_tag "user_ids_#{user.id}", user.first_name + " "+ user.last_name %>
-      </div>
-  </li>
-  <% end %>
-</ul>
 <div class="row">
   <div class="col s12">
     <div class="input-field center-align">

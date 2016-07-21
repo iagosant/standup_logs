@@ -75,12 +75,13 @@ h1, h2, h3, h4, h5 {
   color: #808080 !important;
   margin: 0.82rem 0 2rem!important;
 }
-/*#content{
-   padding-top: 60px;
- }*/
+.container {
+   max-width: 960px!important;
+}
 .signed_user {
   margin-top: 40px;
 }
+
 #stand-up header{
     padding-bottom: 8vh;
 }
@@ -144,7 +145,7 @@ h1, h2, h3, h4, h5 {
 /* STYLE FOR CARD ELEMENT*/
 .card {
   margin: 0 auto!important;
-  padding: 1.5rem 0.6rem 1.5rem 0.8rem;
+  padding: 17px 13px 16px;
   border-radius: 5px!important;
   -moz-border-radius: 5px;
   /* for Safari y Chrome*/
@@ -162,34 +163,39 @@ div .card{
 }
 .card .card-title {
   border-bottom: 1px solid rgba(160,160,160,0.2);
-  min-height: 100px;
+  min-height: 83px;
 }
 .card .card-title h1{
-  margin-top: 10px;
-  margin-bottom: 0px;
-  font-size: 2rem!important;
+  font-size: 26.7px!important;
   text-transform: uppercase;
-  color: #12aaeb!important;
-  line-height: 2rem;
+  color: #28b2ed!important;
+  line-height: 27px;
   margin: 0px!important;
 }
 .card .card-title h6{
-  margin-top: 0.4rem!important;
+  margin-top: 0.1rem!important;
   color: #94a8ba;
   text-transform: uppercase;
+  font-size: 11.7px!important;
+}
+.card .card-content {
+    padding: 10px!important;
+  }
+.card .card-action {
+    padding: 20px 0px!important;
 }
 .container .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
   color: #989797;
 }
 .container .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover {
-  color: #12aaeb;
+  color: #28b2ed;
 }
 /* END STYLE FOR CARD ELEMENT */
 /* STYLE FOR BUTTON*/
 .su-btn.btn-flat {
   color: #989797;
   background-color: #fff;
-  border: 1px solid #12aaeb!important;
+  border: 1px solid #28b2ed!important;
   border-radius: 5px;
   -moz-border-radius: 5px;
   /* for Safari y Chrome*/
@@ -216,11 +222,11 @@ div .card{
 .container input[type=number]:focus:not([readonly]),
 .container input[type=search]:focus:not([readonly]),
 .container textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #12aaeb;
-  box-shadow: 0 1px 0 0 #12aaeb;
-  -moz-box-shadow: 0 1px 0 0 #12aaeb;
+  border-bottom: 1px solid #28b2ed;
+  box-shadow: 0 1px 0 0 #28b2ed;
+  -moz-box-shadow: 0 1px 0 0 #28b2ed;
   /* for Safari y Chrome*/
-  -webkit-box-shadow: 0 1px 0 0 #12aaeb
+  -webkit-box-shadow: 0 1px 0 0 #28b2ed
 
 }
 
@@ -237,10 +243,10 @@ div .card{
 .container input[type=number]:focus:not([readonly]) + label,
 .container input[type=search]:focus:not([readonly]) + label,
 .container textarea.materialize-textarea:focus:not([readonly]) + label {
-  color: #12aaeb;
+  color: #28b2ed;
 }
 .container .input-field .prefix.active {
-  color: #12aaeb;
+  color: #28b2ed;
 }
 /** END CHANGE COLOR IN FOCUS (MATERIALIZE) **/
 
@@ -300,8 +306,9 @@ i.small {
 /* MEDIA SCREEN */
 @media only screen and (min-width: 601px){
  #stand-up nav, #stand-up nav .nav-wrapper i, #stand-up nav a.button-collapse, #stand-up nav a.button-collapse i {
-   height: 85px;
-   line-height: 85px;
+   height: 84px;
+   line-height: 80px;
  }
+
 }
 /********* END ******/
