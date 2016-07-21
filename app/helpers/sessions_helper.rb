@@ -32,7 +32,7 @@ module SessionsHelper
   def userFinder(user_ids)
     users = []
     user_ids.each do |ui|
-      byebug
+      # byebug
       users << User.find(ui)
     end
     users

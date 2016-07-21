@@ -16,7 +16,7 @@
         </div>
         <div class="card-content">
           <select multiple id="searchByUser">
-            <option id="selectUser" value="" disabled selected>Choose your option</option>
+            <option id="selectUser" value="" disabled selected>Narrow your search</option>
             <% @users.each do |u| %>
             <option value='<%= u.id %>'><%= u.first_name %></option>
             <% end %>

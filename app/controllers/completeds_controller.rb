@@ -1,6 +1,7 @@
 class CompletedsController < ApplicationController
   before_action :set_completed, only: [:show, :edit, :update, :destroy]
   before_action :get_session, only: [:show, :edit, :update]
+  
 
   # GET /completeds
   # GET /completeds.json
