@@ -101,8 +101,10 @@ class SessionsController < ApplicationController
   end
 
   def show
-    @users
     @session = Session.find(params[:id])
+    current_users = @session.users
+    team_users = @team.users
+    @add_users = team_users - current_users
     @session_users = @session.users
     @session_wips = @session.wips
     @session_completeds = @session.completeds

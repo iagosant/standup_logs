@@ -24,8 +24,8 @@
           <div class="card-action">
             <select multiple id="addUserToSession">
               <option id="selectUser" value="" disabled selected>Add users to this session</option>
-              <% @users.each do |u| %>
-              <option value='<%= u.id %>'><%= u.first_name %></option>
+              <% @add_users.each do |u| %>
+              <option class="user-option" value='<%= u.id %>'><%= u.first_name %></option>
               <% end %>
             </select>
             <a class="waves-effect waves-light su-btn btn-flat" id="addUser">Add user</a></br>

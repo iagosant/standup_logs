@@ -121,14 +121,14 @@ $(document).on('turbolinks:load',function(){
   });
 
   $('.removeUser').on('click', function(){
-    alert('works');
+    // alert('works');
     var selectedUser = $(this).closest('div');
     var sessionUser = $(this).closest('div').attr('data');
     var splitSessionUser = sessionUser.split(" ");
-    alert(splitSessionUser)
+    // alert(splitSessionUser);
     var sessionId = splitSessionUser[0];
     var userId = splitSessionUser[1];
-    alert(sessionId + " " + userId);
+    // alert(sessionId + " " + userId);
     $(selectedUser).fadeOut();
     $.ajax({
       url: '/' + 'sessions' + '/' + sessionId + '/' + 'removeUser',
@@ -141,14 +141,14 @@ $(document).on('turbolinks:load',function(){
   $('#addUser').on('click', function(){
     var userIds = $('select#addUserToSession').val();
     var sessionId = $('div.session_tag').attr('id')
-    alert(userIds);
+    // alert(userIds);
     $.ajax({
       url: '/sessions' + '/' + sessionId + '/' + 'addUser',
       type: 'POST',
       dataType: 'json',
       data: {'sessionId': sessionId, 'userIds': userIds},
       success: function(data){
-        alert(data.length);
+        // alert(data.length);
         for (i=0;i<data.length;i++){
           var uI = data[i];
           var sessionId = uI['session_id']
@@ -158,7 +158,7 @@ $(document).on('turbolinks:load',function(){
           var blockerId = uI['blockerId'];
           var userFirstName = uI['userFirstName'];
           var userLastName = uI['userLastName'];
-          alert('userId' + userId + 'userFirstName' + userFirstName + 'userLastName' + userLastName + 'wipId' + wipId + 'completedId' + completedId + 'blockerId' + blockerId);
+          // alert('userId' + userId + 'userFirstName' + userFirstName + 'userLastName' + userLastName + 'wipId' + wipId + 'completedId' + completedId + 'blockerId' + blockerId);
           var html = '<div>';
           html += '<br>';
           html += '<div class="session_user" data="' + sessionId  + userId + '">';
@@ -176,7 +176,7 @@ $(document).on('turbolinks:load',function(){
           html += '<li class="item_id" id="' + wipId + '"><form class="edit_wip" id="edit_wip_' + wipId + '" action="/wips/' + wipId + '" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch">';
           html += '<div class="field">';
           html += '<img height="15" src="/assets/wip-5b4657932e2940c3bed7f403256b308a9b8a2034765b544e0b64ca428b7f3845.png" alt="Wip">'
-          html += '<label for="wip_wip_item">Wip item</label><br>';
+          html += '<label for="wip_wip_item">Work in progress</label><br>';
           html += '<textarea name="wip[wip_item]" id="wip_wip_item"></textarea>';
           html += '</div>';
           html += '</form>';
