@@ -7,7 +7,19 @@
           <h1><%= @user_sample %></h1>
           <% end %>
           <p id="notice"><%= notice %></p>
-          <div class="col s10 session_tag" id="<%=@session.id %>">
+          <div class="row">
+            <div class="col s12 m9 session_tag" id="<%=@session.id %>">
+              <h1>STAND-UP</h1>
+              <h2><%= @session.created_at.strftime("%A") %></h2>
+              <h6>WEEK ( <%= @session.created_at.strftime("%u")%> )</h6>
+            </div>
+            <div class="col s12 m3 right-align">
+              <%= image_tag "stand-up.png", :height => "56" %>
+              <h5><%= @session.created_at.strftime("%b")%><span><%= @session.created_at.strftime("%d") %><span></h5>
+            </div>
+            </div>
+          </div>
+          <!-- <div class="col s10 session_tag" id="<%=@session.id %>">
             <h1><%= @session.created_at.strftime("%A") %> STAND-UP</h1>
             <h6>Session <%=@session.id %>, created <%= time_ago_in_words @session.created_at %> ago </h6>
           </div>
@@ -17,31 +29,38 @@
           <div class="col s12 right-align">
             <h6><%= @session.created_at.strftime("%b")%><span> <%= @session.created_at.strftime("%d") %><span></h6>
             </div>
-          </div>
+          </div> -->
           <div class="card-content">
-            <%= render partial: 'sessions/user_content' %>
+            <div id="session-show" class="row">
+              <%= render partial: 'sessions/user_content' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s4 offset-s2">
+              <select multiple id="addUserToSession">
+                <option id="selectUser" value="" disabled selected>Select users</option>
+                <% @add_users.each do |u| %>
+                <option class="user-option" value='<%= u.id %>'><%= u.first_name %></option>
+                <% end %>
+              </select>
+              <label>Add users to this session</label>
+            </div>
+            <div class="col s4">
+              <a class="waves-effect waves-light su-btn btn-flat" id="addUser">Add user</a>
+            </div>
           </div>
           <div class="card-action">
-            <select multiple id="addUserToSession">
-              <option id="selectUser" value="" disabled selected>Add users to this session</option>
-              <% @add_users.each do |u| %>
-              <option class="user-option" value='<%= u.id %>'><%= u.first_name %></option>
-              <% end %>
-            </select>
-            <a class="waves-effect waves-light su-btn btn-flat" id="addUser">Add user</a></br>
-            <div class="row center-align">
-              <div class="col s2">
+            <div class="center-align">
+              <div class="col s12 m2 border-right">
                 <%= link_to 'EDIT SESSIONS', edit_session_path(@session) %>
               </div>
-              <div class="col s2">
+              <div class="col s12 m2 border-right">
                 <%= link_to 'ALL SESSIONS', sessions_path %>
               </div>
-              <div class="col s8">
+              <div class="col s12 m2">
                 <%= link_to 'SAVE', sessions_path %>
               </div>
-              <div class="col s12 m12 signed_user">
-                Signed in as <%= current_user.first_name.capitalize %> | <%= link_to "Logout", '/logout' %>
-              </div>
+
             </div>
 
           </div>

@@ -46,15 +46,16 @@ class WipsController < ApplicationController
   # PATCH/PUT /wips/1
   # PATCH/PUT /wips/1.json
   def update
+    byebug
     wip_item = params[:content]
     respond_to do |format|
       if @wip.update(wip_item: wip_item)
-        # format.html { redirect_to @session, notice: 'Wip was successfully updated.' }
-        # format.json { render :show, status: :ok, location: @session }
-        # format.js {render :nothing => true, notice: 'Wip was successfully updated.' }
+        format.html { redirect_to @session, notice: 'Wip was successfully updated.' }
+        format.json { render :show, status: :ok, location: @session }
+        format.js {render :nothing => true, notice: 'Wip was successfully updated.' }
       else
-        # format.html { render :edit }
-        # format.json { render json: @wip.errors, status: :unprocessable_entity }
+        format.html { render :edit }
+        format.json { render json: @wip.errors, status: :unprocessable_entity }
       end
       # redirect_to session.delete(:return_to)
     end

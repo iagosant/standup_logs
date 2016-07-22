@@ -20,17 +20,64 @@
 //   margin-top: 10px;
 //   margin-bottom: 0px;
 // }
-#sessions h6{
+#sessions{
+  padding-top: 20px;
+}
+#sessions h6,
+#sessions h5{
   text-transform: uppercase;
 }
-#sessions .card-title h6 span{
-  font-size: 2rem;
+#sessions .card h2{
+  padding-top: 5px;
+}
+#sessions .card h6,
+#sessions .card h2,
+#sessions .card-title h5{
+  color:#b3b3b3!important;
+}
+#sessions .card-title h1{
+  padding-top: 15px;
+}
+#sessions h5,{
+  font-size: 14px!important;
+}
+#sessions .card-title h5{
+  font-size: 14px;
+  margin: 15px 0 0 !important;
+  line-height: 24px;
+}
+#sessions .card-title h5 span{
+  padding-left: 15px;
+  font-size: 24px;
+}
+#sessions textarea:hover,
+#sessions textarea:focus,
+#sessions textarea:active{
+ background-color: #e6ffff!important;
+}
+#sessions-new {
+  padding-top: 40px;
 }
 #sessions-new .card{
   max-width: 323px;
  }
 #sessions-list .card-content{
   min-height: 350px;
+}
+
+#sessions #user-row{
+  padding: 0px 15px 20px 10px;
+  margin: 10px 0 10px 0!important;
+  border-radius: 5px;
+}
+#sessions .active #user-row{
+  background-color: #f0f2f5;
+}
+#sessions .card .card-content {
+    margin: 0px 0 10px 0 !important;
+}
+#sessions li.session_user{
+    border-bottom: 1px dotted #343434;
 }
 /* Checkboxes
    ========================================================================== */

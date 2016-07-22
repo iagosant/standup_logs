@@ -1,7 +1,7 @@
 class CompletedsController < ApplicationController
   before_action :set_completed, only: [:show, :edit, :update, :destroy]
   before_action :get_session, only: [:show, :edit, :update]
-  
+
 
   # GET /completeds
   # GET /completeds.json
@@ -49,12 +49,12 @@ class CompletedsController < ApplicationController
     completed_item = params[:content]
     respond_to do |format|
       if @completed.update(completed: completed_item)
-        # format.html { redirect_to @session, notice: 'Completed was successfully updated.' }
-        # format.json { render :show, status: :ok, location: @session }
-        # format.js {render :nothing => true, notice: 'Wip was successfully updated.' }
+        format.html { redirect_to @session, notice: 'Completed was successfully updated.' }
+        format.json { render :show, status: :ok, location: @session }
+        format.js {render :nothing => true, notice: 'Completed was successfully updated.' }
       else
-        # format.html { render :edit }
-        # format.json { render json: @completed.errors, status: :unprocessable_entity }
+        format.html { render :edit }
+        format.json { render json: @completed.errors, status: :unprocessable_entity }
       end
     end
   end

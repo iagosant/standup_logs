@@ -1,6 +1,5 @@
 $(document).on('turbolinks:load',function(){
-  // $('#datepicker2').on('change',function(){
-    // alert('datepicker2');
+
 
   $('#narrowSearch').on('click', function(){
     var selectedUsers = $('select#searchByUser').val();
@@ -51,28 +50,8 @@ $(document).on('turbolinks:load',function(){
     });
   });
 
-  $('textarea').focus(function() {
-    $(this).css("background-color","#e6ffff");
-  }).blur(function() {
-    $(this).css("background-color","white");
-    $(this).height("39px");
-    var content = $(this).val();
-    var str = $(this).attr('name');
-    var itemEdited = str.split("[")[0] + "s";
-    var itemId = $(this).parents("li").attr("id");
-    var sessionId = $('.session_tag').attr('id');
-    // alert(content + itemEdited + itemId)
-    $.ajax({
-      url: sessionId + '/' + itemEdited +'/' + itemId + '/update',
-      type: 'POST',
-      dataType: 'json',
-      data: {'itemId': itemId, 'sessionId': sessionId, 'content': content}
-      // success: function(){
-      //   alert (itemEdited + ' was updated');
-      // }
-    });
-  });
 
+  // url: sessionId + '/' + itemEdited +'/' + itemId + '/update',
   $('td.delete').click(function(){
     var sessionId = $('tr').attr('data');
     alert('clicked on delete');
@@ -148,26 +127,22 @@ $(document).on('turbolinks:load',function(){
       dataType: 'json',
       data: {'sessionId': sessionId, 'userIds': userIds},
       success: function(data){
-        // alert(data.length);
+
         for (i=0;i<data.length;i++){
           var uI = data[i];
-          var sessionId = uI['session_id']
+          var sessionId = uI['sessionId']
           var userId = uI['userId'];
+          alert(uI['userId']);
           var wipId = uI['wipId'];
           var completedId = uI['completedId'];
           var blockerId = uI['blockerId'];
           var userFirstName = uI['userFirstName'];
           var userLastName = uI['userLastName'];
           // alert('userId' + userId + 'userFirstName' + userFirstName + 'userLastName' + userLastName + 'wipId' + wipId + 'completedId' + completedId + 'blockerId' + blockerId);
-          var html = '<div>';
-          html += '<br>';
-          html += '<div class="session_user" data="' + sessionId  + userId + '">';
+          var html = '<div class="session_user" data="' + sessionId + ' '+ userId + '">';
           html += '<h6><a href="/users/' + userId + '/edit">' + userFirstName +' '+ userLastName + '</a></h6>';
           html += '<ul>';
           html += '<li>';
-          html += '<table>';
-          html += '<tbody>';
-          html += '<tr>';
           html += '<a class="waves-effect waves-light su-btn btn-flat removeUser">Remove user</a><table>';
           html += '<tbody>';
           html += '<tr>';
@@ -210,7 +185,6 @@ $(document).on('turbolinks:load',function(){
           html += '</table>';
           html += '</li>';
           html += '</ul>';
-          html += '</div>';
           $('div.card-content').append(html);
         }
       }

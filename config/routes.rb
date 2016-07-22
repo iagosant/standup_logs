@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   post 'teams/users' => 'teams#show_users'
   post 'sessions/searchByUser' => 'sessions#searchByUser'
   post 'sessions/:session_id/removeUser' => 'sessions#removeUser'
+  post 'removeUser' => 'sessions#removeUser'
   post 'sessions/:session_id/addUser' => 'sessions#addUser'
   # get 'user/:id' => 'users#edit'
 

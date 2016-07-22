@@ -51,7 +51,8 @@ class SessionsController < ApplicationController
   end
 
   def removeUser
-    session = Session.find(params[:sessionId])
+    byebug
+    session = Session.find(params[:session_id])
     remove_user = User.find(params[:userId])
     users = removeUserIdFinder(session.users)
     user_to_array = params[:userId].split(",").map(&:to_i)
@@ -67,6 +68,10 @@ class SessionsController < ApplicationController
     Completed.reset_pk_sequence
     Blocker.where(user_id: params[:userId], session_id: params[:sessionId]).destroy_all
     Blocker.reset_pk_sequence
+    respond_to do |format|
+      format.html { redirect_to sessions_path, notice: "success"}
+      format.json {render json: @sessions_result}
+    end
   end
 
   def addUser
@@ -95,7 +100,7 @@ class SessionsController < ApplicationController
     new_users = current_users + add_users
     session.update(users: new_users)
     respond_to do |format|
-      format.html { redirect_to sessions_path, notice: "success"}
+      format.html
       format.json {render json: new_user_info}
     end
   end
