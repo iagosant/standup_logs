@@ -1,17 +1,28 @@
 class UsersController < ApplicationController
+  include UsersHelper
   before_action :require_logged_in, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
   attr_accessor :email, :name, :password, :password_confirmation
 
   def index
     this_user = User.find(session[:user_id])
     authorize this_user
-    @users = User.all
+    @team = Team.find(session[:team_id])
+    @users = @team.users.all
+  end
+
+  def roleUpdate
+    this_user = User.find(session[:user_id])
+    authorize this_user
+    user_id = params[:user_id]
+    new_role = params[:new_role]
+    update_this_user = User.find(user_id)
+    update_this_user.update(role: new_role)
   end
 
   def show
     # authorize @user
     #FIX SET USER
+
     @user = User.find(session[:user_id])
   end
 
@@ -25,8 +36,6 @@ class UsersController < ApplicationController
     authorize @user
     @user = User.find(params[:id])
   end
-
-
 
   def create
     user = User.find(session[:user_id])
@@ -44,8 +53,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    this_user = User.find(params[:id])
-    authorize this_user
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to users_path, notice: 'User was successfully updated.' }
@@ -66,7 +73,13 @@ class UsersController < ApplicationController
       User.reset_pk_sequence
     end
   end
-
+  def resend_activation
+    @user = User.find_by(email:params[:email])
+    @user.activation_token = User.new_token
+    UserMailer.account_activation(@user).deliver_now
+    flash[:info] = "Please check your email to activate your account."
+    redirect_to new_password_reset_url
+  end
   private
 
   def user_not_authorized
@@ -76,11 +89,16 @@ class UsersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @logged_user = User.find_by(session[:user_id])
+    @user = User.find_by(session[:user_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
+  end
+  # Remembers a user in the database for use in persistent sessions.
+  def remember
+    self.remember_token = User.new_token
+    update_attribute(:remember_digest, User.digest(remember_token))
   end
 end

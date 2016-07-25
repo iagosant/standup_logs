@@ -7,7 +7,7 @@
           <h1><%= @user_sample %></h1>
           <% end %>
           <p id="notice"><%= notice %></p>
-          <div class="col s10 ">
+          <div class="col s10 session_tag" id="<%=@session.id %>">
             <h1><%= @session.created_at.strftime("%A") %> STAND-UP</h1>
             <h6>Session <%=@session.id %>, created <%= time_ago_in_words @session.created_at %> ago </h6>
           </div>
@@ -17,9 +17,9 @@
           <div class="col s12 right-align">
             <h6><%= @session.created_at.strftime("%b")%><span> <%= @session.created_at.strftime("%d") %><span></h6>
             </div>
-
           </div>
           <div class="card-content">
+
             <% @session_users.each do |user| %>
             <div class="session">
               <h6><%= link_to  "#{user.first_name}" " " "#{user.last_name}", edit_user_path(user) %></h6>
@@ -55,8 +55,16 @@
             </div>
             <div class="divider"></div></br>
             <% end %>
+
           </div>
           <div class="card-action">
+            <select multiple id="addUserToSession">
+              <option id="selectUser" value="" disabled selected>Add users to this session</option>
+              <% @add_users.each do |u| %>
+              <option class="user-option" value='<%= u.id %>'><%= u.first_name %></option>
+              <% end %>
+            </select>
+            <a class="waves-effect waves-light su-btn btn-flat" id="addUser">Add user</a></br>
             <div class="row center-align">
               <div class="col s2">
                 <%= link_to 'EDIT SESSIONS', edit_session_path(@session) %>

@@ -1,0 +1,60 @@
+$(document).on('turbolinks:load',function(){
+    $('select').material_select();
+  var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
+  $("#stand-up ul li a").each(function(){
+      //  alert($(this).attr("href") );
+         if($(this).attr("href") == pgurl || $(this).attr("href") == '' )
+         $(this).addClass("active");
+    })
+
+
+  // $("#stand-up ul.menu li a").click(function(){
+  //    var link = $(this);
+  //    $('#stand-up ul.menu li a').removeClass('active');
+  //    $(this).addClass('active');
+  // });
+  // $('#multiple_select').material_select({
+  //           onDropdownHidden: function(event) {
+  //               // alert('Dropdown closed.');
+  //           }
+  // //       });
+  // $('#multiple_select').on( "change",function(){
+  //
+  //   // if ($(this).siblings( "input.select-dropdown" ).length==0){
+  //       //  alert($(this).siblings( "input.select-dropdown"  ).attr('class'));
+  //   // }
+  // //  alert('entrooo');
+  //
+  //   })
+
+  $("#stand-up ul.menu li a").hover(function(){
+      change_img_nav(this);
+    }, function(){
+      change_img_nav(this)
+   });
+
+  $( "#datepicker" ).datepicker({
+    dateFormat: 'yy-mm-dd',
+    disabled: false
+   });
+   $( "#datepicker2" ).datepicker({
+     dateFormat: 'yy-mm-dd',
+     disabled: false
+    });
+
+});
+function change_img_nav(e){
+  var img = $(e).find("img#icon-change"),
+      img_path;
+      img_path = img.attr('src');
+
+  if ((img.length) && (img_path.lastIndexOf("lightblue")==-1)){
+    img_path = img_path.substr(0,img_path.lastIndexOf("."))+'-lightblue.png';
+    $(e).css('color','#92daee');
+    img.attr('src',img_path);
+  } else if (img.length){
+      img_path = img_path.substr(0,img_path.lastIndexOf("-lightblue"))+'.png';
+      img.attr('src',img_path);
+      $(e).css('color','#fff');
+    }
+}

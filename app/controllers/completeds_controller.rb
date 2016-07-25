@@ -1,6 +1,7 @@
 class CompletedsController < ApplicationController
   before_action :set_completed, only: [:show, :edit, :update, :destroy]
-  before_filter :get_session, only: [:edit, :update]
+  before_action :get_session, only: [:show, :edit, :update]
+  
 
   # GET /completeds
   # GET /completeds.json
@@ -31,7 +32,6 @@ class CompletedsController < ApplicationController
   # POST /completeds.json
   def create
     @completed = Completed.new(completed_params)
-
     respond_to do |format|
       if @completed.save
         format.html { redirect_to @completed, notice: 'Completed was successfully created.' }
@@ -46,14 +46,15 @@ class CompletedsController < ApplicationController
   # PATCH/PUT /completeds/1
   # PATCH/PUT /completeds/1.json
   def update
+    completed_item = params[:content]
     respond_to do |format|
-      if @completed.update(completed_params)
-        format.html { redirect_to @session, notice: 'Completed was successfully updated.' }
-        format.json { render :show, status: :ok, location: @session }
-        format.js {render :nothing => true, notice: 'Wip was successfully updated.' }
+      if @completed.update(completed: completed_item)
+        # format.html { redirect_to @session, notice: 'Completed was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @session }
+        # format.js {render :nothing => true, notice: 'Wip was successfully updated.' }
       else
-        format.html { render :edit }
-        format.json { render json: @completed.errors, status: :unprocessable_entity }
+        # format.html { render :edit }
+        # format.json { render json: @completed.errors, status: :unprocessable_entity }
       end
     end
   end

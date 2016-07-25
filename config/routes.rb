@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  #Paperclip images
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
-
+  get 'password_resets' => 'password_resets#new'
   get 'login/create'
 
   get 'login/destroy'
@@ -20,18 +22,38 @@ Rails.application.routes.draw do
   get 'sessions' => 'sessions#index'
   get 'sessions/new' => 'sessions#new'
   get 'sessions/:id' => 'sessions#show'
+  post 'sessions/deleteSession/:id' => 'sessions#deleteSession'
   get 'sessions/:session_id/blockers' => 'blockers#index'
   get 'sessions/:session_id/completeds' => 'completeds#index'
   get 'sessions/:session_id/wips' => 'wips#index'
 
+  post 'users/roleUpdate' => 'users#roleUpdate'
+  post 'users/resend_activation' => 'users#resend_activation'
+
+  post 'sessions/:session_id/wips/:id/update' => 'wips#update'
+  post 'sessions/:session_id/completeds/:id/update' => 'completeds#update'
+  post 'sessions/:session_id/blockers/:id/update' => 'blockers#update'
+
+  # get the date from sessions index jquery-ui datepicker
+  post 'sessions/cleanDate' => 'sessions#cleanDate'
+  post 'teams/users' => 'teams#show_users'
+  post 'sessions/searchByUser' => 'sessions#searchByUser'
+  post 'sessions/:session_id/removeUser' => 'sessions#removeUser'
+  post 'sessions/:session_id/addUser' => 'sessions#addUser'
   # get 'user/:id' => 'users#edit'
 
-  resources :wips
   resources :completeds
   resources :blockers
+  resources :wips
+  # resources :sessions do
+  #   resources :wips
+  #   resources :completeds
+  #   resources :blockers
+  # end
   resources :sessions
   resources :users
   resources :account_activations, only: [:edit]
+
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :teams
   # get 'new_session' => 'sessions#new', as: 'new_session'

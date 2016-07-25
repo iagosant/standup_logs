@@ -52,8 +52,9 @@ class BlockersController < ApplicationController
   # PATCH/PUT /blockers/1
   # PATCH/PUT /blockers/1.json
   def update
+    blocker_item = params[:content]
     respond_to do |format|
-      if @blocker.update(blocker_params)
+      if @blocker.update(blocker: blocker_item)
         format.html { redirect_to @session, notice: 'Blocker was successfully updated.' }
         format.json { render :show, status: :ok, location: @session }
         format.js {render :nothing => true, notice: 'Wip was successfully updated.' }

@@ -1,13 +1,9 @@
 class ApplicationController < ActionController::Base
   include LoginHelper
-  protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?
   include Pundit
+  protect_from_forgery with: :exception
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
-    def current_user
-      @current_user ||= User.find_by(id: session[:user_id])
-    end
+  before_filter -> { flash.now[:notice] = flash[:notice].html_safe if flash[:html_safe] && flash[:notice] }
 
     def require_logged_in
       return true if current_user
@@ -15,8 +11,11 @@ class ApplicationController < ActionController::Base
       return false
     end
 
-    def team_user_create
-      @team = Team.create(team_params)
+    def team_user_create(team_params)
+      team_avatar = team_params[:avatar]
+      # @team.avatar = team_avatar
+      @team = Team.new(team_params)
+      @team.save
       u_params = (team_params[:users_attributes]["0"])
       @user = @team.users.build(u_params)
       if @user.save
@@ -27,12 +26,10 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def current_team
-        @current_team ||= @current_user.team
-    end
-
     def user_not_authorized
         flash[:alert] = "Access denied."
         redirect_to (request.referrer || root_path)
     end
+
+
   end

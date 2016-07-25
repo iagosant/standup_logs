@@ -1,41 +1,72 @@
 // Place all the styles related to the Login controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#ms-login{
-  height: 100vh;
-  // display: table;
+
+#ms-login, #ms-reset-password{
+  padding-top: 0px;
+  margin-top: 15vh;
 }
 #ms-login > div{
-  // display: table-cell;
-  // vertical-align: middle;
   height: 100%;
 }
-#ms-login .card {
+#ms-login .card, #ms-reset-password .card {
   color:#aeb0b4;
   margin: 0 auto;
-  width: 50%;
+  padding: 0px;
+  width: 60%;
   background: none!important;
 }
-#ms-login .card .card-title{
-  height: 120px;
+#ms-login .card .card-title, #ms-reset-password .card .card-title{
+  height: 100px;
   background-color: #081729;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
-#ms-login .card .card-content{
+#ms-login .card .card-content, #ms-reset-password .card .card-content{
   border-radius: 0px !important;
+  padding-top: 25px;
 }
-#ms-login .card .card-action{
+#ms-login .card .card-action, #ms-reset-password .card .card-action{
   background-color: #fff;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
+  padding-bottom: 5px;
 }
-#ms-login .card .card-title img{
+#ms-login .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating),
+#ms-reset-password .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+  margin-right: 0px;
+  text-transform: none;
+}
+#ms-login .card .card-title img,
+#ms-reset-password .card .card-title img{
   margin: 0 auto;
+  }
+#ms-login .input-field .prefix ~ input, #ms-login .input-field .prefix ~ textarea,
+#ms-reset-password .input-field .prefix ~ input, #ms-login .input-field .prefix ~ textarea {
+    padding-left: 3rem;
+    margin-left: 0rem;
+  }
+#ms-login .su-btn input[type=submit],
+#ms-reset-password .su-btn input[type=submit]  {
+    width: 214px;
+    text-transform: none;
+    padding: 10px 0px;
+  }
+#ms-login .input-field label,
+#ms-reset-password .input-field label {
+     font-size: 0.9rem
+  }
+#ms-login .form,
+#ms-reset-password .form{
+  padding-top: 20px;
+}
+#ms-login .su-btn.btn-flat.submit,
+#ms-reset-password .su-btn.btn-flat.submit{
+  margin-top: 25px;
 }
 
 @media only screen and (max-width: 1200px){
-  #ms-login .card {
+  #ms-login .card, #ms-reset-password .card {
     width: 90%;
   }
 

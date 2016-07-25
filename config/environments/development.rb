@@ -10,6 +10,17 @@ Rails.application.configure do
   #  :authentication       => "plain",
   # :enable_starttls_auto => true
   # }
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['AWS_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    },
+    :s3_region => ENV['AWS_REGION']
+  }
+
+
   config.active_record.dump_schema_after_migration = false
   # added by Misley
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
@@ -26,6 +37,17 @@ Rails.application.configure do
     user_name: ENV["gmail_username"],
     password: ENV["gmail_password"]
   }
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_credentials: {
+      access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
+      secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
+      bucket: ENV.fetch('S3_BUCKET_NAME'),
+      s3_region: ENV.fetch('AWS_REGION')
+    }
+  }
+
   config.action_mailer.perform_deliveries = true
 
   # In the development environment your application's code is reloaded on
@@ -65,4 +87,5 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-end
+
+  end

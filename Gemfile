@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem "paperclip"
+# Amazon web services
+gem 'aws-sdk', '~> 2'
+
 gem 'rails-erd'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
@@ -37,6 +41,7 @@ group :production do
   gem 'bcrypt'
   gem 'figaro'
   gem 'whenever', require: false
+
 end
 
 group :development, :test do
