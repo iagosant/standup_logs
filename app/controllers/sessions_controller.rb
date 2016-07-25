@@ -1,10 +1,7 @@
 class SessionsController < ApplicationController
 
   include ApplicationHelper
-  before_action :set_team, only: [:index, :show, :edit, :update, :destroy]
-
   before_action :set_session, only: [:show, :edit, :update, :destroy, :deleteSession, :searchByUser]
-
   before_action :require_logged_in
   before_action :team_users, only: [:new, :index, :cleanDate, :show]
   include SessionsHelper
@@ -206,10 +203,8 @@ class SessionsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def session_params
-<<<<<<< HEAD
-    params.require(:session).permit(:user_id, :user ,:tag_list)
-=======
-    params.require(:session).permit(:user_id, :dateTypeVar, :sessionId)
->>>>>>> b8c1589d6089c44510b7e5161220ad76b831e891
+
+    params.require(:session).permit(:user_id, :dateTypeVar, :sessionId, :user, :tag_list)
+
   end
 end
