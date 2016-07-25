@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  include ApplicationHelper
   before_action :set_team, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_session, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
@@ -55,6 +56,9 @@ class SessionsController < ApplicationController
     @team = Team.find(session[:team_id])
     @users = Session.get_users(params[:user_ids].map{|i| i.to_i})
     @session = Session.create(users: @users, team_id: @team.id)
+    @session.tag_list = get_user_first_names(@users)
+    # byebug
+    @session.tag_list
     respond_to do |format|
       if @session.save
         format.html { redirect_to @session, notice: 'Session was successfully created.' }
@@ -117,6 +121,6 @@ class SessionsController < ApplicationController
   end
   # Never trust parameters from the scary internet, only allow the white list through.
   def session_params
-    params.require(:session).permit(:user_id)
+    params.require(:session).permit(:user_id, :user ,:tag_list)
   end
 end
